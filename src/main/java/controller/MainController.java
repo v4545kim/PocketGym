@@ -10,6 +10,7 @@ public class MainController
 	@GetMapping("/main.ma")
 	private String  doGet(Model model) 
 	{
+		System.out.println("go to main");
 		return "main";
 	}
 }
