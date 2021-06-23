@@ -1,20 +1,35 @@
 package member.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dao.MemberDao;
+import vo.Member;
+
 @Controller
 public class MemberDetailController {
 	
-	@GetMapping("detail.me/get")
-	private String  doGet(Model model){
-		return "";
-	}
+	@Autowired
+	@Qualifier("mdao")
+	private MemberDao mdao;
+
 	
-	@PostMapping("detail.me/post")
-	private String  doPost(Model model){
-		return "";
+	@GetMapping("/detail.me")
+	private String  doGet(Model model, HttpSession session){
+		//String id = (String) session.getAttribute("loginfo");
+		String id = "dddd";
+		Member bean = mdao.selectById(id);
+		Double myWeight = mdao.selectMyWeight(id);
+		model.addAttribute("bean", bean);
+		model.addAttribute("myWeight", myWeight);
+		return "meDetail";
 	}
+
 }
