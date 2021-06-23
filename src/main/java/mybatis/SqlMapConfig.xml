@@ -8,7 +8,7 @@
 	<typeAliases>
 		<!-- alias = 줄임말 / type = 패키지.클래스명 -->
 		<typeAlias alias="AlMember" type="vo.Member" />		
-		<typeAlias alias="AlRoutine" type="vo.AlRoutine" />
+		<typeAlias alias="AlRoutine" type="vo.Routine" />
 		<typeAlias alias="AlDiet" type="vo.Diet" />		
 		<typeAlias alias="AlProduct" type="vo.Product" />
 		<typeAlias alias="AlCart" type="vo.Cart" />
