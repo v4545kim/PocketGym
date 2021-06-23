@@ -15,9 +15,9 @@ public class Member
 	private int period;
 	private int point;
 	private int ro_id;
+	private String ro_name;
 	
-	
-	
+		
 	public String getId() {
 		return id;
 	}
@@ -97,15 +97,18 @@ public class Member
 		this.ro_id = ro_id;
 	}
 	
-	
-	
+	public String getRo_name() {
+		return ro_name;
+	}
+	public void setRo_name(String ro_name) {
+		this.ro_name = ro_name;
+	}
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname + ", email="
 				+ email + ", address=" + address + ", gender=" + gender + ", height=" + height + ", aim_weight="
 				+ aim_weight + ", career=" + career + ", period=" + period + ", point=" + point + ", ro_id=" + ro_id
-				+ "]";
+				+ ", ro_name=" + ro_name + "]";
 	}
-	
-	
 }
+
