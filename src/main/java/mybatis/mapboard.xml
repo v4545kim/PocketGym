@@ -4,24 +4,5 @@
 
 <mapper namespace="mapBoard">
 	
-	<sql id="myselect">
-
-	</sql> 	
 	
-	<select id="" resultType="">
-
-	</select>
-
-	<update id="" parameterType="">
-
-	</update>	
-
-	<delete id="" parameterType="">
-
-	</delete>	
-	
-	<insert id="" parameterType="">
-		
-	</insert>
-
 </mapper>
