@@ -3,5 +3,35 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapMember">
+	<insert id="InsertData" parameterType="AlMember">
+		insert into members(id, password, name, nickname, email, gender, height, career, aim_weight, address, period) 
+		values(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{gender}, #{height}, #{career}, #{aim_weight}, #{address}, #{period})
+	</insert>
+	
+	<select id="selectData" resultType="AlMember">
+		select * from members where id = #{id} and password = #{password}
+	</select>
+	
+	<select id="selectById" parameterType="String"
+	resultType="AlMember">
+	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address,
+	m.gender, m.career, m.period, m.aim_weight, m.ro_id, m.point, r.ro_name
+	from members m inner join routines r on m.ro_id = r.ro_id where m.id =
+	#{id};
+	</select>
 
+	<!-- 회원 최신 몸무게 가져오기 -->
+	<select id="selectMyWeight" parameterType="String" resultType="int">
+		select weight from myweight where mem_id=#{id} and rownum=1 order by
+		weight_id desc;
+	</select>
+
+	<!-- 회원 정보 수정하기 -->
+	<update id="updateMember" parameterType="AlMember">
+		update members set email = #{email}, password = #{password}, height =
+		#{height}, nickname = #{nickname}, address = #{address}, aim_weight =
+		#{aim_weight} where id = #{id}
+	</update>
+	
+	
 </mapper>
