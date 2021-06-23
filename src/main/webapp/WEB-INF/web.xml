@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app version="2.5" xmlns="http://Java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
@@ -20,13 +20,13 @@
 
 
 		
-	   <!-- main.jsp-->
+	<!-- main-->
    <servlet>
       <servlet-name>main</servlet-name>
       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
       <init-param>
          <param-name>contextConfigLocation</param-name>
-         <param-value>/WEB-INF/xml/main-config.xml</param-value>
+         <param-value>/WEB-INF/xml/main-context.xml</param-value>
       </init-param>
       <load-on-startup>1</load-on-startup>
    </servlet>
@@ -34,6 +34,102 @@
    <servlet-mapping>
       <servlet-name>main</servlet-name>
       <url-pattern>*.ma</url-pattern>
+   </servlet-mapping>	
+   
+   	<!--member-->
+   <servlet>
+      <servlet-name>member</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/member-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>member</servlet-name>
+      <url-pattern>*.me</url-pattern>
+   </servlet-mapping>	
+   
+   <!--routine-->
+   <servlet>
+      <servlet-name>routine</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/routine-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>routine</servlet-name>
+      <url-pattern>*.ro</url-pattern>
+   </servlet-mapping>	
+   
+   <!--diet-->
+   <servlet>
+      <servlet-name>diet</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/diet-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>diet</servlet-name>
+      <url-pattern>*.di</url-pattern>
+   </servlet-mapping>	
+   
+   <!--product-->
+   <servlet>
+      <servlet-name>product</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/product-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>product</servlet-name>
+      <url-pattern>*.pr</url-pattern>
+   </servlet-mapping>	
+   
+   <!--board-->
+   <servlet>
+      <servlet-name>board</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/board-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>board</servlet-name>
+      <url-pattern>*.br</url-pattern>
+   </servlet-mapping>	
+   
+   <!--exercise-->
+   <servlet>
+      <servlet-name>exercise</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/xml/exercise-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+     
+   <servlet-mapping>
+      <servlet-name>exercise</servlet-name>
+      <url-pattern>*.ex</url-pattern>
    </servlet-mapping>	
 
 	
