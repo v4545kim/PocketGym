@@ -1,4 +1,4 @@
-package exercise;
+package board.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ExerciseUpdateController {
-	
-	@GetMapping("update.ex/get")
+public class MyBoardListController {
+	@GetMapping("/mybolist.br")
 	private String  doGet(Model model){
-		return "";
+		return "myboardList";
 	}
 	
-	@PostMapping("update.ex/post")
+	@PostMapping("mybolist.br")
 	private String  doPost(Model model){
 		return "";
 	}

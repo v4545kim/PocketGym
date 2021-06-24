@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProductListController {
 	
-	@GetMapping("prdetail.pr/get")
+	@GetMapping("/prlist.pr")
 	private String  doGet(Model model){
-		return "";
+		return "prList";
 	}
 	
-	@PostMapping("prdetail.pr/post")
+	@PostMapping("/prlist.pr")
 	private String  doPost(Model model){
 		return "";
 	}

@@ -31,9 +31,14 @@ public class MemberLoginController {
 			@RequestParam(value = "password", required = true) String password,
 			HttpSession session, Model model){
 		
-		Member bean = this.dao.selectData(id, password);
-		session.setAttribute("loginfo", bean);
-		
-		return "redirect:/main.ma";
+			Member bean = this.dao.selectData(id, password);
+				if(bean == null) {
+					String message = "아이디와 비밀번호가 일치하지 않습니다.";
+					model.addAttribute("message",message);
+					return "meLogin";
+				}else {
+					session.setAttribute("loginfo", bean);
+					return "redirect:/main.ma";
+				}
 	}
 }
