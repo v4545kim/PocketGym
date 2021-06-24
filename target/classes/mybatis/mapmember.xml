@@ -3,9 +3,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapMember">
-	<insert id="InsertData" parameterType="AlMember">
-		insert into members(id, password, name, nickname, email, gender, height, career, aim_weight, address, period) 
-		values(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{gender}, #{height}, #{career}, #{aim_weight}, #{address}, #{period})
+	<!-- 회원 가입하기 -->
+	<insert id="insertData" parameterType="AlMember">
+		insert into members(id, password, name, nickname, email, gender, height, career, aim_weight, address, period, birth) 
+		values(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{gender}, #{height}, #{career}, #{aim_weight}, #{address}, #{period}, #{birth})
 	</insert>
 	
 	<select id="selectData" resultType="AlMember">
@@ -33,5 +34,8 @@
 		#{aim_weight} where id = #{id}
 	</update>
 	
-	
+	<select id="selectDataID" resultType="AlMember">
+      select * from members where id = #{id}
+   </select>
+   
 </mapper>

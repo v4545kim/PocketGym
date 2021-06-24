@@ -1,11 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="./../common.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-
+<html>
 <head>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.validate.js"></script>
+
+
+<script type="text/javascript">
+   function checkDuplicateId()
+   {
+       var id = document.myform.id.value ;
+       alert('아이디를 입력해라 임마');
+       if( id.length == 0 )
+       {
+          alert('아이디를 입력해 주세요') ;
+          document.myform.id.focus() ; 
+          return false ;
+       }
+       var url='<%=contextPath%>/idcheck.me?id=' + id ; 
+       window.open(url, 'mywin', 'height=150,width=300') ;
+      }
+      
+   function isCheckFalse() 
+   {
+      document.myform.isCheck.value = false;
+   }
+</script>
+
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -36,18 +64,9 @@
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
@@ -82,13 +101,15 @@
                     </div>
                 </div>
                 <div class="signup-form">
-                	<c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form method="post" class="register-form" id="register-form" action="${apppath}/insert.me" modelAttribute="member">
+                   <c:set var="apppath" value="<%=request.getContextPath()%>" />
+                    <form:form method="post" class="register-form" id="register-form" action="${apppath}/insert.me">
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="id" class="required">아이디</label>
-                                    <input type="text" name="id" id="id" />
+                                    <input type="text" name="id" id="id" onkeyup="isCheckFalse();"/>
+                                    <input type="button" class="btn btn-info" value="중복 검사"
+                                    onclick="checkDuplicateId();">
                                 </div>
                                 <div class="form-input">
                                     <label for="password" class="required">비밀번호</label>
@@ -106,81 +127,48 @@
                                     <label for="email" class="required">Email</label>
                                     <input type="text" name="email" id="email" />
                                 </div>
-                                <div class="form-input">
-                                    <label for="gender" class="required">성별</label>
-                                    <input type="text" name="gender" id="gender" />
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="payment">성별</label>
+                                    </div>
+                                    <div class="form-radio-group">
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="gender" id="man" value="남성">
+                                            <label for="man">남성</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="gender" id="woman" value="여성">
+                                            <label for="woman">여성</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <!-- <div class="form-select">
-                                    <div class="label-flex">
-                                        <label for="meal_preference">meal preference</label>
-                                        <a href="#" class="form-link">Lunch detail</a>
-                                    </div>
-                                    <div class="select-list">
-                                        <select name="meal_preference" id="meal_preference">
-                                            <option value="Vegetarian">Vegetarian</option>
-                                            <option value="Kosher">Kosher</option>
-                                            <option value="Asian Vegetarian">Asian Vegetarian</option>
-                                        </select>
-                                    </div>
-                                </div> -->
+                            
+                                <div class="form-input">
+	                                <label for="meal_preference">우편 번호</label>
+			                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+			                        <input type="text" id="sample6_address" name="address" placeholder="주소"><br>
+			                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+		                        </div>
                                 
                                 <div class="form-input">
-                                <label for="meal_preference">우편 번호</label>
-                                <input type="text" id="sample6_postcode" placeholder="우편번호">
-								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample6_address" name="address" placeholder="주소"><br>
-								<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-								<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-								</div>
-								
-                                <!-- <div class="form-radio">
-                                    <div class="label-flex">
-                                        <label for="payment">Payment Mode</label>
-                                        <a href="#" class="form-link">Payment Detail</a>
-                                    </div>
-                                    <div class="form-radio-group">            
-                                        <div class="form-radio-item">
-                                            <input type="radio" name="payment" id="cash" checked>
-                                            <label for="cash">Cash</label>
-                                            <span class="check"></span>
-                                        </div>
-                                        <div class="form-radio-item">
-                                            <input type="radio" name="payment" id="cheque">
-                                            <label for="cheque">Cheque</label>
-                                            <span class="check"></span>
-                                        </div>
-                                        <div class="form-radio-item">
-                                            <input type="radio" name="payment" id="demand">
-                                            <label for="demand">Demand Draf</label>
-                                            <span class="check"></span>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="form-input">
-                                    <label for="height">height</label>
-                                    <input type="number" name="height" id="height" />
-                                </div>
-                                <div class="form-input">
-                                    <label for="aim_weight">aim_weight</label>
-                                    <input type="number" name="aim_weight" id="aim_weight" />
-                                </div>
-                                <div class="form-input">
-                                    <label for="career">career</label>
+                                    <label for="career">운동 경력</label>
                                     <input type="number" name="career" id="career" />
                                 </div>
                                 <div class="form-input">
-                                    <label for="period">period</label>
+                                    <label for="height">신장</label>
+                                    <input type="number" name="height" id="height" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="aim_weight">목표 체중</label>
+                                    <input type="number" name="aim_weight" id="aim_weight" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="period">목표 기간</label>
                                     <input type="number" name="period" id="period" />
-                                </div>
-                                <div class="form-input">
-                                    <label for="point">point</label>
-                                    <input type="number" name="point" id="point" />
-                                </div>
-                                <div class="form-input">
-                                    <label for="ro_id">ro_id</label>
-                                    <input type="number" name="ro_id" id="ro_id" />
                                 </div>
                             </div>
                         </div>
@@ -192,7 +180,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- JS -->
@@ -203,10 +190,4 @@
     <script src="<%=request.getContextPath() %>/resources/vendor/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/meinsert_main.js"></script>
 </body>
-
-
-
-
-
-
 </html>
