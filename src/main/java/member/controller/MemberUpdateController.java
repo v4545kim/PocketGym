@@ -21,6 +21,11 @@ public class MemberUpdateController {
 	@Qualifier("mdao")
 	private MemberDao mdao;
 	
+	@ModelAttribute("bean")
+	public Member member() {
+		return new Member();
+	}
+	
 	@GetMapping("/update.me")
 	private String  doGet(Model model, HttpSession session, @RequestParam(value = "myWeight", required = true) String myWeight){
 		Member member = (Member) session.getAttribute("loginfo");
