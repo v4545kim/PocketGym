@@ -27,6 +27,7 @@ public class MemberDetailController {
 		String id = "dddd";
 		Member bean = mdao.selectById(id);
 		Double myWeight = mdao.selectMyWeight(id);
+		System.out.println(myWeight);
 		model.addAttribute("bean", bean);
 		model.addAttribute("myWeight", myWeight);
 		return "meDetail";
