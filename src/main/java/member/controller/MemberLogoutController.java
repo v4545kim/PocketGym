@@ -16,7 +16,7 @@ public class MemberLogoutController {
 		session.invalidate();
 		System.out.println("로그아웃 됨");
 		
-		return "meLogin";
+		return "redirect:/main.ma";
 	}
 	
 	
