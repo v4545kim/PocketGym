@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.MemberDao;
 import vo.Member;
@@ -21,32 +22,37 @@ public class MemberInsertController {
 	@Qualifier("mdao")
 	private MemberDao mdao;
 	
+	@ModelAttribute("member")
+	public Member mymember() {
+		return new Member();
+	}
+	
 	@GetMapping("/insert.me")
 	private String doGet(Model model){
+		System.out.println("회원가입 창으로 이동");
 		return "/meInsertForm";
 	}
 	
 	@PostMapping("/insert.me")
-	private String doPost(
-			@ModelAttribute("member") @Valid Member bean, Model model, BindingResult result){
+	public ModelAndView doPost(
+			@ModelAttribute("member") @Valid Member xxx, BindingResult asdf) {
 		
-		String gotopage = "";
+		ModelAndView mav = new ModelAndView();
 		
-		if (result.hasErrors()) {
-			System.out.println("유효성 검사에 문제 있음");
-			System.out.println(bean.toString());
-			System.out.println(result.toString());
-			
+		if (asdf.hasErrors()) {
+			System.out.println("유효성 검사에 문제가 있음");
+			System.out.println(xxx.toString());
+			System.out.println(asdf.toString());
+			mav.addObject("bean",xxx);
+			mav.setViewName("meInsertForm");
 			
 		} else {
-			System.out.println("유효성 검사에 문제 없음");
-			
+			System.out.println("유효성 검사에 문제가 없음");
 			int cnt = -1;
-			cnt = mdao.insertData(bean);
+			cnt = mdao.insertData(xxx);
 			
-			gotopage = "redirect:/main.ma";
+			mav.setViewName("redirect:/main.ma");
 		}
-		
-		return gotopage;
+		return mav;
 	}
 }

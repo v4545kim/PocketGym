@@ -37,7 +37,7 @@ public class MemberDao {
 	}
 
 	public double selectMyWeight(String id) {
-		return this.abcd.selectOne(NAMESPACE + "selectMyWeight", id);
+		return Double.parseDouble(String.valueOf(this.abcd.selectOne(NAMESPACE + "selectMyWeight", id))) ;
 	}
 
 	public int updateMember(Member bean) {
@@ -50,5 +50,11 @@ public class MemberDao {
 	public Member selectByPkId(String id) {
 	      return this.abcd.selectOne(NAMESPACE + "selectDataID", id);
 	}
+	
+	public Member selectByPkNickname(String id) {
+	      return this.abcd.selectOne(NAMESPACE + "selectDataNickname", id);
+	}
+	
+	
 
 }

@@ -12,29 +12,64 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="jquery.validate.js"></script>
 
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-<script type="text/javascript">
-   function checkDuplicateId()
-   {
-       var id = document.myform.id.value ;
-       alert('아이디를 입력해라 임마');
-       if( id.length == 0 )
-       {
-          alert('아이디를 입력해 주세요') ;
-          document.myform.id.focus() ; 
-          return false ;
-       }
-       var url='<%=contextPath%>/idcheck.me?id=' + id ; 
-       window.open(url, 'mywin', 'height=150,width=300') ;
-      }
-      
-   function isCheckFalse() 
-   {
-      document.myform.isCheck.value = false;
-   }
-</script>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/fonts/material-icon/css/meinsert_material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/vendor/nouislider/meinsert_nouislider.min.css">
 
+    <!-- Main css -->
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/meinsert_style.css">
+    
+
+<style type="text/css">
+	/* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
+	.err{ 
+		font-size : 10pt;
+		color:red;
+		font-weight: bolder;
+	}
+	#myalert{ 
+		font-size : 15px;
+		margin-top: 7px;
+		margin-right: 20px;
+		color:black;
+	}
+</style>	
 <script>
+
+function checkDuplicateId(  )
+{
+   var id = document.myform.id.value ;
+   if( id.length == 0 ){
+      alert('아이디를 입력해 주세요') ;
+      document.myform.id.focus() ; 
+      return false ;
+   }
+   var url='<%=contextPath%>/idcheck.me?id=' + id ; 
+   window.open(url, 'mywin', 'height=150,width=300') ;
+}
+
+function checkDuplicateNickname(  )
+{
+   var nickname = document.myform.nickname.value ;
+   if( nickname.length == 0 ){
+      alert('닉네임을 입력해 주세요') ;
+      document.myform.nickname.focus() ; 
+      return false ;
+   }
+   var url='<%=contextPath%>/nicknamecheck.me?nickname=' + nickname ; 
+   window.open(url, 'mywin', 'height=150,width=300') ;
+}
+
+function isCheckFalse() 
+{
+   document.myform.isCheck.value = false;
+}
+
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -74,58 +109,53 @@
         }).open();
     }
 </script>
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/fonts/material-icon/css/meinsert_material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/vendor/nouislider/meinsert_nouislider.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/meinsert_style.css">
 </head>
-
 <body>
+
  <div class="main">
         <div class="container">
             <div class="signup-content">
                 <div class="signup-img">
                     <img src="<%=request.getContextPath() %>/resources/img/form-img.jpg" alt="">
                     <div class="signup-img-content">
-                        <h2>Register now </h2>
-                        <p>while seats are available !</p>
+                    	<h1>Sign Up!</h1>
+                        <h2>Sign Up!</h2>
+                        <h3>Sign Up!</h3>
+                        <p>Sign Up!</p>
                     </div>
                 </div>
                 <div class="signup-form">
                    <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form method="post" class="register-form" id="register-form" action="${apppath}/insert.me">
+                    <form:form name="myform"  method="post" class="register-form" id="register-form" action="${apppath}/insert.me" modelAttribute="member">
+                    	<input type="hidden" name="isCheck" value="false">
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="id" class="required">아이디</label>
-                                    <input type="text" name="id" id="id" onkeyup="isCheckFalse();"/>
-                                    <input type="button" class="btn btn-info" value="중복 검사"
-                                    onclick="checkDuplicateId();">
+                                    <form:errors cssClass="err" path="id" />
+                                    <input type="text" name="id" id="id" value="${requestScope.bean.id}" onkeyup="isCheckFalse();"/>
+                                    <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateId();">
                                 </div>
                                 <div class="form-input">
                                     <label for="password" class="required">비밀번호</label>
-                                    <input type="password" name="password" id="password" />
+                                    <input type="password" name="password" id="password" value="${requestScope.bean.password}"/>
+                                    <form:errors cssClass="err" path="password" />
                                 </div>
                                 <div class="form-input">
                                     <label for="name" class="required">이름</label>
-                                    <input type="text" name="name" id="name" />
+                                    <input type="text" name="name" id="name" value="${requestScope.bean.name}"/>
+                                    <form:errors cssClass="err" path="name" />
                                 </div>
                                 <div class="form-input">
                                     <label for="nickname" class="required">닉네임</label>
-                                    <input type="text" name="nickname" id="nickname" />
+                                    <form:errors cssClass="err" path="nickname" />
+                                    <input type="text" name="nickname" id="nickname" value="${requestScope.bean.nickname}"/>
+                                    <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateNickname();">
                                 </div>
                                 <div class="form-input">
                                     <label for="email" class="required">Email</label>
-                                    <input type="text" name="email" id="email" />
+                                    <input type="text" name="email" id="email" value="${requestScope.bean.email}"/>
+                                    <form:errors cssClass="err" path="email" />
                                 </div>
                                 <div class="form-radio">
                                     <div class="label-flex">
@@ -143,6 +173,7 @@
                                             <span class="check"></span>
                                         </div>
                                     </div>
+                                    <form:errors cssClass="err" path="gender" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -150,25 +181,39 @@
                                 <div class="form-input">
 	                                <label for="meal_preference">우편 번호</label>
 			                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			                        <input type="text" id="sample6_address" name="address" placeholder="주소"><br>
+			                        <input type="text" id="sample6_address" name="address" placeholder="주소" value="${requestScope.bean.address}"><br>
 			                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+			                        <form:errors cssClass="err" path="address" />
 		                        </div>
                                 
                                 <div class="form-input">
                                     <label for="career">운동 경력</label>
-                                    <input type="number" name="career" id="career" />
+                                    <input type="text" name="career" id="career" value="${requestScope.bean.career}"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                    <form:errors cssClass="err" path="career" />
                                 </div>
                                 <div class="form-input">
-                                    <label for="height">신장</label>
-                                    <input type="number" name="height" id="height" />
+                                    <label for="height">키</label>
+                                    <input type="text" name="height" id="height" value="${requestScope.bean.height}"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                                    <form:errors cssClass="err" path="height" />
                                 </div>
                                 <div class="form-input">
                                     <label for="aim_weight">목표 체중</label>
-                                    <input type="number" name="aim_weight" id="aim_weight" />
+                                    <input type="text" name="aim_weight" id="aim_weight" value="${requestScope.bean.aim_weight}"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                                    <form:errors cssClass="err" path="aim_weight" />
                                 </div>
                                 <div class="form-input">
                                     <label for="period">목표 기간</label>
-                                    <input type="number" name="period" id="period" />
+                                    <input type="text" name="period" id="period" value="${requestScope.bean.period}"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                                    <form:errors cssClass="err" path="period" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="birth">생년월일</label>
+                                    <input type="date" name="birth" id="birth" value="${requestScope.bean.birth}"/>
+                                    <form:errors cssClass="err" path="birth" />
                                 </div>
                             </div>
                         </div>
@@ -182,7 +227,7 @@
         </div>
     </div>
 
-    <!-- JS -->
+    <!— JS —>
     <script src="<%=request.getContextPath() %>/resources/vendor/jquery/jquery.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/vendor/nouislider/nouislider.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/vendor/wnumb/wNumb.js"></script>

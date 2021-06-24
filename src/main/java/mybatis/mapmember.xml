@@ -18,13 +18,13 @@
 	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address,
 	m.gender, m.career, m.period, m.aim_weight, m.ro_id, m.point, r.ro_name
 	from members m inner join routines r on m.ro_id = r.ro_id where m.id =
-	#{id};
+	#{id}
 	</select>
 
 	<!-- 회원 최신 몸무게 가져오기 -->
 	<select id="selectMyWeight" parameterType="String" resultType="int">
 		select weight from myweight where mem_id=#{id} and rownum=1 order by
-		weight_id desc;
+		weight_id desc
 	</select>
 
 	<!-- 회원 정보 수정하기 -->
@@ -37,5 +37,11 @@
 	<select id="selectDataID" resultType="AlMember">
       select * from members where id = #{id}
    </select>
+   
+   <select id="selectDataNickname" resultType="AlMember">
+      select * from members where nickname = #{nickname}
+   </select>
+   
+   
    
 </mapper>
