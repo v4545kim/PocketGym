@@ -243,21 +243,15 @@ input:checked + .slider:before {
                      <input type="password" class="form-control" id="password"  name="password"
                         placeholder="Password">
                   </div>
-                  <!-- <div class="form-check">
-                     <label class="switch"> 
-                        <input type="checkbox"> <span class="slider round"></span>
-                     </label> 
-                     <label class="form-check-label" for="exampleCheck1">
-                        Remember me
-                     </label> 
-                     <label class="forgot-password">
-                        <a href="#">Forgot Password?<a>
-                     </label>
-                  </div> -->
+                  
                   <br>
                   <button type="submit" class="btn btn-lg btn-block btn-success">
-                     Sign in
+                     로그인
                   </button>
+                  <br>
+                  <a href="<%=contextPath%>/insert.me" class="btn btn-lg btn-block btn-success">
+                     회원가입
+                  </a>
                </form>
                
             </div>

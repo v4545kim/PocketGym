@@ -26,8 +26,14 @@
                 <nav class="mainmenu mobile-menu">
                     <ul>
                         <li><a href="<%=contextPath%>/main.ma">Home</a></li>
-                        <li><a href="<%=contextPath%>/mydietlist.di">식단</a></li>
-                        <li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
+                        <c:if test="${whologin ==0 }">
+	                       <li><a href="<%=contextPath%>/login.me">식단</a></li>
+	                       <li><a href="<%=contextPath%>/login.me">운동</a></li>
+                        </c:if>
+                      	<c:if test="${whologin !=0 }">
+	                      	<li><a href="<%=contextPath%>/mydietlist.di">식단</a></li>
+	                        <li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
+                        </c:if>
                         <li><a href="<%=contextPath%>/brlist.br">sns</a></li>
                         <li><a href="<%=contextPath%>/prlist.pr">쇼핑몰</a></li>
                     </ul>
@@ -39,7 +45,10 @@
             			<a href="<%=contextPath%>/insert.me" class="primary-btn signup-btn">회원가입</a>
             		</c:when>
             		<c:when test="${whologin !=0 }">
-						<li class="primary-btn signup-btn" style="color: white">${sessionScope.loginfo.nickname}님
+						
+						
+						<li class="primary-btn signup-btn" style="color: white">
+						${sessionScope.loginfo.nickname}님
 							<span class="arrow_carrot-down"></span>
 							<ul class="dropdown">
 								<c:if test="${whologin == 2}">
