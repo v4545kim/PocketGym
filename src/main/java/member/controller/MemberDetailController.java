@@ -23,8 +23,8 @@ public class MemberDetailController {
 	
 	@GetMapping("/detail.me")
 	private String  doGet(Model model, HttpSession session){
-		//String id = (String) session.getAttribute("loginfo");
-		String id = "dddd";
+		Member member = (Member) session.getAttribute("loginfo");
+		String id = member.getId();
 		Member bean = mdao.selectById(id);
 		Double myWeight = mdao.selectMyWeight(id);
 		System.out.println(myWeight);
