@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MyDietListController {
 	
-	@GetMapping("mydietlist.di/get")
+	@GetMapping("/mydietlist.di")
 	private String  doGet(Model model){
-		return "";
+		return "myDietList";
 	}
 	
-	@PostMapping("mydietlist.di/post")
+	@PostMapping("/mydietlist.di")
 	private String  doPost(Model model){
 		return "";
 	}

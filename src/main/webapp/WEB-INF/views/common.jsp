@@ -12,7 +12,7 @@
 	<c:set var="whologin" value="0" />
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.id == 'admin'}">\
+	<c:if test="${sessionScope.loginfo.id == 'admin'}">
 		<!-- 관리자로 로그인한 경우 -->
 		<c:set var="whologin" value="2" />
 	</c:if>
@@ -49,6 +49,36 @@
     <link rel="stylesheet" href="<%=contextPath%>/resources/css/style.css" type="text/css">
 </head>
 <body>
+	<c:if test="${not empty requestScope.message}">
+		<div class="alert alert-danger alert-dismissable">
+    		<a href="#" id="myalert" class="close" data-dismiss="alert" aria-label="close">닫기</a>
+    		<strong>${requestScope.message}</strong>
+		</div>
+	</c:if>
+	
+	<c:if test="${not empty sessionScope.message}">
+		<div class="alert alert-danger alert-dismissable">
+    		<a href="#" id="myalert" class="close" data-dismiss="alert" aria-label="close">닫기</a>
+    		<strong>${sessionScope.message}</strong>
+		</div>
+		<% session.removeAttribute("message"); %>
+		<c:remove var="message" scope="session"/>
+	</c:if>
+	
+	<c:if test="${not empty sessionScope.message}">
+		<script type="text/javascript">
+			/* alert('${sessionScope.message}') ;	 */ 
+		</script>
+		<% session.removeAttribute("message") ; %>
+	</c:if>	  
 
+	<script src="<%=contextPath%>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/mixitup.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=contextPath%>/resources/js/masonry.pkgd.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=contextPath%>/resources/js/main.js"></script>
 </body>
 </html>

@@ -10,6 +10,6 @@
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-
+쇼핑몰 메인화면 
 </body>
 </html>

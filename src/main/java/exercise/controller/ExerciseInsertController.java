@@ -1,4 +1,4 @@
-package exercise;
+package exercise.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ExerciseDeleteController {
+public class ExerciseInsertController {
 	
-	@GetMapping("delete.ex/get")
+	@GetMapping("/insert.ex")
 	private String  doGet(Model model){
-		return "";
+		return "exInsertForm";
 	}
 	
-	@PostMapping("delete.ex/post")
+	@PostMapping("/insert.ex")
 	private String  doPost(Model model){
 		return "";
 	}

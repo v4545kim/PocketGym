@@ -17,7 +17,7 @@
 		
 	<!-- ViewResolver 설정하기 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/product/" />
+		<beans:property name="prefix" value="/WEB-INF/views/product/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>		
 	
