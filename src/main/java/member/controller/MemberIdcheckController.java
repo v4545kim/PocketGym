@@ -2,6 +2,7 @@ package member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class MemberIdcheckController{
 	@GetMapping(command)
 	public ModelAndView doGet(
 			@RequestParam(value = "id", required = true) String id){
+		
+		mav = new ModelAndView();
 		
 		Member bean = dao.selectByPkId(id) ;
 		

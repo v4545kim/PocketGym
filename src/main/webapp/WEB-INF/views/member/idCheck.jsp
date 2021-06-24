@@ -13,9 +13,10 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function meClose( isCheck ){
-		//alert( isCheck ) ;
-		opener.myform.isCheck.value = isCheck ;
+	function meClose( isCheck )
+	{
+		opener.myform.isCheck.value = isCheck;
+		
 		self.close();
 	}
 </script>	
@@ -25,7 +26,7 @@
 	<h1></h1>
 	<h1></h1>
 	<div class="container">
-		<p align="center">해당 아이디는 사용 가능합니다.</p>
+		<p align="center">${message}</p>
 		<div class="row" align="center">
 			<button class="btn btn-primary" type="button" 
 				onclick="meClose('${isCheck}');">
