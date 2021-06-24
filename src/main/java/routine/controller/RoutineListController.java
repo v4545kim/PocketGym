@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RoutineListController {
 	
-	@GetMapping("list.ro/get")
+	@GetMapping("/list.ro")
 	private String  doGet(Model model){
-		return "";
+		return "roList";
 	}
 	
-	@PostMapping("list.ro/post")
+	@PostMapping("/list.ro")
 	private String  doPost(Model model){
 		return "";
 	}

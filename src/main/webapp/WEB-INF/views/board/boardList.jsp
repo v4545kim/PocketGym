@@ -10,6 +10,6 @@
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-
+게시판 첫화면
 </body>
 </html>

@@ -10,6 +10,6 @@
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-	식단리스트
+so게시판 첫화면
 </body>
 </html>

@@ -126,11 +126,12 @@
       </init-param>
       <load-on-startup>1</load-on-startup>
    </servlet>
-     
+      
    <servlet-mapping>
       <servlet-name>exercise</servlet-name>
       <url-pattern>*.ex</url-pattern>
    </servlet-mapping>
+   
 
 	<!-- 캐릭터 인코딩 필터 설정 -->
 	<!-- 컨트롤러에서 response.setCharacterEncoding()를 매번 실행하지 않기 위해 서블릿 필터를 이용해 처리 -->

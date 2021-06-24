@@ -10,6 +10,6 @@
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-	식단리스트
+운동리스트
 </body>
 </html>

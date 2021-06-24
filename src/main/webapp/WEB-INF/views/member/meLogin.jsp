@@ -7,86 +7,86 @@
 <head>
 <style type="text/css">
 body {
-	font-family: 'Montserrat', sans-serif;
-	text-rendering : optimizeLegibility;
-	-webkit-font-smoothing : antialiased;
+   font-family: 'Montserrat', sans-serif;
+   text-rendering : optimizeLegibility;
+   -webkit-font-smoothing : antialiased;
 }
 
 
 #login-bg.container-fluid {
-	padding: 0;
-	height: 100%;
-	position: absolute;
+   padding: 0;
+   height: 100%;
+   position: absolute;
 }
 
 /* Background image an color divs*/
 
 .bg-img , .bg-color {
-	min-width: 50%;
-	vertical-align: top;
-	padding: 0;
-	margin-left: 0;
-	height: 100%;
-	background-color: #CAF0D3;
-	display: inline-block;
-	overflow: hidden;
+   min-width: 50%;
+   vertical-align: top;
+   padding: 0;
+   margin-left: 0;
+   height: 100%;
+   background-color: #CAF0D3;
+   display: inline-block;
+   overflow: hidden;
 }
 
 .bg-color {
-	margin-left: -5px;
+   margin-left: -5px;
 }
 
 .bg-img {
-	background-image: url(<%=request.getContextPath() %>/resources/img/bg-image.jpeg);
-	background-size: cover;
+   background-image: url(<%=request.getContextPath() %>/resources/img/bg-image.jpeg);
+   background-size: cover;
 }
 
 #login{
-	padding-top: 10%;
-	text-align: center;
-	text-transform: uppercase;
+   padding-top: 10%;
+   text-align: center;
+   text-transform: uppercase;
 }
 
 
 .login {
-	width: 100%;
-	height: 500px;
-	background-color: #fff;
-	padding: 15px;
-	padding-top: 30px;
+   width: 100%;
+   height: 500px;
+   background-color: #fff;
+   padding: 15px;
+   padding-top: 30px;
 }
 
 .login h1 {
-	margin-top: 30px;
-	font-weight: bold;
-	font-size: 60px;
-	letter-spacing: 3px;
+   margin-top: 30px;
+   font-weight: bold;
+   font-size: 60px;
+   letter-spacing: 3px;
 }
 
 .login form {
-	max-width: 420px;
-	margin: 30px auto;
+   max-width: 420px;
+   margin: 30px auto;
 }
 
 .login .btn {
-	border-radius: 50px;
-	text-transform: uppercase;
-	font-weight: bold;
-	letter-spacing: 2px;
-	font-size: 20px;
-	padding: 14px;
-	background-color: #00B72E;
+   border-radius: 50px;
+   text-transform: uppercase;
+   font-weight: bold;
+   letter-spacing: 2px;
+   font-size: 20px;
+   padding: 14px;
+   background-color: #00B72E;
 }
 
 .form-group input {
-	font-size: 20px;
-	font-weight: lighter;
-	border: none;
-	background-color: #F0F0F0;
-	color: #465347!important;
-	padding: 26px 30px;
-	border-radius: 50px;
-	transition : 0.2s;
+   font-size: 20px;
+   font-weight: lighter;
+   border: none;
+   background-color: #F0F0F0;
+   color: #465347!important;
+   padding: 26px 30px;
+   border-radius: 50px;
+   transition : 0.2s;
 }
 
 
@@ -95,32 +95,32 @@ body {
 /* Form check styles*/
 
 .form-check {
-	padding: 0;
-	text-align: left;
+   padding: 0;
+   text-align: left;
 }
 
 .form-check label {
-	vertical-align: top;
-	padding-top: 5px;
-	padding-left: 5px;
-	font-size: 15px;
-	color: #606060;
-	font-size: 14px;
+   vertical-align: top;
+   padding-top: 5px;
+   padding-left: 5px;
+   font-size: 15px;
+   color: #606060;
+   font-size: 14px;
 }
 
 .forgot-password {
-	text-align: right;
-	float: right;
-	font-weight: bold;
+   text-align: right;
+   float: right;
+   font-weight: bold;
 }
 
 .forgot-password a {
-	color: #00B72E;
-	opacity: 0.6;
+   color: #00B72E;
+   opacity: 0.6;
 }
 
 .forgot-password a:hover {
-	opacity: 1;
+   opacity: 1;
 }
 
 
@@ -182,28 +182,28 @@ input:checked + .slider:before {
 /* Media queries */
 
 @media(max-width: 500px) {
-	.bg-img , .bg-color {
-	min-width: 100%;
-	height: 50%;
-	margin: 0;
-	}
+   .bg-img , .bg-color {
+   min-width: 100%;
+   height: 50%;
+   margin: 0;
+   }
 
-	.forgot-password {
-	text-align: right;
-	float: left;
-	padding: 20px 0;
-	}
+   .forgot-password {
+   text-align: right;
+   float: left;
+   padding: 20px 0;
+   }
 
 
-	#login {
-		padding-top: 50px;
-	}
+   #login {
+      padding-top: 50px;
+   }
 
 }
 
 
 </style>
-	<!-- Required meta tags -->
+   <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -216,59 +216,54 @@ input:checked + .slider:before {
     <!-- Custom Styles -->
 
     <title>Login</title>
+    
+    
+   
+   
 </head>
 
 <body>
-	<!-- <!-- Backgrounds -->
-	<div id="login-bg" class="container-fluid">
-		<div class="bg-img"></div>
-		<div class="bg-color"></div>
-	</div>
+   <!-- <!-- Backgrounds -->
+   <div id="login-bg" class="container-fluid">
+      <div class="bg-img"></div>
+      <div class="bg-color"></div>
+   </div>
 
-	<div class="container" id="login">
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<div class="login">
-					<h1>Login</h1>
-					<form action="<%=contextPath%>/login.me" method="post">
-						<div class="form-group">
-							<input type="text" class="form-control" id="id"
-								 placeholder="Enter id">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" id="password" 
-								placeholder="Password">
-						</div>
-						<!-- <div class="form-check">
-							<label class="switch"> 
-								<input type="checkbox"> <span class="slider round"></span>
-							</label> 
-							<label class="form-check-label" for="exampleCheck1">
-								Remember me
-							</label> 
-							<label class="forgot-password">
-								<a href="#">Forgot Password?<a>
-							</label>
-						</div> -->
-						<br>
-						<button type="submit" class="btn btn-lg btn-block btn-success">
-							Sign in
-						</button>
-					</form>
-					
-				</div>
-			</div>
-		</div>
-	</div> 
+   <div class="container" id="login">
+      <div class="row justify-content-center">
+         <div class="col-lg-8">
+            <div class="login">
+               <h1>Login</h1>
+               <form role="form" action="<%=contextPath%>/login.me" method="post">
+                  <div class="form-group">
+                     <input type="text" class="form-control" id="id" name="id"
+                         placeholder="Enter id">
+                  </div>
+                  <div class="form-group">
+                     <input type="password" class="form-control" id="password"  name="password"
+                        placeholder="Password">
+                  </div>
+                  <!-- <div class="form-check">
+                     <label class="switch"> 
+                        <input type="checkbox"> <span class="slider round"></span>
+                     </label> 
+                     <label class="form-check-label" for="exampleCheck1">
+                        Remember me
+                     </label> 
+                     <label class="forgot-password">
+                        <a href="#">Forgot Password?<a>
+                     </label>
+                  </div> -->
+                  <br>
+                  <button type="submit" class="btn btn-lg btn-block btn-success">
+                     Sign in
+                  </button>
+               </form>
+               
+            </div>
+         </div>
+      </div>
+   </div> 
 	
-	<script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/jquery.magnific-popup.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/masonry.pkgd.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
-    
 </body>
 </html>

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProductInsertController {
 	
-	@GetMapping("insert.pr/get")
+	@GetMapping("/insert.pr")
 	private String  doGet(Model model){
-		return "";
+		return "prInsertForm";
 	}
 	
-	@PostMapping("insert.pr/post")
+	@PostMapping("/insert.pr")
 	private String  doPost(Model model){
 		return "";
 	}
