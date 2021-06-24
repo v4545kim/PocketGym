@@ -28,8 +28,8 @@ public class MemberDao {
 		return this.abcd.selectOne(NAMESPACE + "selectData", map);
 	};
 
-	public int InsertData(Member bean) {
-		return abcd.insert(NAMESPACE + "InsertData", bean);
+	public int insertData(Member bean) {
+		return abcd.insert(NAMESPACE + "insertData", bean);
 	}
 
 	public Member selectById(String id) {
@@ -45,6 +45,10 @@ public class MemberDao {
 		return this.abcd.update(NAMESPACE + "updateMember", bean);
 		// TODO Auto-generated method stub
 
+	}
+	
+	public Member selectByPkId(String id) {
+	      return this.abcd.selectOne(NAMESPACE + "selectDataID", id);
 	}
 
 }
