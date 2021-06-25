@@ -1,15 +1,47 @@
 package vo;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
+
 public class Board 
 {
 	private int bo_id;
 	private String mem_id;
+	@Length(min=3, max=20, message="제목은 3글자 이상 20글자 이하이어야 합니다.")
 	private String title;
+	@Length(min=20, max=255, message="내용은 10글자 이상 255글자 이하이어야 합니다.")
 	private String context;
+	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
 	private String be_image;
+	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
 	private String af_image;
-	private String regdate;
 	
+	private MultipartFile abcd1 ;
+	public MultipartFile getAbcd1() {
+		return abcd1;
+	}
+	public void setAbcd1(MultipartFile abcd1) {
+		this.abcd1 = abcd1;
+		
+		if (this.abcd1 != null) {
+			this.be_image = this.abcd1.getOriginalFilename();
+		}
+	}
+	
+	private MultipartFile abcd2 ;
+	public MultipartFile getAbcd2() {
+		return abcd2;
+	}
+	public void setAbcd2(MultipartFile abcd2) {
+		this.abcd2 = abcd2;
+		
+		if (this.abcd2 != null) {
+			this.af_image = this.abcd2.getOriginalFilename();
+		}
+	}
+	
+	private String regdate;
 	
 	public int getBo_id() {
 		return bo_id;
@@ -54,7 +86,7 @@ public class Board
 		this.regdate = regdate;
 	}
 	
-	
+
 	@Override
 	public String toString() {
 		return "Board [bo_id=" + bo_id + ", mem_id=" + mem_id + ", title=" + title + ", context=" + context
