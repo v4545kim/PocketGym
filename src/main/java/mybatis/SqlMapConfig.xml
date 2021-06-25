@@ -14,6 +14,7 @@
 		<typeAlias alias="AlCart" type="vo.Cart" />
 		<typeAlias alias="AlBoard" type="vo.Board" />
 		<typeAlias alias="ALReply" type="vo.Reply" />
+		<typeAlias alias="ALExercise" type="vo.Exercise" />
 	</typeAliases>	
 
 	<!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->

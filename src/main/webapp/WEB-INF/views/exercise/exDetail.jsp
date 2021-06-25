@@ -10,6 +10,9 @@
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-
+	${ex.ex_id }
+	${ex.ex_name }
+	${ex.ex_calorie }
+	${ex.ex_url }
 </body>
 </html>
