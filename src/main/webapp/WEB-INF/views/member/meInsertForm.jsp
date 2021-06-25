@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/fonts/material-icon/css/meinsert_material-design-iconic-font.min.css">
@@ -26,19 +26,23 @@
     
 
 <style type="text/css">
-	/* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
-	.err{ 
-		font-size : 10pt;
-		color:red;
-		font-weight: bolder;
-	}
-	#myalert{ 
-		font-size : 15px;
-		margin-top: 7px;
-		margin-right: 20px;
-		color:black;
-	}
-</style>	
+   h2{
+   margin-top: -76px;
+   font-size: 34px;
+   }
+   /* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
+   .err{ 
+      font-size : 10pt;
+      color:red;
+      font-weight: bolder;
+   }
+   #myalert{ 
+      font-size : 15px;
+      margin-top: 7px;
+      margin-right: 20px;
+      color:black;
+   }
+</style>   
 <script>
 
 function checkDuplicateId(  )
@@ -118,23 +122,28 @@ function isCheckFalse()
                 <div class="signup-img">
                     <img src="<%=request.getContextPath() %>/resources/img/form-img.jpg" alt="">
                     <div class="signup-img-content">
-                    	<h1>Sign Up!</h1>
-                        <h2>Sign Up!</h2>
-                        <h3>Sign Up!</h3>
-                        <p>Sign Up!</p>
+                        <h2>PocketGym<br> Sign Up!</h2><br>
                     </div>
                 </div>
                 <div class="signup-form">
                    <c:set var="apppath" value="<%=request.getContextPath()%>" />
                     <form:form name="myform"  method="post" class="register-form" id="register-form" action="${apppath}/insert.me" modelAttribute="member">
-                    	<input type="hidden" name="isCheck" value="false">
+                       <input type="hidden" name="isCheck" value="false">
                         <div class="form-row">
                             <div class="form-group">
                                 <div class="form-input">
                                     <label for="id" class="required">아이디</label>
                                     <form:errors cssClass="err" path="id" />
-                                    <input type="text" name="id" id="id" value="${requestScope.bean.id}" onkeyup="isCheckFalse();"/>
-                                    <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateId();">
+                                    <table>
+                                       <tr>
+                                          <td>
+                                             <input type="text" name="id" id="id" value="${requestScope.bean.id}" onkeyup="isCheckFalse();"/>
+                                          </td>
+                                          <td>
+                                             <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateId();">
+                                          </td>
+                                       </tr>
+                                    </table>
                                 </div>
                                 <div class="form-input">
                                     <label for="password" class="required">비밀번호</label>
@@ -149,8 +158,16 @@ function isCheckFalse()
                                 <div class="form-input">
                                     <label for="nickname" class="required">닉네임</label>
                                     <form:errors cssClass="err" path="nickname" />
-                                    <input type="text" name="nickname" id="nickname" value="${requestScope.bean.nickname}"/>
-                                    <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateNickname();">
+                                       <table>
+                                          <tr>
+                                             <td>
+                                                <input type="text" name="nickname" id="nickname" value="${requestScope.bean.nickname}"/>
+                                             </td>
+                                             <td>
+                                                <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateNickname();">
+                                             </td>
+                                          </tr>
+                                       </table>
                                 </div>
                                 <div class="form-input">
                                     <label for="email" class="required">Email</label>
@@ -163,11 +180,18 @@ function isCheckFalse()
                                     </div>
                                     <div class="form-radio-group">
                                         <div class="form-radio-item">
+                                        	<c:set var="gender" value="${requestScope.bean.gender}" />
+                                        	<c:if test="${gender eq '남성'}">
+                                            	<input type="radio" name="gender" id="man" value="남성" checked="checked">
+                                            </c:if>
                                             <input type="radio" name="gender" id="man" value="남성">
                                             <label for="man">남성</label>
                                             <span class="check"></span>
                                         </div>
                                         <div class="form-radio-item">
+                                        	<c:if test="${gender eq '여성'}">
+                                            	<input type="radio" name="gender" id="woman" value="여성" checked="checked">
+                                            </c:if>
                                             <input type="radio" name="gender" id="woman" value="여성">
                                             <label for="woman">여성</label>
                                             <span class="check"></span>
@@ -175,22 +199,32 @@ function isCheckFalse()
                                     </div>
                                     <form:errors cssClass="err" path="gender" />
                                 </div>
+                                <div class="form-input">
+                                    <label for="birth">생년월일</label>
+                                    <input type="date" name="birth" id="birth" value="${requestScope.bean.birth}"/>
+                                    <form:errors cssClass="err" path="birth" />
+                                </div>
                             </div>
                             <div class="form-group">
-                            
                                 <div class="form-input">
-	                                <label for="meal_preference">우편 번호</label>
-			                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			                        <input type="text" id="sample6_address" name="address" placeholder="주소" value="${requestScope.bean.address}"><br>
-			                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-			                        <form:errors cssClass="err" path="address" />
-		                        </div>
+                                   <label for="meal_preference">우편 번호</label>
+                                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                                 <input type="text" id="sample6_address" name="address1" placeholder="주소" value="${requestScope.bean.address1}" readonly="readonly" ><br>
+                                 <input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.bean.address2}">
+                                 <form:errors cssClass="err" path="address1" />
+                              </div>
                                 
                                 <div class="form-input">
-                                    <label for="career">운동 경력</label>
+                                    <label for="career">운동 경력(Month)</label>
                                     <input type="text" name="career" id="career" value="${requestScope.bean.career}"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                     <form:errors cssClass="err" path="career" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="period">목표 기간(Week)</label>
+                                    <input type="text" name="period" id="period" value="${requestScope.bean.period}"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                                    <form:errors cssClass="err" path="period" />
                                 </div>
                                 <div class="form-input">
                                     <label for="height">키</label>
@@ -204,22 +238,11 @@ function isCheckFalse()
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                                     <form:errors cssClass="err" path="aim_weight" />
                                 </div>
-                                <div class="form-input">
-                                    <label for="period">목표 기간</label>
-                                    <input type="text" name="period" id="period" value="${requestScope.bean.period}"
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-                                    <form:errors cssClass="err" path="period" />
-                                </div>
-                                <div class="form-input">
-                                    <label for="birth">생년월일</label>
-                                    <input type="date" name="birth" id="birth" value="${requestScope.bean.birth}"/>
-                                    <form:errors cssClass="err" path="birth" />
-                                </div>
                             </div>
                         </div>
                         <div class="form-submit">
                             <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
-                            <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                            <input type="reset" value="Reset" class="submit" id="reset" name="reset" />
                         </div>
                     </form:form>
                 </div>

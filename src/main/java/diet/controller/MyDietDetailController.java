@@ -10,7 +10,7 @@ public class MyDietDetailController {
 	
 	@GetMapping("mydietdetail.di/get")
 	private String  doGet(Model model){
-		return "";
+		return "myDietDetail";
 	}
 	
 	@PostMapping("mydietdetail.di/post")
