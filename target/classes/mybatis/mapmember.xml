@@ -5,8 +5,8 @@
 <mapper namespace="mapMember">
 	<!-- 회원 가입하기 -->
 	<insert id="insertData" parameterType="AlMember">
-		insert into members(id, password, name, nickname, email, gender, height, career, aim_weight, address, period, birth) 
-		values(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{gender}, #{height}, #{career}, #{aim_weight}, #{address}, #{period}, #{birth})
+		insert into members(id, password, name, nickname, email, gender, height, career, aim_weight, address1, address2, period, birth) 
+		values(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{gender}, #{height}, #{career}, #{aim_weight}, #{address1}, #{address2}, #{period}, #{birth})
 	</insert>
 	
 	<select id="selectData" resultType="AlMember">
@@ -15,7 +15,7 @@
 	
 	<select id="selectById" parameterType="String"
 	resultType="AlMember">
-	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address,
+	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address1, m.adress2,
 	m.gender, m.career, m.period, m.aim_weight, m.ro_id, m.point, r.ro_name
 	from members m inner join routines r on m.ro_id = r.ro_id where m.id =
 	#{id}
