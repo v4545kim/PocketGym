@@ -82,8 +82,8 @@
                             
                                 <div class="form-input">
 	                                <label for="meal_preference">우편 번호</label>
-			                        <form:input type="text" id="sample6_address" path="address" placeholder="주소" value="${member.address }" readonly="true"/><br>
-			                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+			                        <form:input type="text" id="sample6_address" path="address1" placeholder="주소" value="${member.address1 }" readonly="true"/><br>
+			                        <form:input type="text" id="sample6_detailAddress" path="address2" placeholder="상세주소" value="${member.address2 }" readonly="true"/>
 		                        </div>
                                 
                                 <div class="form-input">

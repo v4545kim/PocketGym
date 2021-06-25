@@ -14,6 +14,19 @@
 
 
 <script>
+
+function checkDuplicateNickname(  )
+{
+   var nickname = document.myform.nickname.value ;
+   if( nickname.length == 0 ){
+      alert('닉네임을 입력해 주세요') ;
+      document.myform.nickname.focus() ; 
+      return false ;
+   }
+   var url='<%=contextPath%>/nicknamecheck.me?nickname=' + nickname ; 
+   window.open(url, 'mywin', 'height=150,width=300') ;
+}
+
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -98,6 +111,7 @@
                                 <div class="form-input">
                                     <label for="nickname" class="required">닉네임</label>
                                     <form:input type="text" path="nickname" value="${member.nickname }"/>
+                                    <input type="button" class="btn btn-info" value="중복 검사" onclick="checkDuplicateNickname();">
                                 </div>
                                 <div class="form-input">
                                     <label for="email" class="required">Email</label>
@@ -142,8 +156,8 @@
                                 <div class="form-input">
 	                                <label for="meal_preference">우편 번호</label>
 			                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			                        <form:input type="text" id="sample6_address" path="address" placeholder="주소" value="${member.address }"/><br>
-			                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+			                        <form:input type="text" id="sample6_address" path="address1" placeholder="주소" value="${member.address1}"/><br>
+			                        <form:input type="text" id="sample6_detailAddress" path="address2" placeholder="상세주소" value="${member.address2 }"/>
 		                        </div>
                                 
                                 <div class="form-input">
