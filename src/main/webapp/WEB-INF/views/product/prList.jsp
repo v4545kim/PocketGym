@@ -32,7 +32,7 @@
                         <img src="<%=request.getContextPath() %>/resources/img/blog/blog-1.jpg" alt="">
                         <div class="blog-widget">
                         </div>
-                        <h4><a href="<%=contextPath%>/main.ma"">스트랩</a></h4>
+                        <h4><a href="<%=contextPath%>/prdetail.pr?pr_id=1">스트랩</a></h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
