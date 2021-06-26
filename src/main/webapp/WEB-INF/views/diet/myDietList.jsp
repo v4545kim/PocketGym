@@ -205,7 +205,7 @@ body
         {{ for (i = 0; i < 7; i++) { }}
         {{ if (thedate > last) { dayclass = nextmonthcss; } else if (thedate >= first) { dayclass = thismonthcss; } }}
         <td class="calendar-day {{: dayclass }} {{: thedate.toDateCssClass() }} {{: date.toDateCssClass() === thedate.toDateCssClass() ? 'selected':'' }} {{: daycss[i] }} js-cal-option" data-date="{{: thedate.toISOString() }}">
-          <div class="date"><a href="<%=contextPath%>/mydietdetail.di?day={{: thedate.getDate() }}?month={{:month+1}}?year={{: year}}">{{: thedate.getDate() }}</a></div>
+          <div class="date"><a href="<%=contextPath%>/mydietdetail.di?id=${sessionScope.loginfo.id}&day={{: thedate.getDate() }}&month={{:month+1}}&year={{: year}}">{{: thedate.getDate() }}</a></div>
           {{ thedate.setDate(thedate.getDate() + 1);}}
         </td>
         {{ } }}
