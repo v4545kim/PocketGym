@@ -31,7 +31,7 @@
 	                       <li><a href="<%=contextPath%>/login.me">운동</a></li>
                         </c:if>
                       	<c:if test="${whologin !=0 }">
-	                      	<li><a href="<%=contextPath%>/mydietlist.di">식단</a></li>
+	                      	<li><a href="<%=contextPath%>/mydietlist.di?id=${sessionScope.loginfo.id}">식단</a></li>
 	                        <li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
                         </c:if>
                         <li><a href="<%=contextPath%>/brlist.br">sns</a></li>

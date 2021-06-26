@@ -5,4 +5,17 @@
 <mapper namespace="mapDiet">
 	
 
+	<select id="Breakfast" parameterType="String" resultType="AlDiet">
+		select * from diets where mem_id = #{id} and inputdate = #{inputdate} and mealtime = #{breakfast}
+	</select>
+	
+	<select id="lunch" parameterType="String" resultType="AlDiet">
+		select * from diets where mem_id = #{id} and inputdate = #{inputdate} and mealtime = #{lunch}
+	</select>
+	
+	<select id="dinnerList" parameterType="String" resultType="AlDiet">
+		select * from diets where mem_id = #{id} and inputdate = #{inputdate} and mealtime = #{dinner}
+	</select>
+
+
 </mapper>

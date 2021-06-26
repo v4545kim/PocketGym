@@ -15,7 +15,7 @@
 	
 	<select id="selectById" parameterType="String"
 	resultType="AlMember">
-	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address1, m.adress2,
+	select m.email, m.id, m.password, m.height, m.name, m.nickname, m.address1, m.address2,
 	m.gender, m.career, m.period, m.aim_weight, m.ro_id, m.point, r.ro_name
 	from members m inner join routines r on m.ro_id = r.ro_id where m.id =
 	#{id}
