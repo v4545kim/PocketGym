@@ -5,7 +5,7 @@ public class Exercise
 	private int ex_id;
 	private String ex_name;
 	private int ex_calorie;
-	private String upl;
+	private String url;
 	
 	
 	public int getEx_id() {
@@ -26,17 +26,17 @@ public class Exercise
 	public void setEx_calorie(int ex_calorie) {
 		this.ex_calorie = ex_calorie;
 	}
-	public String getUpl() {
-		return upl;
+	public String getUrl() {
+		return url;
 	}
-	public void setUpl(String upl) {
-		this.upl = upl;
+	public void setUrl(String upl) {
+		this.url = upl;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Exercise [ex_id=" + ex_id + ", ex_name=" + ex_name + ", ex_calorie=" + ex_calorie + ", upl=" + upl
+		return "Exercise [ex_id=" + ex_id + ", ex_name=" + ex_name + ", ex_calorie=" + ex_calorie + ", url=" + url
 				+ "]";
 	}
 	

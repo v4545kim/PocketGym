@@ -1,63 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common.jsp"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zxx">
 
 <head>
- 	<title>Checkbox 09</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="<%=contextPath %>resources/css/style.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css_ro/style.css">
+		
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css_cal/style.css">
 </head>
 
 <body>
 	<jsp:include page="./../header.jsp"/>
-	<section class="ftco-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h2 class="heading-section mb-5">내 루틴</h2>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-md-4">
-						<ul class="ks-cboxtags">
-					    <li>
-					    	<input type="checkbox" id="checkboxOne" value="Order one" checked="">
-					    	<label for="checkboxOne">Task One</label>
-					    </li>
-					    <li>
-					    	<input type="checkbox" id="checkboxTwo" value="Order Two">
-					    	<label for="checkboxTwo">Task Two</label>
-					    </li>
-					    <li>
-					    	<input type="checkbox" id="checkboxThree" value="Order Two">
-					    	<label for="checkboxThree">Task Three</label>
-					    </li>
-					    <c:forEach items="${lists }" var="item">
-					    	<li>
-					    	<input type="checkbox" id="checkboxThree" value="${item }">
-					    	<a href="<%=contextPath%>/detail.ex?ex=${item}">
-					    		<label for="checkboxThree">${item.ex_name }</label>
-					    	</a>
-					    	
-					    	</li>
-					    </c:forEach>
-					  </ul>
-					</div>
+	
+	 <section class="breadcrumb-section set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
+		        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2><i class="fa fa-shopping-basket"></i>나의 운동</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</section>
+		<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">나의 운동 일지</h2>
 				</div>
 			</div>
-		</section>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content w-100">
+				    <div class="calendar-container">
+				      <div class="calendar"> 
+				        <div class="year-header"> 
+				          <span class="left-button fa fa-chevron-left" id="prev"> </span> 
+				          <span class="year" id="label"></span> 
+				          <span class="right-button fa fa-chevron-right" id="next"> </span>
+				        </div> 
+				        <table class="months-table w-100"> 
+				          <tbody>
+				            <tr class="months-row">
+				              <td class="month">Jan</td> 
+				              <td class="month">Feb</td> 
+				              <td class="month">Mar</td> 
+				              <td class="month">Apr</td> 
+				              <td class="month">May</td> 
+				              <td class="month">Jun</td> 
+				              <td class="month">Jul</td>
+				              <td class="month">Aug</td> 
+				              <td class="month">Sep</td> 
+				              <td class="month">Oct</td>          
+				              <td class="month">Nov</td>
+				              <td class="month">Dec</td>
+				            </tr>
+				          </tbody>
+				        </table> 
+				        
+				        <table class="days-table w-100"> 
+				          <td class="day">Sun</td> 
+				          <td class="day">Mon</td> 
+				          <td class="day">Tue</td> 
+				          <td class="day">Wed</td> 
+				          <td class="day">Thu</td> 
+				          <td class="day">Fri</td> 
+				          <td class="day">Sat</td>
+				        </table> 
+				        <div class="frame"> 
+				          <table class="dates-table w-100"> 
+			              <tbody class="tbody">             
+			              </tbody> 
+				          </table>
+				        </div> 
+				        <button class="button" id="add-button">Add Event</button>
+				      </div>
+				    </div>
+				    <div class="events-container">
 
-    <script src="<%=contextPath %>resources/js/jquery.min.js"></script>
-    <script src="<%=contextPath %>resources/js/popper.js"></script>
-    <script src="<%=contextPath %>resources/js/bootstrap.min.js"></script>
-    <script src="<%=contextPath %>resources/js/main.js"></script>
+					</div>
+				    <div class="dialog" id="dialog">
+				        <h2 class="dialog-header"> 운동 기록하기 </h2>
+				        <form class="form" id="form">
+				          <div class="form-container" align="center">
+				            <!-- <label class="form-label" id="valueFromMyButton" for="name">Event name</label>
+				            <input class="input" type="text" id="name" maxlength="36">
+				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
+				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7"> -->
+				            <label class="form-label" id="valueFromMyButton" for="ex_name">나의 운동</label>
+				            <select class="select" id="ex_name">
+				            	<c:forEach items="${lists}" var="item">
+				            		<option value="${item.ex_name}" id="ex_name">${item.ex_name } : ${item.ex_calorie} 칼로리
+				            	</c:forEach>
+				            </select>
+				            <br><br>
+				            <input type="button" value="Cancel" class="button" id="cancel-button">
+				            <input type="button" value="OK" class="button button-white" id="ok-button">		            
+				          </div>
+				        </form>
+				      </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</section>
 
+
+    <script src="<%=request.getContextPath() %>/resources/js_ro/jquery.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js_ro/popper.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js_ro/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js_ro/main.js"></script>
+	
+    <!-- Js Plugins -->
+    <script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/masonry.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/main.js"></script> 
+    
+	<script src="<%=request.getContextPath() %>/resources/js_cal/jquery.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js_cal/popper.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js_cal/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js_cal/main.js"></script>
 </body>
 </html>
