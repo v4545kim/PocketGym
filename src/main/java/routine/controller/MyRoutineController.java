@@ -26,10 +26,7 @@ public class MyRoutineController {
 	@Qualifier("rdao")
 	private RoutineDao rdao;
 	
-	@ModelAttribute("bean")
-	public Member member() {
-		return new Member();
-	}
+	
 	
 	@GetMapping("/myroutine.ro")
 	private String  doGet(Model model, HttpSession session){
