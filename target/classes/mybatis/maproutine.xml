@@ -7,4 +7,14 @@
 	<select id="myRoutine" parameterType="String" resultType="AlExercise">
 		select ex.ex_id, ex.ex_name, ex.ex_calorie, ex.url from members mem inner join exandroutine ro on mem.ro_id = ro.ro_id inner join exercises ex on ro.ex_id = ex.ex_id where mem.ro_id is not null and mem.id = #{id}
 	</select>
+	
+	<insert id="routineCheck" parameterType="String">
+		insert into routinecheck values(#{mem_id}, #{regdate}, #{ex_id})
+	</insert>
+	
+	<select id="myRoutineCheck" parameterType="String" resultType="ALRoutineCheck">
+		select rc.mem_id, rc.regdate, rc.ex_id, e.ex_name, e.ex_calorie from routinecheck rc inner join exercises e on rc.ex_id = e.ex_id where mem_id = #{id}
+		
+	</select>
+	
 </mapper>

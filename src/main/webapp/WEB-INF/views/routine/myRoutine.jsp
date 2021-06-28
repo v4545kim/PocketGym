@@ -7,18 +7,14 @@
 <!DOCTYPE html>
 
 <head>
- 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css_ro/style.css">
+ 	 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css_cal/style.css">
+
 </head>
 
 <body>
@@ -90,7 +86,7 @@
 				      </div>
 				    </div>
 				    <div class="events-container">
-
+						
 					</div>
 				    <div class="dialog" id="dialog">
 				        <h2 class="dialog-header"> 운동 기록하기 </h2>
@@ -100,10 +96,10 @@
 				            <input class="input" type="text" id="name" maxlength="36">
 				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
 				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7"> -->
-				            <label class="form-label" id="valueFromMyButton" for="ex_name">나의 운동</label>
-				            <select class="select" id="ex_name">
+				            <label class="form-label" id="valueFromMyButton" for="ex">나의 운동</label>
+				            <select class="select" id="ex">
 				            	<c:forEach items="${lists}" var="item">
-				            		<option value="${item.ex_name}" id="ex_name">${item.ex_name } : ${item.ex_calorie} 칼로리
+				            		<option value="${item.ex_name},${item.ex_calorie},${item.ex_id},<%=contextPath%>" id="ex">${item.ex_name } : ${item.ex_calorie} 칼로리
 				            	</c:forEach>
 				            </select>
 				            <br><br>
@@ -118,11 +114,6 @@
 		</div>
 	</section>
 
-
-    <script src="<%=request.getContextPath() %>/resources/js_ro/jquery.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js_ro/popper.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js_ro/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js_ro/main.js"></script>
 	
     <!-- Js Plugins -->
     <script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
@@ -135,8 +126,8 @@
     <script src="<%=request.getContextPath() %>/resources/js/main.js"></script> 
     
 	<script src="<%=request.getContextPath() %>/resources/js_cal/jquery.min.js"></script>
-  <script src="<%=request.getContextPath() %>/resources/js_cal/popper.js"></script>
-  <script src="<%=request.getContextPath() %>/resources/js_cal/bootstrap.min.js"></script>
-  <script src="<%=request.getContextPath() %>/resources/js_cal/main.js"></script>
+  	<script src="<%=request.getContextPath() %>/resources/js_cal/popper.js"></script>
+  	<script src="<%=request.getContextPath() %>/resources/js_cal/bootstrap.min.js"></script>
+  	<script src="<%=request.getContextPath() %>/resources/js_cal/main.js"></script>
 </body>
 </html>
