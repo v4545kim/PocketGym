@@ -1,11 +1,13 @@
 (function($) {
 
 	"use strict";
-
+	
 	// Setup the calendar with the current date
 $(document).ready(function(){
     var date = new Date();
     var today = date.getDate();
+	
+		
     // Set click handlers for DOM elements
     $(".right-button").click({date: date}, next_year);
     $(".left-button").click({date: date}, prev_year);
@@ -16,6 +18,17 @@ $(document).ready(function(){
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
+	for(var i =0; i< $('lists2').size(); i++){
+		var dd = $('lists2[i].regdate');
+		var year = dd.split('/')[0];
+		var month = dd.split('/')[1];
+		var date = dd.split('/')[2];
+		var ex_name = $('lists2[i].ex_name');
+		console.log(ex_name);
+		var ex_cal = $('lists2[i].ex_calorie');
+		console.log(ex_cal);
+		new_event_json(year, month, date, ex_name, ex_cal);
+	}
 });
 
 // Initialize the calendar by appending the HTML dates
@@ -136,29 +149,51 @@ function new_event(event) {
     // Event handler for ok button
     $("#ok-button").unbind().click({date: event.data.date}, function() {
         var date = event.data.date;
-		var ex_name = $("#ex_name").val().trim();
+		var ex = $("#ex").val().split(',');
+		var ex_name = ex[0];
+		var ex_cal = ex[1];
+		var ex_id = ex[2];
+		var contextPath = ex[3];
+		var year = date.getFullYear();
+		var month = date.getMonth()+1;
         var day = parseInt($(".active-date").html());
+		var regdate = [year,month,day].join('/');
         // Basic form validation
         if(ex_name.length === 0) {
             $("#ex_name").addClass("error-input");
         }
         else {
+			console.log(ex_name);
+			console.log(ex_cal);
             $("#dialog").hide(250);
-            console.log("new event");
-            new_event_json(date, day, ex_name);
+            console.log("new event");			
+            new_event_json(date, day, ex_name, ex_cal);
             date.setDate(day);
             init_calendar(date);
+			window.location.href = contextPath+"/insertroutine.ro?regdate="+regdate+"&ex_id="+ex_id;
         }
     });
 }
 
 // Adds a json event to event_data
-function new_event_json(date, day, ex_name) {
+function new_event_json(date, day, ex_name, ex_cal) {
     var event = {
         "year": date.getFullYear(),
         "month": date.getMonth()+1,
         "day": day,
-		"ex_name" : ex_name
+		"ex_name" : ex_name,
+		"ex_cal" : ex_cal
+    };
+    event_data["events"].push(event);
+}
+
+function new_event_json(year, month, day, ex_name, ex_cal) {
+    var event = {
+        "year": year,
+        "month": month,
+        "day": day,
+		"ex_name" : ex_name,
+		"ex_cal" : ex_cal
     };
     event_data["events"].push(event);
 }
@@ -172,7 +207,7 @@ function show_events(events, month, day) {
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
+        var event_name = $("<div class='event-name'>운동 기록이 없습니다.</div>");
         $(event_card).css({ "border-left": "10px solid #FF1744" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);
@@ -180,14 +215,18 @@ function show_events(events, month, day) {
     else {
         // Go through and add each event as a card to the events container
         for(var i=0; i<events.length; i++) {
-            var event_card = $("<div class='event-card'></div>");
+            var event_card = $("<div class='event-card'><h3>완료한 운동</h3></div>");
 			var ex_name = $("<div class='ex_name'>"+events[i]["ex_name"]+" 완료</div>");
+			var ex_cal = $("<div class='ex_cal'>"+events[i]["ex_cal"]+" 칼로리</div>");
+			var year = $("<div class='ex_cal'>"+events[i]["year"]+" 칼로리</div>");
+			var month = $("<div class='ex_cal'>"+events[i]["month"]+" 칼로리</div>");
+			var date = $("<div class='ex_cal'>"+events[i]["day"]+" 칼로리</div>");
             if(events[i]["cancelled"]===true) {
                 $(event_card).css({
                     "border-left": "10px solid #FF1744"
                 });
             }
-            $(event_card).append(ex_name);
+            $(event_card).append(ex_name).append(ex_cal);
             $(".events-container").append(event_card);
         }
     }
