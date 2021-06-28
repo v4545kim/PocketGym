@@ -3,5 +3,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapCart">
+	<!-- 장바구니에 넣기 -->
+	<insert id="insertCart" parameterType="AlCart">
+		insert into carts(cart_id, pr_id, mem_id, count, total_price) 
+		values(carts_seq.nextval, #{pr_id}, #{mem_id}, #{count}, #{total_price})
+	</insert>
 	
+	<select id="selectCartList" parameterType="String" resultType="AlCart">
+		select p.pr_name pr_name, p.price price, p.image image, p.context context, c.count count, c.total_price total_price, c.cart_id cart_id
+		from carts c inner join products p
+		on c.pr_id = p.pr_id
+		where c.mem_id = #{mem_id}
+		order by cart_id desc
+	</select>
+	
+	<delete id="deleteCart" parameterType="Integer">
+		delete from carts where cart_id = #{cart_id}
+	</delete>
 </mapper>

@@ -17,4 +17,12 @@ public class ProductsDao {
 		return this.abcd.selectOne(NAMESPACE + "selectDataByPk", pr_id) ;
 	}
 	
+	public int selectPriceByPk(int pr_id) {
+		return this.abcd.selectOne(NAMESPACE + "selectPriceByPk", pr_id);
+	}
+	
+	public int selectStockByPk(int pr_id) {
+		return this.abcd.selectOne(NAMESPACE + "selectStockByPk", pr_id);
+	}
+	
 }

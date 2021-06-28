@@ -39,6 +39,33 @@
     cursor: zoom-in;
 }
 </style>
+
+<script type="text/javascript">
+	function checkCart() {
+		if(${sessionScope.loginfo.id == null}){
+			alert('미로그인 상태입니다.\n로그인을 진행해주세요.')
+			return false;
+		}
+		
+		var count = document.myform.count.value ;
+		var stock = ${bean.stock};
+		
+		if(count == 0){
+			alert('수량을 선택하세요.')
+			document.myform.count.focus() ;
+			return false;
+		}
+		
+		if(stock < count){
+			alert('재고가 부족합니다.')
+			return false;
+		} else{
+			alert('장바구니에 담았습니다.')
+			return false;
+		}
+	}
+</script>
+
 </head>
 <body>
 	<jsp:include page="./../header.jsp"/>
@@ -47,7 +74,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<h2><i class="fa fa-shopping-basket"></i>쇼핑몰</h2>
+						<h2><i class="fa fa-shopping-cart"></i>쇼핑몰</h2>
 					</div>
 				</div>
 			</div>
@@ -57,62 +84,64 @@
 	
     <br>
 
-	<form action="<%=request.getContextPath()%>/prcart.pr" method="post">
-		<input type="hidden" value="${bean.pr_id}" name="pr_id">
-		<input type="hidden" value="${bean.price}" name="price">
-		<input type="hidden" value="${bean.stock}" name="stock">
-		<div class="card">
-			<div class="row">
-				<aside class="col-sm-5 border-right">
-					<article class="gallery-wrap">
-						<div class="img-big-wrap">
-							<div>
-								<img src="${bean.image}" alt="${bean.image}">
+
+	<div class="card">
+		<div class="row">
+			<aside class="col-sm-5 border-right">
+				<article class="gallery-wrap">
+					<div class="img-big-wrap">
+						<div>
+							<img src="${bean.image}" alt="${bean.image}">
+						</div>
+					</div>
+				</article>
+			</aside>
+			<aside class="col-sm-7">
+				<article class="card-body p-5">
+					<h3 class="title mb-3">제품명 : ${bean.pr_name} </h3>
+					<dl class="item-property">
+						<dt>상품설명</dt>
+						<dd>${bean.context}</dd>
+					</dl>
+					<p class="price-detail-wrap">
+						<span class="price h3 text-warning">
+							<span class="num">가격 : ${bean.price}</span>
+						</span>
+					</p>
+					<dl class="param param-feature">
+						<dt>재고 수량 : </dt>
+						<dd>${bean.stock}</dd>
+					</dl>
+					<hr>
+					<c:set var="apppath" value="<%=request.getContextPath()%>" />
+					<form:form action="${apppath}/prcart.pr" method="post" name="myform">
+						<input type="hidden" value="${bean.pr_id}" name="pr_id">
+						<input type="hidden" value="${sessionScope.loginfo.id}" name="mem_id">
+						<div class="row">
+							<div class="col-sm-5">
+								<dl class="param param-inline">
+									<dt>
+										구매 수량 : <input type="number" name="count" id="count" value="0">
+									</dt>
+								</dl>
 							</div>
 						</div>
-					</article>
-				</aside>
-				<aside class="col-sm-7">
-					<article class="card-body p-5">
-						<h3 class="title mb-3">제품명 : ${bean.pr_name} </h3>
-						<dl class="item-property">
-							<dt>상품설명</dt>
-							<dd>${bean.context}</dd>
-						</dl>
-							<p class="price-detail-wrap">
-								<span class="price h3 text-warning">
-									<span class="num">가격 : ${bean.price}</span>
-								</span>
-							</p>
-							<dl class="param param-feature">
-								<dt>재고 수량 : </dt>
-								<dd>${bean.stock}</dd>
-							</dl>
-							<hr>
-							<div class="row">
-								<div class="col-sm-5">
-									<dl class="param param-inline">
-										<dt>
-											구매 수량 : <input type="number" name="count">
-										</dt>
-									</dl>
-								</div>
+						<div class="row">
+							<div class="col-sm-5">
+								<dl class="param param-inline">
+									<dt>
+										<button type="submit" class="btn btn-default"><i class="fa fa-calculator">구매하기</i></button>
+										<button type="submit" class="btn btn-default" onclick="checkCart()"><i class="fa fa-shopping-basket"></i>장바구니</button>
+									</dt>
+								</dl>
 							</div>
-							<div class="row">
-								<div class="col-sm-5">
-									<dl class="param param-inline">
-										<dt>
-											<button type="submit" class="btn btn-default">구매하기</button>
-											<button type="submit" class="btn btn-default"><i class="fa fa-shopping-cart"></i>장바구니</button>
-										</dt>
-									</dl>
-								</div>
-							</div>
-					</article>
-				</aside>
-			</div>
+						</div>
+					</form:form>
+				</article>
+			</aside>
 		</div>
-	</form>
+	</div>
+	
 	<br>
 
 	<!-- Footer Section Begin -->
