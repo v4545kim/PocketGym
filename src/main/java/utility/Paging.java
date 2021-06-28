@@ -25,8 +25,7 @@ public class Paging {//페이징 관련 변수
 			int totalCount,
 			String url, 
 			String what, 
-			String keyword,
-			String whologin) {		
+			String keyword) {		
 
 		if( _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("") ){
 			_pageNumber = "1" ;

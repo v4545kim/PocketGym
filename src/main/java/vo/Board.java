@@ -12,6 +12,7 @@ public class Board
 	private String title;
 	@Length(min=20, max=255, message="내용은 10글자 이상 255글자 이하이어야 합니다.")
 	private String context;
+	private String regdate;
 	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
 	private String be_image;
 	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
@@ -41,7 +42,7 @@ public class Board
 		}
 	}
 	
-	private String regdate;
+	
 	
 	public int getBo_id() {
 		return bo_id;
