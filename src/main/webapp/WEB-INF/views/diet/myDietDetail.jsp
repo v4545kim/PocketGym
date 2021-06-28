@@ -18,6 +18,24 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+<!-- <script>
+setTimeout(function(){
+location.reload();
+},1000); // 1000밀리초 = 1초	
+</script>
+ -->
+<script type="text/javascript">
+if (!location.hash) { 
+
+	location.hash = '#reload';
+
+	location.href = location.href;
+
+}
+
+
+</script>
 <style type="text/css">
 .hoho {
 	font-size: large;
@@ -252,7 +270,10 @@ PRICING STYLES
 								<c:forEach var="breakfastlists"
 									items="${requestScope.breakfastlists}">
 									<li class="hoho"><i class="glyphicon glyphicon-cutlery"></i>${breakfastlists.foodname}
-										&nbsp;&nbsp;&nbsp; ${breakfastlists.calorie } Kcal</li>
+										&nbsp;&nbsp;&nbsp; ${breakfastlists.calorie } Kcal 
+										
+										<input type="button" value="수정" onclick="window.open('<%=contextPath%>/mydietupdate.di?&foodname=${breakfastlists.foodname}&calorie=${breakfastlists.calorie}&year=${year}&month=${month}&day=${day}&inputdate=${inputdate }&diet_id=${breakfastlists.diet_id }','window팝업','width=1000, height=600');">
+										</li>
 								</c:forEach>
 							</ul>
 							<div class="pricing-footer">
