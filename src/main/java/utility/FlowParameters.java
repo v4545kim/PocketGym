@@ -19,7 +19,7 @@ public class FlowParameters {
 		}
 		this.mode = mode ;
 		if ( keyword == null || keyword.equals("null") || keyword.equals("")  || keyword.equals("all") ) {
-			keyword = "" ;
+			keyword = " " ;
 		}
 		this.keyword = keyword ;
 	}

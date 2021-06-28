@@ -3,6 +3,37 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapBoard">
+	<select id="SelectTotalCount" resultType="int">
+		select  count(*) as cnt from boards
+		<if test="mode == 'title'">
+			where b.title like #{keyword}
+		</if>
+		<if test="mode == 'context'">
+			where b.context like #{keyword}
+		</if>
+		<if test="mode == 'mem_id'">
+			where mem_id like #{keyword}
+		</if>
+		
+	</select>
+	<sql id="myselect">
+		select b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate, m.nickname from boards b join members m on b.mem_id = m.id
+	</sql> 	
+	<select id="selectAll" resultType="AlBoard">
+		<include refid="myselect" />
+		<if test="mode == 'b.title'">
+			where title like #{keyword} 
+		</if>
+		<if test="mode == 'b.context'">
+			where context like #{keyword} 
+		</if>
+		<if test="mode == 'm.nickname'">
+			where nickname like #{keyword} 
+		</if>
+		order by bo_id desc
+	</select>	
 	
-	
+	<select id="selectById" parameterType="Integer" resultType="AlBoard">
+		select * from boards where bo_id = #{bo_id}
+	</select>	
 </mapper>

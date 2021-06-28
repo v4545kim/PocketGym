@@ -16,17 +16,16 @@ public class Paging2 {//페이징 관련 변수
 	private String pagingHtml = "";//하단의 숫자 페이지 링크
 	private String pagingStatus = ""; //상단 우측의 현재 페이지 위치 표시
 	//검색을 위한 변수 추가
-	private String what = "" ; //검색 모드(작성자, 글제목, 전체 검색은 all) 등등
+	private String mode = "" ; //검색 모드(작성자, 글제목, 전체 검색은 all) 등등
 	private String keyword = "" ; //검색할 단어 
 
 	public Paging2(
 			String _pageNumber, 
 			String _pageSize,  
 			int totalCount,
-			String url, 
-			String what, 
-			String keyword,
-			String whologin) {		
+			String url,
+			String mode, 
+			String keyword) {		
 
 		if( _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("") ){
 			_pageNumber = "1" ;
@@ -60,7 +59,7 @@ public class Paging2 {//페이징 관련 변수
 		}
 		
 		this.url = url ;
-		this.what = what ;
+		this.mode = mode ;
 		this.keyword = keyword ;
 		
 		this.pagingHtml = getPagingHtml(url) ;
@@ -73,7 +72,7 @@ public class Paging2 {//페이징 관련 변수
 	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&what=" + what + "&keyword=" + keyword ; 
+		String added_param = "&mode=" + mode + "&keyword=" + keyword ; 
 		
 		if (this.beginPage != 1) { //앞쪽
 			result += "&nbsp;<a href='" + url  
@@ -121,7 +120,7 @@ public class Paging2 {//페이징 관련 변수
 		System.out.println("요청 URL : " + url + "\n");
 		//System.out.println("하단의 숫자 페이지 링크 : " + pagingHtml + "\n");
 		System.out.println("상단 우측의 현재 페이지 위치 표시 : " + pagingStatus + "\n");	
-		//System.out.println("검색 모드 : " + what + "\n");
+		//System.out.println("검색 모드 : " + mode + "\n");
 		//System.out.println("검색 키워드 : " + keyword + "\n");
 	}
 	
@@ -135,5 +134,5 @@ public class Paging2 {//페이징 관련 변수
 	public int getLimit() {	return limit;	}	
 	//상세 검색을 위하여 검색 모드와 검색 키워드 항목이 추가됨	
 	//public String getKeyword() { return keyword; 	}
-	//public String getwhat() { return what; }	 
+	//public String getmode() { return mode; }	 
 }
