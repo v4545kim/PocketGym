@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-shopping-basket"></i>쇼핑몰</h2>
+                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a></h2>
                     </div>
                 </div>
             </div>

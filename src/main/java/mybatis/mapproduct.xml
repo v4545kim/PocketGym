@@ -9,4 +9,16 @@
 		where pr_id = #{pr_id}
 	</select>
 	
+	<select id="selectPriceByPk" parameterType="Integer" resultType="Integer">
+		select price
+		from products
+		where pr_id = #{pr_id}
+	</select>
+	
+	<select id="selectStockByPk" parameterType="Integer" resultType="Integer">
+		select Stock
+		from products
+		where pr_id = #{pr_id}
+	</select>
+	
 </mapper>
