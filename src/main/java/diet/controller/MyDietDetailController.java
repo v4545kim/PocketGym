@@ -47,7 +47,7 @@ public class MyDietDetailController {
 		
 		
 		String inputdate = year + "/" + month + "/" + day;
-		System.out.println("inputdate : " +  inputdate);
+//		System.out.println("inputdate : " +  inputdate);
 		
 		String breakfast = "breakfast";
 		String lunch = "lunch";
@@ -88,6 +88,7 @@ public class MyDietDetailController {
 		this.mav.addObject("year", year);
 		this.mav.addObject("month", month);
 		this.mav.addObject("day", day);
+		this.mav.addObject("inputdate",inputdate);
 		
 		this.mav.addObject("breakfasttotal", breakfasttotal);
 		this.mav.addObject("lunchtotal", lunchtotal);

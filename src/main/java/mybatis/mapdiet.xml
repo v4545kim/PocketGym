@@ -18,4 +18,9 @@
 	</select>
 
 
+
+	<select id="updateDiet" parameterType="AlDiet">
+		update diets set foodname = #{foodname}, calorie = #{calorie} where diet_id = #{diet_id}
+	</select>
+
 </mapper>

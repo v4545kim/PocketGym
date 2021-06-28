@@ -48,6 +48,19 @@ public class DietDao
 		map.put("dinner", dinner);
 		return this.mysql.selectList(NAMESPACE + "dinnerList", map);
 	}
+
+	
+	public int updateDiet(String foodname, int calorie, int diet_id) {
+		Diet diet = new Diet();
+		diet.setCalorie(calorie);
+//		diet.setInputdate(inputdate);
+		diet.setFoodname(foodname);
+		diet.setDiet_id(diet_id);
+//		diet.setMealtime(mealtime);
+//		diet.setMem_id(id);
+		
+		return this.mysql.update(NAMESPACE + "updateDiet", diet);
+	}
 	
 	
 	
