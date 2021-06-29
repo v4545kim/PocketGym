@@ -11,15 +11,20 @@
 
  <script type="text/javascript">
 	function hahaha() {
-		alert("수정이 성공적으로 완료 되었습니다");
-		opener.document.location.reload();
-
+		opener.name = "수정창";
+		document.myform.target = opener.name;
+		document.myform.action = "<%=request.getContextPath() %>/mydietupdate.di"
+			if (confirm("정말 수정하시겠습니까??") == true){    //확인
+			    document.myform.submit();
+			}else{   //취소
+			    return;
+			}
 		self.close();
-
-
-
 	}
 </script>
+	
+	
+	
 
 
 
@@ -91,7 +96,7 @@
             </div>
         </div>
         <div style="margin-top: 1em;">
-            <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="javascript:hahaha();" >Modify</button>
+            <input type="button" class="btn btn-primary btn-lg btn-block" onclick="javascript:hahaha()" value="수정완료">
         </div>
         </form>
 </div>

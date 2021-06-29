@@ -23,4 +23,19 @@
 		update diets set foodname = #{foodname}, calorie = #{calorie} where diet_id = #{diet_id}
 	</select>
 
+
+	<select id="deleteDiet" parameterType="int">
+		delete from diets where diet_id = #{diet_id}
+	</select>
+
+
+	<select id="insertDiet" parameterType="AlDiet" resultType="int">
+		insert into diets values(diets_seq.nextval, #{mem_id}, #{inputdate}, #{mealtime}, #{foodname}, #{calorie})
+	</select>
+
+
+
+
+
+
 </mapper>
