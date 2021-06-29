@@ -3,11 +3,10 @@
 	"use strict";
 	
 	// Setup the calendar with the current date
+
 $(document).ready(function(){
     var date = new Date();
-    var today = date.getDate();
-	
-		
+    var today = date.getDate();		
     // Set click handlers for DOM elements
     $(".right-button").click({date: date}, next_year);
     $(".left-button").click({date: date}, prev_year);
@@ -18,17 +17,6 @@ $(document).ready(function(){
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
-	for(var i =0; i< $('lists2').size(); i++){
-		var dd = $('lists2[i].regdate');
-		var year = dd.split('/')[0];
-		var month = dd.split('/')[1];
-		var date = dd.split('/')[2];
-		var ex_name = $('lists2[i].ex_name');
-		console.log(ex_name);
-		var ex_cal = $('lists2[i].ex_calorie');
-		console.log(ex_cal);
-		new_event_json(year, month, date, ex_name, ex_cal);
-	}
 });
 
 // Initialize the calendar by appending the HTML dates

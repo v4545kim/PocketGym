@@ -33,5 +33,6 @@ public class RoutineDao {
 	public List<MyRoutineCheck> myRoutineCheck(String id) {		
 		return this.abcd.selectList(NAMESPACE+"myRoutineCheck", id);
 	}
+
 }
                                                                                                                                                                                            
