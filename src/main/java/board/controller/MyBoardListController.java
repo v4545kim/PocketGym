@@ -12,7 +12,7 @@ public class MyBoardListController {
 		return "myboardList";
 	}
 	
-	@PostMapping("mybolist.br")
+	@PostMapping("/mybolist.br")
 	private String  doPost(Model model){
 		return "";
 	}

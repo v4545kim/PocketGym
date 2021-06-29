@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class BoardLikeController {
 	
-	@GetMapping("brlike.br/get")
+	@GetMapping("/brlike.br")
 	private String  doGet(Model model){
 		return "";
 	}
 	
-	@PostMapping("brlike.br/post")
+	@PostMapping("/brlike.br")
 	private String  doPost(Model model){
 		return "";
 	}

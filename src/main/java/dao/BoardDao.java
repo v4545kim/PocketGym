@@ -21,6 +21,7 @@ public class BoardDao {
 	public BoardDao() {
 	}
 	
+	//해당모드에 충족하는 항목들의 갯수 구하기 - by성철
 	public int SelectTotalCount(String mode, String keyword) {
 		// 해당 모드와 키워드를 이용하여 조건에 맞는 데이터의 건수를 구해줍니다.
 		Map<String, String> map = new HashMap<String, String>() ;
@@ -28,7 +29,7 @@ public class BoardDao {
 		map.put("keyword", "%" + keyword + "%") ;		
 		return this.abcd.selectOne(namespace + "SelectTotalCount", map);	
 	}
-
+	// 페이징처리 및 필드검색을 위한 상품 목록 구하기
 	public List<Board> selectAll(int offset, int limit, String mode, String keyword) {
 		// 랭킹을 이용하여 해당 페이지의 데이터를 컬렉션으로 반환합니다.
 		
@@ -41,8 +42,16 @@ public class BoardDao {
 		return this.abcd.selectList(namespace + "selectAll", map, rowBounds);
 	}
 	
-	public Board selectById(int id) {
-		return this.abcd.selectOne(namespace + "selectById", id);
+	//해당하는 하나의 게시글을 확인하기 
+	public Board selectById(int bo_id) {
+		return this.abcd.selectOne(namespace + "selectById", bo_id);
+	}
+	
+	//게시글 추가하기
+	public int insertBoard(Board bean) {
+		System.out.println(this.getClass() + " : 게시물을 등록합니다." ); 
+		return this.abcd.insert(namespace + "insertBoard", bean);
+		
 	}
 
 }

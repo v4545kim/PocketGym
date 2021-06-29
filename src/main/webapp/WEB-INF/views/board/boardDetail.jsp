@@ -11,20 +11,20 @@
 <body>
     <jsp:include page="./../header.jsp" />
 
-    <!-- Blog Details Hero Section Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/blog/blog-detail-hero.jpg">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="<%=contextPath %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="bd-hero-text">
-                        <span>후기 게시판</span>
-                        <h2>게시물 제목</h2>
+                    <div class="breadcrumb-text">
+                        <h2> ${bean.title}</h2>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Blog Details Hero Section End -->
+    <!-- Breadcrumb Section End -->
 
 
     <!-- Blog Details Section Begin -->
@@ -36,18 +36,43 @@
                         <div class="bd-pic">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="<%=request.getContextPath() %>/resources/img/blog/bd-1.jpg" alt="">
+		                            <c:if test="${empty bean.be_image}">
+										<img src="<%=uploadedFolder%>Koala.jpg" class="img-thumbnail"
+											width="200" height="200" alt="no image">
+									</c:if>						
+									
+									<c:if test="${applicationScope.debugMode == true}">
+										디버그 모드가 true이면 보입니다.<br>
+										${applicationScope.uploadedPath}/${bean.be_image}
+									</c:if>								
+									
+									<c:if test="${not empty bean.be_image}">
+										<img src="${applicationScope.uploadedPath}/${bean.be_image}"
+											class="img-thumbnail" width="200" height="200"
+											alt="${bean.be_image}">
+									</c:if>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="<%=request.getContextPath() %>/resources/img/blog/bd-2.jpg" alt="">
+                                   <c:if test="${empty bean.af_image}">
+										<img src="<%=uploadedFolder%>Koala.jpg" class="img-thumbnail"
+											width="200" height="200" alt="no image">
+									</c:if>						
+									
+									<c:if test="${applicationScope.debugMode == true}">
+										디버그 모드가 true이면 보입니다.<br>
+										${applicationScope.uploadedPath}/${bean.af_image}
+									</c:if>								
+									
+									<c:if test="${not empty bean.af_image}">
+										<img src="${applicationScope.uploadedPath}/${bean.af_image}"
+											class="img-thumbnail" width="200" height="200"
+											alt="${bean.af_image}">
+									</c:if>
                                 </div>
                             </div>
                         </div>
                         <div class="bd-title">
-                            <p>Your clients would like to see optimal results for minimal work. For this reason, it can
-                                be difficult to convince them that a website redesign enhances SEO strategies. However,
-                                if you try to redesign a site without taking SEO into account, you are going to face
-                                bigger problems down the road.</p>
+                            <p>${bean.context}</p>
                             
                         </div>
                         
@@ -61,38 +86,28 @@
                         </div>
                         
                         <div class="tag-share">
-                           
-                            <div class="social-share">
-                                <span>좋아요:</span>
-                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
-                                <a href="#">수정</a>
-                                <a href="#">삭제</a>
-                                
-                                
-                            </div>
+                           <c:if test="${sessionScope.loginfo.id == bean.mem_id}">
+	                           <div class="social-share">
+	                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                                <a href="/brupdate.br">수정</a>
+	                                <a href="/brdelete.br">삭제</a>
+	                            </div>
+                            </c:if>
+                            <c:if test="${sessionScope.loginfo.id != bean.mem_id}">
+	                           <div class="social-share">
+	                                <span>좋아요:</span>
+	                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                            </div>
+                            </c:if>
+                            <c:if test="${whologin == 2}">
+	                           <div class="social-share">
+	                                <span>좋아요:</span>
+	                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                                <a href="/brdelete.br">삭제</a>
+	                            </div>
+                            </c:if>
+                            
                         </div>
-                        <%-- <div class="blog-author">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="ba-pic">
-                                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-posted.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-9">
-                                    <div class="ba-text">
-                                        <h5>Shane Lynch</h5>
-                                        <p>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                            voluptate velit esse cillum bore et dolore magna aliqua. </p>
-                                        <div class="bt-social">
-                                            <a href="#"><i class="fa fa-facebook"></i></a>
-                                            <a href="#"><i class="fa fa-twitter"></i></a>
-                                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                                            <a href="#"><i class="fa fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --%>
                         <div class="leave-comment">
                             <h3>Leave A Comment</h3>
                             <form action="#">
@@ -106,6 +121,8 @@
                                     <div class="col-lg-12">
                                         <textarea placeholder="Messages"></textarea>
                                         <button type="submit">댓글 작성</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button reset="text">뒤로가기</button>
                                     </div>
                                 </div>
                             </form>

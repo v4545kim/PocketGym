@@ -29,12 +29,14 @@
                         <c:if test="${whologin ==0 }">
 	                       <li><a href="<%=contextPath%>/login.me">식단</a></li>
 	                       <li><a href="<%=contextPath%>/login.me">운동</a></li>
+	                       <li><a href="<%=contextPath%>/login.me">sns</a></li>
                         </c:if>
                       	<c:if test="${whologin !=0 }">
 	                      	<li><a href="<%=contextPath%>/mydietlist.di?id=${sessionScope.loginfo.id}">식단</a></li>
 	                        <li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
+                        	<li><a href="<%=contextPath%>/brlist.br?id=${sessionScope.loginfo.id}">sns</a></li>
                         </c:if>
-                        <li><a href="<%=contextPath%>/brlist.br">sns</a></li>
+                        
                         <li><a href="<%=contextPath%>/prlist.pr">쇼핑몰</a></li>
                     </ul>
                 </nav>
@@ -55,8 +57,8 @@
 									
 									<li ><a href="<%=contextPath%>/list.me">회원 리스트</a></li>
 									<li ><a href="<%=contextPath%>/insert.pr">상품 등록</a></li>
-									<li ><a href="<%=contextPath%>/insert.ex">운동 등록</a></li>
-									<li ><a href="<%=contextPath%>/list.ro">루틴 리스트</a></li>
+									<li ><a href="<%=contextPath%>/list.ex">운동 관리</a></li>
+                           			<li ><a href="<%=contextPath%>/list.ro">루틴 관리</a></li>
 									<li><a href="<%=contextPath%>/logout.me">로그아웃</a></li>
 								</c:if>
 								<c:if test="${whologin != 2}">
