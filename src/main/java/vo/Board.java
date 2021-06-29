@@ -10,12 +10,12 @@ public class Board
 	private String mem_id;
 	@Length(min=3, max=20, message="제목은 3글자 이상 20글자 이하이어야 합니다.")
 	private String title;
-	@Length(min=20, max=255, message="내용은 10글자 이상 255글자 이하이어야 합니다.")
+	@Length(min=20, max=255, message="내용은 20글자 이상 255글자 이하이어야 합니다.")
 	private String context;
 	private String regdate;
-	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
+	@NotEmpty(message= "이전 이미지를 넣어주세요")
 	private String be_image;
-	@NotEmpty(message= "이미지 이름은 필수 입력사항입니다.")
+	@NotEmpty(message= "이후 이미지를 넣어주세요")
 	private String af_image;
 	
 	private MultipartFile abcd1 ;

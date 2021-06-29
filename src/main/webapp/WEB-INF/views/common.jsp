@@ -21,8 +21,20 @@
 		<c:set var="whologin" value="1" />
 	</c:if>
 </c:if>
-
 <% String contextPath = request.getContextPath() ;%>
+<%	
+	// 파일 업로드 관련
+	String myurl = request.getRequestURL().toString() ;
+	String uri = request.getRequestURI() ;
+	int idx = myurl.indexOf( uri ) ;	
+	//웹서버에 올릴 이미지의 저장 경로 
+	String uploadPath = "/upload" ;//개발자가 임의 지정 가능
+	String uploadedFolder 
+		= myurl.substring(0, idx) + contextPath + uploadPath ;	
+	String realPath = application.getRealPath( uploadPath ) ;
+%>
+
+
 <c:set var="contextPath" value="<%=contextPath%>" scope="application"/> 
 
 <!DOCTYPE html>

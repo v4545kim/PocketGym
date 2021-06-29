@@ -1,20 +1,28 @@
 package board.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import dao.BoardDao;
+
 @Controller
 public class BoardUpdateController {
 	
-	@GetMapping("brupdate.br/get")
+	@Autowired
+	@Qualifier("bdao")
+	private BoardDao dao ;
+	
+	@GetMapping("/brupdate.br")
 	private String  doGet(Model model){
-		return "";
+		return "boardUpdateForm";
 	}
 	
-	@PostMapping("brupdate.br/post")
+	@PostMapping("/brupdate.br")
 	private String  doPost(Model model){
-		return "";
+		return "redirect:/brdetail.br";
 	}
 }

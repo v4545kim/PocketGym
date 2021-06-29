@@ -71,7 +71,7 @@
 										<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag">${bean.mem_id}</a>
 									</div>
 								<h5>
-									<a href="<%=request.getContextPath()%>/brdetail.br<%-- ?id=${bean.bo_id} --%>">${bean.title}</a>
+									<a href="<%=contextPath%>/brdetail.br?id=${bean.bo_id}">${bean.title}</a>
 								</h5>
 	                    </div>
 	                </div>
