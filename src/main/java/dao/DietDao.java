@@ -50,17 +50,36 @@ public class DietDao
 	}
 
 	
-	public int updateDiet(String foodname, int calorie, int diet_id) {
+	public int updateDiet(String foodname, int calorie, int diet_id)
+	{
 		Diet diet = new Diet();
 		diet.setCalorie(calorie);
-//		diet.setInputdate(inputdate);
 		diet.setFoodname(foodname);
 		diet.setDiet_id(diet_id);
-//		diet.setMealtime(mealtime);
-//		diet.setMem_id(id);
+
 		
 		return this.mysql.update(NAMESPACE + "updateDiet", diet);
 	}
+
+	public int deleteDiet(int diet_id) 
+	{
+		Diet diet = new Diet();
+		diet.setDiet_id(diet_id);
+		
+		return this.mysql.delete(NAMESPACE + "deleteDiet", diet_id);
+	}
+
+	public int insertDiet(String mem_id, String inputdate, String mealtime, String foodname, int calorie) {
+		Diet diet = new Diet();
+		diet.setMem_id(mem_id);
+		diet.setInputdate(inputdate);
+		diet.setMealtime(mealtime);
+		diet.setFoodname(foodname);
+		diet.setCalorie(calorie);
+		return this.mysql.insert(NAMESPACE + "insertDiet", diet);
+	}
+	
+	
 	
 	
 	

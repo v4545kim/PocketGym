@@ -45,7 +45,6 @@ public class MyDietDetailController {
 	{
 		mav = new ModelAndView();
 		
-		
 		String inputdate = year + "/" + month + "/" + day;
 //		System.out.println("inputdate : " +  inputdate);
 		
@@ -58,11 +57,15 @@ public class MyDietDetailController {
 		List<Diet> dinnerlists = ddao.dinnerList(id, inputdate, dinner);
 		
 		
+		
+		
 		int breakfasttotal = 0;
 		int lunchtotal = 0;
 		int dinnertotal = 0;
 		
 		
+		
+		// 아침, 점심, 저녁 식사 총 칼로리를 구하기
 		for(Diet breakfastcalorie : breakfastlists) 
 		{ 
 			breakfasttotal += breakfastcalorie.getCalorie();
@@ -81,15 +84,19 @@ public class MyDietDetailController {
 		
 		
 		
+		// 각 식단 리스트
 		this.mav.addObject("breakfastlists", breakfastlists);
 		this.mav.addObject("lunchlists", lunchlists);
 		this.mav.addObject("dinnerlists", dinnerlists);
 		
+		
+		// 오늘의 날짜값 넘기기
 		this.mav.addObject("year", year);
 		this.mav.addObject("month", month);
 		this.mav.addObject("day", day);
 		this.mav.addObject("inputdate",inputdate);
 		
+		// 각 total 칼로리
 		this.mav.addObject("breakfasttotal", breakfasttotal);
 		this.mav.addObject("lunchtotal", lunchtotal);
 		this.mav.addObject("dinnertotal", dinnertotal);
