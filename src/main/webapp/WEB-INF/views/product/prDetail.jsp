@@ -64,6 +64,34 @@
 			return false;
 		}
 	}
+	
+	function checkBuy(){
+		if(${sessionScope.loginfo.id == null}){
+			alert('미로그인 상태입니다.\n로그인을 진행해주세요.')
+			return false;
+		}
+		
+		var count = document.myform.count.value ;
+		var stock = ${bean.stock};
+		
+		if(count == 0){
+			alert('수량을 선택하세요.')
+			document.myform.count.focus() ;
+			return false;
+		}
+		
+		var mem_id = document.myform.mem_id.value ;
+		var pr_id = document.myform.pr_id.value ;
+		
+		if(stock < count){
+			alert('재고가 부족합니다.')
+			return false;
+		} else{
+			alert('구매 페이지로 넘어갑니다.')
+			location.href='<%=request.getContextPath()%>/prbuy2.pr?mem_id=' + mem_id + '&pr_id=' + pr_id +'&count=' + count
+			return false;
+		}
+	}
 </script>
 
 </head>
@@ -130,8 +158,8 @@
 							<div class="col-sm-5">
 								<dl class="param param-inline">
 									<dt>
-										<button type="submit" class="btn btn-default"><i class="fa fa-calculator">구매하기</i></button>
-										<button type="submit" class="btn btn-default" onclick="checkCart()"><i class="fa fa-shopping-basket"></i>장바구니</button>
+										<button type="button" class="btn btn-default"><i class="fa fa-calculator" onclick="checkBuy();">구매하기</i></button>
+										<button type="submit" class="btn btn-default" onclick="checkCart();"><i class="fa fa-shopping-basket"></i>장바구니</button>
 									</dt>
 								</dl>
 							</div>

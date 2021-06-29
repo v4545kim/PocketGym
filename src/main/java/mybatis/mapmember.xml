@@ -42,6 +42,12 @@
       select * from members where nickname = #{nickname}
    </select>
    
+	<select id="selectForOrder" resultType="AlMember">
+		select address1, address2, point, nickname from members where id = #{id}
+	</select>
    
+   <update id="changePoint" parameterType="AlOrder">
+		update members set point = point - #{total_price} where id = #{mem_id}
+	</update>
    
 </mapper>

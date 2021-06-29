@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import vo.Cart;
+import vo.Order;
 
 @Component("cdao")
 public class CartDao {
@@ -26,6 +27,8 @@ public class CartDao {
 	public int deleteCart(int cart_id) {
 		return this.abcd.delete(NAMESPACE + "deleteCart", cart_id);
 	}
+
+	
 	
 
 }
