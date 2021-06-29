@@ -1,9 +1,13 @@
 package dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import vo.Order;
 import vo.Product;
 
 @Component("pdao")
@@ -25,4 +29,23 @@ public class ProductsDao {
 		return this.abcd.selectOne(NAMESPACE + "selectStockByPk", pr_id);
 	}
 	
+	public int insertOrder(String address1, String address2, String mem_id, int pr_id, int count, int total_price) {
+		Order order = new Order();
+		order.setAddress1(address1);
+		order.setAddress2(address2);
+		order.setCount(count);
+		order.setMem_id(mem_id);
+		order.setPr_id(pr_id);
+		order.setTotal_price(total_price);
+		
+		return this.abcd.insert(NAMESPACE + "insertOrder", order);
+	}
+
+	public int updateStock(int pr_id, int count) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pr_id", pr_id);
+		map.put("count", count);
+		
+		return this.abcd.update(NAMESPACE + "updateStock", map);
+	}
 }

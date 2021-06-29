@@ -21,4 +21,13 @@
 		where pr_id = #{pr_id}
 	</select>
 	
+	<insert id="insertOrder" parameterType="AlOrder">
+		insert into orders(od_id, orderdate, mem_id, pr_id, count, total_price, address1, address2)
+		values(orders_seq.nextval,sysdate, #{mem_id}, #{pr_id}, #{count}, #{total_price}, #{address1}, #{address2})
+	</insert>
+	
+	<update id="updateStock" parameterType="Integer">
+		update products set stock = stock - #{count} where pr_id = #{pr_id}
+	</update>
+	
 </mapper>

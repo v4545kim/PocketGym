@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import vo.Member;
+import vo.Order;
 
 @Component("mdao")
 public class MemberDao {
@@ -41,10 +42,7 @@ public class MemberDao {
 	}
 
 	public int updateMember(Member bean) {
-
 		return this.abcd.update(NAMESPACE + "updateMember", bean);
-		// TODO Auto-generated method stub
-
 	}
 	
 	public Member selectByPkId(String id) {
@@ -53,6 +51,14 @@ public class MemberDao {
 	
 	public Member selectByPkNickname(String id) {
 	      return this.abcd.selectOne(NAMESPACE + "selectDataNickname", id);
+	}
+
+	public Member selectForOrder(String id) {
+		return this.abcd.selectOne(NAMESPACE + "selectForOrder", id);
+	}
+
+	public int changePoint(Order order) {
+		return this.abcd.update(NAMESPACE + "changePoint", order);
 	}
 	
 	

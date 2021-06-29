@@ -63,6 +63,8 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+    
+    <br>
 
 	<div class="container">
 		<table id="cart" class="table table-hover table-condensed">
@@ -110,7 +112,7 @@
 					</td>
 					<td colspan="3" class="hidden-xs"></td>
 					<td>
-						<a href="<%=contextPath%>/prbuy.pr?mem_id=${sessionSceope.loginfo.id}" class="btn btn-success btn-block">
+						<a href="<%=contextPath%>/prbuy.pr?mem_id=${sessionScope.loginfo.id}" class="btn btn-success btn-block">
 							구매하기<i class="fa fa-angle-right"></i>
 						</a>
 					</td>
@@ -119,7 +121,7 @@
 		</table>
 	</div>
 	
-	
+	<br>
 	
 	<!-- Footer Section Begin -->
     <footer class="footer-section">

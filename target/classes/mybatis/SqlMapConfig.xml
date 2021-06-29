@@ -16,6 +16,7 @@
 		<typeAlias alias="ALReply" type="vo.Reply" />
 		<typeAlias alias="ALExercise" type="vo.Exercise" />
 		<typeAlias alias="ALRoutineCheck" type="vo.MyRoutineCheck" />
+		<typeAlias alias="AlOrder" type="vo.Order" />
 	</typeAliases>	
 
 	<!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->
@@ -27,5 +28,6 @@
 		<mapper resource="mybatis/mapcart.xml" />
 		<mapper resource="mybatis/mapboard.xml" />
 		<mapper resource="mybatis/mapreply.xml" />
+		<mapper resource="mybatis/mapexercise.xml" />
 	</mappers>
 </configuration>

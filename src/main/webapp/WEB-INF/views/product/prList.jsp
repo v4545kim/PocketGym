@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a></h2>
+                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a><a href="<%=contextPath%>/prbuy.pr?mem_id=${sessionScope.loginfo.id}">구매하기</a></h2>
                     </div>
                 </div>
             </div>

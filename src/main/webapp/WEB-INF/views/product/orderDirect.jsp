@@ -73,7 +73,7 @@ function sample6_execDaumPostcode() {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a><a href="<%=contextPath%>/prbuy.pr">구매하기</a></h2>
+                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a><a href="<%=contextPath%>/prbuy2.pr">구매하기</a></h2>
                     </div>
                 </div>
             </div>
@@ -90,6 +90,9 @@ function sample6_execDaumPostcode() {
 	            <div class="card">
 	                <div class="card-body p-0">
 	                    <form action="<%=request.getContextPath()%>/prbuy.pr" method="post">
+	                    	<input type="hidden" value="${product.pr_id}">
+	                    	<input type="hidden" value="${order.count}">
+	                    	<input type="hidden" value="${order.total_price}">
 		                    <div class="row p-5">
 		                        <div class="col-md-12">
 		                            <table class="table">
@@ -104,16 +107,14 @@ function sample6_execDaumPostcode() {
 		                                    </tr>
 		                                </thead>
 		                                <tbody>
-		                                	<c:forEach items="${requestScope.cartlists}" var="list">
-			                                    <tr>
-			                                        <td>${list.pr_id}</td>
-			                                        <td>${list.pr_name}</td>
-			                                        <td>${list.context}</td>
-			                                        <td>${list.count}</td>
-			                                        <td>${list.price}</td>
-			                                        <td>${list.total_price}</td>
-			                                    </tr>
-		                                    </c:forEach>
+		                                    <tr>
+		                                        <td>${product.pr_id}</td>
+		                                        <td>${product.pr_name}</td>
+		                                        <td>${product.context}</td>
+		                                        <td>${order.count}</td>
+		                                        <td>${product.price}</td>
+		                                        <td>${order.total_price}</td>
+		                                    </tr>
 		                                </tbody>
 		                            </table>
 		                            <div class="d-flex flex-row-reverse bg-dark text-white">
