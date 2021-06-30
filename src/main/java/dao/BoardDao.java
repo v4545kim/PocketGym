@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import vo.Board;
+import vo.Reply;
 
 @Component("bdao")
 public class BoardDao {
@@ -42,16 +43,43 @@ public class BoardDao {
 		return this.abcd.selectList(namespace + "selectAll", map, rowBounds);
 	}
 	
-	//해당하는 하나의 게시글을 확인하기 
+	//해당하는 하나의 게시글을 확인하기 & 거기에 있는 리뷰가져오기
 	public Board selectById(int bo_id) {
 		return this.abcd.selectOne(namespace + "selectById", bo_id);
+	}
+	public Reply replyList(int bo_id) {
+		return this.abcd.selectOne("mapReply." + "replyList", bo_id);
+	}
+	
+	//답글 추가하기 
+	public int insertReply(int bo_id, String mem_id, String context) {
+		Reply bean = new Reply();
+		bean.setBo_id(bo_id);
+		bean.setMem_id(mem_id);
+		bean.setContext(context);
+		
+		
+		System.out.println(this.getClass() + " : 댓글을 등록합니다." ); 
+		return this.abcd.insert(namespace + "insertReply", bean);
+	
 	}
 	
 	//게시글 추가하기
 	public int insertBoard(Board bean) {
 		System.out.println(this.getClass() + " : 게시물을 등록합니다." ); 
 		return this.abcd.insert(namespace + "insertBoard", bean);
-		
 	}
+
+	public int updateBoard(Board bean) {
+		// TODO Auto-generated method stub
+		System.out.println(bean.toString());
+		return this.abcd.update(namespace + "updateBoard", bean);
+	}
+
+	public int deleteBoard(int bo_id) {
+		return this.abcd.delete(namespace + "deleteBoard", bo_id);
+	}
+	
+	
 
 }

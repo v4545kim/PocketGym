@@ -1,11 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common.jsp"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<% int twelve = 12 ; %>
+<c:set var="twelve" value="12" />
+<%
+	int myoffset = 2;
+	int mywidth = twelve - 2 * myoffset;
+	int formleft = 3 ;
+	int formright = twelve - formleft ; 
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-
+<meta charset="UTF-8">
+<title>BootStrap Sample</title>
+	<style type="text/css">
+		.form-group{ margin-bottom : 3px; }
+	</style>
 </head>
 
 <body>
@@ -26,8 +41,64 @@
     </section>
     <!-- Breadcrumb Section End -->
     
-sns업데이트폼
-
+	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
+		<div class="panel panel-default panel-primary">
+			<div class="panel-heading"><h4>후기 수정</h4></div>
+			<div class="panel-body">
+				<c:set var="apppath" value="<%=request.getContextPath()%>" />
+				<form:form modelAttribute="board" class="form-horizontal" role="form" action="${apppath}/brupdate.br"
+					method="post" enctype="multipart/form-data">
+					
+					<input type="hidden" name="mem_id" id="mem_id"
+								value="${sessionScope.loginfo.id}" />
+					<input type="hidden" name="bo_id" id="bo_id"
+								value="${bean.bo_id}" />			
+								
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="title">제목</label>
+						<div class="col-sm-<%=formright%>">
+							<input  type="text" class="form-control" name="title" id="title" value="${bean.title}" />
+								<form:errors cssClass="err" path="title" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="abcd1">다이어트 전</label>
+						<div class="col-sm-<%=formright%>">
+							<input type="file" class="form-control" name="abcd1" value="${bean.be_image}"
+								id="abcd1" placeholder="before 사진을 넣어주세요">
+							<form:errors cssClass="err" path="be_image" />							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="abcd2">다이어트 후</label>
+						<div class="col-sm-<%=formright%>">
+							<input type="file" class="form-control" name="abcd2" value="${bean.af_image}"
+								id="abcd2" placeholder="after 사진을 넣어주세요">
+							<form:errors cssClass="err" path="af_image" />							
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="control-label col-sm-<%=formleft%>" for="context">후기</label>
+						<div class="col-sm-<%=formright%>">
+							<textarea rows="8" cols="30" class="form-control" name="context" id="context" value="${bean.context}"></textarea>
+								<form:errors cssClass="err" path="context" />
+						</div>
+					</div>					
+					<div class="form-group">
+						<div align="center" class="col-sm-offset-3 col-sm-6">
+							<button class="btn btn-default" type="submit">수정 완료</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-default" type="reset">초기화</button>
+						</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
 
 	<!-- Footer Section Begin -->
     <footer class="footer-section">

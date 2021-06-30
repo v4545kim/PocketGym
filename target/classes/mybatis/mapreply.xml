@@ -3,7 +3,9 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapReply">
-	
+	<select id="replyList" parameterType="Integer" resultType="ALReply">
+		select * from reply where bo_id = #{bo_id}
+	</select>
 	
 
 </mapper>
