@@ -30,4 +30,18 @@
 		update products set stock = stock - #{count} where pr_id = #{pr_id}
 	</update>
 	
+	<select id="SelectTotalCount" resultType="Integer">
+		select  count(*) as cnt from products
+		<if test="mode == 'title'">
+			where pr_name like #{keyword}
+		</if>
+	</select>
+	
+	<select id="selectAll" resultType="AlProduct">
+		select * from products
+		<if test="mode == 'title'">
+			where pr_name like #{keyword}
+		</if>
+		order by pr_id desc
+	</select>
 </mapper>

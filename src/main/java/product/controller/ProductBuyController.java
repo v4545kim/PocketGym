@@ -49,11 +49,10 @@ public class ProductBuyController {
 		
 		List<Cart> cartlists = cdao.selectCartList(mem_id);
 		
-		int total_price = 0;
+		int total_price = 0 ;
 		
 		for (Cart cart : cartlists) {
 			total_price += cart.getTotal_price();
-			
 		}
 		
 		this.mav.addObject("total_price",total_price);
@@ -95,6 +94,7 @@ public class ProductBuyController {
 	private ModelAndView doPost(
 			@RequestParam(value = "address1", required = true) String orderaddress1,
 			@RequestParam(value = "address2", required = true) String orderaddress2,
+			@RequestParam(value = "pay", required = true) int pay,
 			HttpSession session){
 		
 		Order order = null;
@@ -104,42 +104,48 @@ public class ProductBuyController {
 		
 		Member loginfo = (Member)session.getAttribute("loginfo");
 		String mem_id = loginfo.getId();
+		int point = loginfo.getPoint();
 		
+		if (point < pay) {
+			this.mav.setViewName("redirect:/prcartlist.pr");
+			
+		} else {
 		
-		int pr_id=0;
-		int cart_id=0;
-		int count=0;
-		int total_price=0;
-		
-		
-		List<Cart> cartlists = cdao.selectCartList(mem_id);
-		
-		for (Cart cart : cartlists) {
-			int cnt = -99999;
-			pr_id = cart.getPr_id();
-			count = cart.getCount();
-			total_price = cart.getTotal_price();
+			int pr_id=0;
+			int cart_id=0;
+			int count=0;
+			int total_price=0;
 			
-			// 결제 완료된 리스트들을 담아준다.
-			cnt = pdao.insertOrder(address1, address2, mem_id, pr_id, count, total_price);
 			
-			cart_id = cart.getCart_id();
+			List<Cart> cartlists = cdao.selectCartList(mem_id);
 			
-			// 결제한 후 장바구니에 있는 리스트들은 삭제 해준다.
-			cnt = cdao.deleteCart(cart_id);
-			
-			// 결제한 후 상품 재고를 업데이트 해준다. 
-			cnt = pdao.updateStock(pr_id, count);
-			
-			order = new Order();
-			order.setMem_id(mem_id);
-			order.setTotal_price(total_price);
-			
-			// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
-			cnt = mdao.changePoint(order);
+			for (Cart cart : cartlists) {
+				int cnt = -99999;
+				pr_id = cart.getPr_id();
+				count = cart.getCount();
+				total_price = cart.getTotal_price();
+				
+				// 결제 완료된 리스트들을 담아준다.
+				cnt = pdao.insertOrder(address1, address2, mem_id, pr_id, count, total_price);
+				
+				cart_id = cart.getCart_id();
+				
+				// 결제한 후 장바구니에 있는 리스트들은 삭제 해준다.
+				cnt = cdao.deleteCart(cart_id);
+				
+				// 결제한 후 상품 재고를 업데이트 해준다. 
+				cnt = pdao.updateStock(pr_id, count);
+				
+				order = new Order();
+				order.setMem_id(mem_id);
+				order.setTotal_price(total_price);
+				
+				// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
+				cnt = mdao.changePoint(order);
 		}
 		
-		this.mav.setViewName("redirect:/main.ma");
+		this.mav.setViewName("orderResult");
+		}
 		
 		return this.mav;
 	}
@@ -148,52 +154,46 @@ public class ProductBuyController {
 	private ModelAndView directBuyDoPost(
 			@RequestParam(value = "address1", required = true) String orderaddress1,
 			@RequestParam(value = "address2", required = true) String orderaddress2,
+			@RequestParam(value = "pr_id", required = true) int orderpr_id,
+			@RequestParam(value = "count", required = true) int ordercount,
+			@RequestParam(value = "total_price", required = true) int ordertotal_price,
 			HttpSession session){
 		
 		Order order = null;
 		
 		String address1 = orderaddress1;
 		String address2 = orderaddress2;
+		int pr_id = orderpr_id;
+		int count = ordercount;
+		int total_price = ordertotal_price;
 		
 		Member loginfo = (Member)session.getAttribute("loginfo");
 		String mem_id = loginfo.getId();
 		
+		int cnt = -1;
 		
-		int pr_id=0;
-		int cart_id=0;
-		int count=0;
-		int total_price=0;
+		// 결제 완료된 리스트들을 담아준다.
+		cnt = pdao.insertOrder(address1, address2, mem_id, pr_id, count, total_price);
 		
+		// 결제한 후 상품 재고를 업데이트 해준다. 
+		cnt = pdao.updateStock(pr_id, count);
 		
-		List<Cart> cartlists = cdao.selectCartList(mem_id);
+		order = new Order();
+		order.setMem_id(mem_id);
+		order.setTotal_price(total_price);
 		
-		for (Cart cart : cartlists) {
-			int cnt = -99999;
-			pr_id = cart.getPr_id();
-			count = cart.getCount();
-			total_price = cart.getTotal_price();
-			
-			// 결제 완료된 리스트들을 담아준다.
-			cnt = pdao.insertOrder(address1, address2, mem_id, pr_id, count, total_price);
-			
-			cart_id = cart.getCart_id();
-			
-			// 결제한 후 장바구니에 있는 리스트들은 삭제 해준다.
-			cnt = cdao.deleteCart(cart_id);
-			
-			// 결제한 후 상품 재고를 업데이트 해준다. 
-			cnt = pdao.updateStock(pr_id, count);
-			
-			order = new Order();
-			order.setMem_id(mem_id);
-			order.setTotal_price(total_price);
-			
-			// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
-			cnt = mdao.changePoint(order);
-		}
+		// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
+		cnt = mdao.changePoint(order);
 		
-		this.mav.setViewName("redirect:/main.ma");
+		this.mav.setViewName("orderDirectResult");
 		
 		return this.mav;
+	}
+	
+	@GetMapping("result.pr")
+	private ModelAndView resultGet() {
+		this.mav.setViewName("orderResult");
+		
+		return mav;
 	}
 }

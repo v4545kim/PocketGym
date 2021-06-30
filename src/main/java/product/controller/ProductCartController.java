@@ -63,7 +63,6 @@ public class ProductCartController {
 				cnt = cdao.insertCart(cart);
 				
 				mav.setViewName("redirect:/prcartlist.pr");
-//				mav.setViewName("prCart");
 			}
 		}
 		return mav;
