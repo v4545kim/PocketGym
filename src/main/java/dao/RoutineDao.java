@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import vo.Exercise;
 import vo.MyRoutineCheck;
+import vo.Routine;
 
 @Component("rdao")
 public class RoutineDao {
@@ -32,6 +33,26 @@ public class RoutineDao {
 
 	public List<MyRoutineCheck> myRoutineCheck(String id) {		
 		return this.abcd.selectList(NAMESPACE+"myRoutineCheck", id);
+	}
+
+	public int routineCheckDelete(String id, String regdate, String ex_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("regdate", regdate);
+		map.put("ex_id", ex_id);
+		return this.abcd.delete(NAMESPACE+"routineCheckDelete", map);
+	}
+
+	public List<Routine> selectRoList() {
+		return this.abcd.selectList(NAMESPACE+"selectRoList");
+	}
+
+	public List<Exercise> routineDetail(String ro_id) {
+		return this.abcd.selectList(NAMESPACE+"routineDetail", ro_id);
+	}
+
+	public int insertRoutine(Routine routine) {
+		return 0;
 	}
 
 }

@@ -17,4 +17,15 @@
 		
 	</select>
 	
+	<delete id="routineCheckDelete" parameterType="String">
+		delete from routinecheck where mem_id = #{id} and regdate = #{regdate} and ex_id = #{ex_id}		
+	</delete>
+	
+	<select id="selectRoList" resultType="AlRoutine">
+		select * from routines
+	</select>
+	
+	<select id="routineDetail" parameterType="String" resultType="AlExercise">
+		select er.ex_id, e.ex_name from routines r inner join exandroutine er on r.ro_id = er.ro_id inner join exercises e on er.ex_id = e.ex_id where r.ro_id = #{ro_id}	
+	</select>
 </mapper>

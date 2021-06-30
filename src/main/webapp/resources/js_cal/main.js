@@ -158,7 +158,6 @@ function new_event(event) {
             new_event_json(date, day, ex_name, ex_cal);
             date.setDate(day);
             init_calendar(date);
-			window.location.href = contextPath+"/insertroutine.ro?regdate="+regdate+"&ex_id="+ex_id;
         }
     });
 }
