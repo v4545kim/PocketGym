@@ -1,8 +1,10 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -59,6 +61,18 @@ public class MemberDao {
 
 	public int changePoint(Order order) {
 		return this.abcd.update(NAMESPACE + "changePoint", order);
+	}
+
+	public int SelectTotalCount() {
+		return this.abcd.selectOne(NAMESPACE + "SelectTotalCount") ; 
+	}
+
+	public List<Member> SelectDataList(int offset, int limit) 
+	{
+		// RowBounds 객체를 사용한 페이징처리
+		RowBounds rbs = new RowBounds(offset, limit);
+				
+		return this.abcd.selectList(NAMESPACE + "SelectDataList", null, rbs);
 	}
 	
 	

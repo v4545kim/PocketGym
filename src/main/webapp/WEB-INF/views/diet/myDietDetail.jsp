@@ -34,7 +34,8 @@
 
 </script>
 <style type="text/css">
-.hoho {
+.hoho 
+{
 	font-size: large;
 }
 .btn-circle.btn-xl {
@@ -261,13 +262,15 @@ PRICING STYLES
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-camera" aria-hidden="true"></i> sns</h2>
+                        <h2><i class="fa fa-camera" aria-hidden="true"></i> 식단</h2>
                         
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    
 	<div class="container">
 		<%-- 제목 --%>
 		<div class="row text-center">
@@ -295,10 +298,9 @@ PRICING STYLES
 								${requestScope.breakfasttotal}<sup>Kcal</sup> <small>Total
 									calorie</small>
 							</div>
-							<div class="type">아침 식단</div>
+							<div class="type">아침</div>
 							<ul>
-								<c:forEach var="breakfastlists"
-									items="${requestScope.breakfastlists}">
+								<c:forEach var="breakfastlists"	items="${requestScope.breakfastlists}">
 									<li class="hoho"><i class="glyphicon glyphicon-cutlery"></i>${breakfastlists.foodname}
 										&nbsp;&nbsp;&nbsp; ${breakfastlists.calorie } Kcal 
 										
@@ -331,7 +333,7 @@ PRICING STYLES
 								${requestScope.lunchtotal}<sup>Kcal</sup> <small>Total
 									calorie</small>
 							</div>
-							<div class="type">점심 식단</div>
+							<div class="type">점심</div>
 							<ul>
 
 								<c:forEach var="lunchlists" items="${requestScope.lunchlists}">
@@ -368,7 +370,7 @@ PRICING STYLES
 								${requestScope.dinnertotal}<sup>Kcal</sup> <small>Total
 									calorie</small>
 							</div>
-							<div class="type">저녁 식단</div>
+							<div class="type">저녁</div>
 							<ul>
 
 								<c:forEach var="dinnerlists" items="${requestScope.dinnerlists}">
