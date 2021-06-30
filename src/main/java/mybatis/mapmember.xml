@@ -50,4 +50,15 @@
 		update members set point = point - #{total_price} where id = #{mem_id}
 	</update>
    
+   <!-- 회원 리스트 개수 출력 -->
+   <select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from members
+	</select>	
+   
+   <!-- 모든 회원 정보들 리스트로 출력 -->
+   <select id="SelectDataList" resultType="AlMember">
+		select*from members
+	</select>
+   
+   
 </mapper>

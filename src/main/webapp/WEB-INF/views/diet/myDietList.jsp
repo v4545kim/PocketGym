@@ -2,9 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./../common.jsp"%>
 <!DOCTYPE html>
-
 <head>
 <style type="text/css">
+a.astyle {
+    color: black;
+}
+.date {
+    font-size: larger;
+    font-weight: bold;
+}
+button.js-cal-years.btn.btn-link {
+    font-size: x-large;
+}
+button.js-cal-option.btn.btn-link {
+    font-size: x-large;
+}
+section.breadcrumb-section.set-bg {
+    margin-top: -68px;
+}
+.tdalign
+{
+	text-align: left;
+}
 body
 {
 	padding-top: 69px;
@@ -100,9 +119,26 @@ body
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
+<body>
+   <jsp:include page="./../header.jsp" />
 
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="<%=contextPath %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2><i class="fa fa-utensils" aria-hidden="true"></i> 식단 캘린더</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+</body>
+    
 <div class="container theme-showcase">
-  <h1>식단 캘린더</h1>
 <div id="holder" class="row" ></div>
 </div>
 
@@ -146,7 +182,7 @@ body
                 </span>
                 <button class="js-cal-option btn btn-default {{: first.toDateInt() <= today.toDateInt() && today.toDateInt() <= last.toDateInt() ? 'active':'' }}" data-date="{{: today.toISOString()}}" data-mode="month">{{: todayname }}</button>
               </td>
-              <td>
+              <td class="tdalign">
                 <span class="btn-group btn-group-lg">
                   {{ if (mode !== 'day') { }}
                     {{ if (mode === 'month') { }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{ } }}
@@ -157,14 +193,6 @@ body
                   {{ } else { }}
                     <button class="btn btn-link disabled">{{: date.toDateString() }}</button> 
                   {{ } }}
-                </span>
-              </td>
-              <td style="text-align: right">
-                <span class="btn-group">
-                  <button class="js-cal-option btn btn-default {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button>
-                  <button class="js-cal-option btn btn-default {{: mode==='month'? 'active':'' }}" data-mode="month">Month</button>
-                  <button class="js-cal-option btn btn-default {{: mode==='weekf'? 'active':'' }}" data-mode="week">Week</button>
-                  <button class="js-cal-option btn btn-default {{: mode==='day'? 'active':'' }}" data-mode="day">Day</button>
                 </span>
               </td>
             </tr>
@@ -205,7 +233,7 @@ body
         {{ for (i = 0; i < 7; i++) { }}
         {{ if (thedate > last) { dayclass = nextmonthcss; } else if (thedate >= first) { dayclass = thismonthcss; } }}
         <td class="calendar-day {{: dayclass }} {{: thedate.toDateCssClass() }} {{: date.toDateCssClass() === thedate.toDateCssClass() ? 'selected':'' }} {{: daycss[i] }} js-cal-option" data-date="{{: thedate.toISOString() }}">
-          <div class="date"><a href="<%=contextPath%>/mydietdetail.di?id=${sessionScope.loginfo.id}&day={{: thedate.getDate() }}&month={{:month+1}}&year={{: year}}">{{: thedate.getDate() }}</a></div>
+          <div class="date"><a class="astyle" href="<%=contextPath%>/mydietdetail.di?id=${sessionScope.loginfo.id}&day={{: thedate.getDate() }}&month={{:month+1}}&year={{: year}}">{{: thedate.getDate() }}</a></div>
           {{ thedate.setDate(thedate.getDate() + 1);}}
         </td>
         {{ } }}
@@ -516,3 +544,12 @@ $('#holder').calendar({
   data: data
 });
 </script>
+    <!-- Js Plugins -->
+    <script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.magnific-popup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/masonry.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/main.js"></script> 

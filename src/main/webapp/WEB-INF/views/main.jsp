@@ -5,7 +5,12 @@
 <html lang="zxx">
 
 <head>
-
+<style type="text/css">
+.single-class-item.set-bg 
+{
+    width: 348px;
+}
+</style>
 </head>
 
 <body>
