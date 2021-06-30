@@ -61,8 +61,6 @@ public class MyRoutineController {
 			model.addAttribute("lists2", jsonArray.fromObject(lists2));
 			model.addAttribute("size", jsonArray.fromObject(lists2).size());
 			return "myRoutine";
-		}
-		
+		}		
 	}
-
 }
