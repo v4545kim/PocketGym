@@ -37,9 +37,4 @@ public class ProductDetailController {
 		
 		return mav;
 	}
-	
-	@PostMapping("/prdetail.pr")
-	private String  doPost(Model model){
-		return "";
-	}
 }

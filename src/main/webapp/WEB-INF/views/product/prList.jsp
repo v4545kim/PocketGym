@@ -5,7 +5,13 @@
 <html>
 
 <head>
-
+	<script type="text/javascript">
+		function search(){
+			if( $('#mode').val() == 'all' ){
+				alert('검색 목록을 선택해주세요') ;
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -16,7 +22,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰<a href="<%=contextPath%>/prcartlist.pr">장바구니</a><a href="<%=contextPath%>/prbuy.pr?mem_id=${sessionScope.loginfo.id}">구매하기</a></h2>
+                        <h2><i class="fa fa-shopping-cart"></i>쇼핑몰</h2>
                     </div>
                 </div>
             </div>
@@ -24,84 +30,56 @@
     </section>
     <!-- Breadcrumb Section End -->
     <!-- Blog Section Begin -->
+    <div class="panel-heading">
+    	<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/prlist.pr" method="get">
+			<div class="form-group">
+				<select class="form-control" name="mode" id="mode">
+					<option value="all" selected="selected">-- 선택하세요---------
+					<option value="title" >제목
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control btn-xs" name="keyword" placeholder="검색 키워드">
+			</div>
+			<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<p class="form-control-static">${requestScope.pagingStatus}</p>
+		</form>
+    </div>
     <section class="blog-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-1.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="<%=contextPath%>/prdetail.pr?pr_id=1">스트랩</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-2.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">덤벨</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-3.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">Man gets life in prison for stabbing</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-4.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">Russia's first male synchronised swimmer</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-5.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">NYC measles vaccination order prevails in court</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-6.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">The Week in Pictures: April 11 - 18</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-7.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">Man who pretended to be faces new charges</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-8.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">Lenny Kravitz gives Arch Digest a look inside</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-9.jpg" alt="">
-                        <div class="blog-widget">
-                        </div>
-                        <h4><a href="./blog-details.jsp">Lenny Kravitz gives Arch Digest a look inside</a></h4>
-                    </div>
-                </div>
+            	<c:forEach var="bean" items="${requestScope.lists}">
+	                <div class="col-lg-4 col-md-6">
+	                    <div class="single-blog-item">
+							<a href="<%=contextPath%>/prdetail.pr?pr_id=${bean.pr_id}"><img src="${bean.image}" alt="${bean.image}"></a>
+							<div class="blog-widget">
+								<div class="bw-date">${bean.inputdate}</div>
+							</div>
+							<h5>
+								<a style="color: black" href="<%=contextPath%>/prdetail.pr?pr_id=${bean.pr_id}">${bean.pr_name}</a>
+							</h5>
+	                    </div>
+	                </div>
+                </c:forEach>
             </div>
+            <div align="center">
+				${requestScope.pagingHtml}
+			</div>	
         </div>
     </section>
+    <br><br><br><br>
+	<script type="text/javascript">
+	   /* 방금 전 선택한 콤보 박스를 그대로 보여 주기 */ 
+		$('#mode option').each(function (index){
+			if( $(this).val() == '${requestScope.mode}' ){
+				$(this).attr('selected', 'selected') ;
+			}
+		});	
+		/* 이전에 넣었던 값 그대로 보존 */
+		$('#keyword').val( '${requestScope.keyword}' ) ;		
+	</script>	
+    
     <!-- Blog Section End -->
 
     <!-- Footer Section Begin -->

@@ -8,9 +8,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery.validate.js"></script>
 
 <style type="text/css">
 body {
@@ -21,58 +18,13 @@ body {
 </style>
 
 <script type="text/javascript">
-function sample6_execDaumPostcode() {
-	new daum.Postcode({
-		oncomplete : function(data) {
-			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-			var addr = ''; // 주소 변수
-			var extraAddr = ''; // 참고항목 변수
-
-			//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-				addr = data.roadAddress;
-			} else { // 사용자가 지번 주소를 선택했을 경우(J)
-				addr = data.jibunAddress;
-			}
-
-			// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-			if (data.userSelectedType === 'R') {
-				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-					extraAddr += data.bname;
-				}
-				// 건물명이 있고, 공동주택일 경우 추가한다.
-				if (data.buildingName !== '' && data.apartment === 'Y') {
-					extraAddr += (extraAddr !== '' ? ', '
-							+ data.buildingName : data.buildingName);
-				}
-				// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-			}
-
-			// 우편번호와 주소 정보를 해당 필드에 넣는다.
-			document.getElementById("sample6_address").value = addr;
-			// 커서를 상세주소 필드로 이동한다.
-			document.getElementById("sample6_detailAddress").focus();
-		}
-	}).open();
-}
-
-	function checkBuy2(){
-		var point = ${requestScope.mem_info.point}
-		var price = document.myform.total_price.value
-		
-		if(price > point){
-			alert('보유 포인트가 부족합니다.')
-			return;
-		} else{
-			document.myform.action="<%=request.getContextPath()%>/prbuy2.pr"
-			document.myform.submit();
-		}
-	};
+	function goList() {
+		location.href='<%=request.getContextPath()%>/prlist.pr'
+	}
+	
+	function goMain() {
+		location.href='<%=request.getContextPath()%>/main.ma'
+	}
 </script>
 
 </head>
@@ -86,7 +38,7 @@ function sample6_execDaumPostcode() {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-calculator"></i>구매하기</h2>
+                        <h2><i class="fa fa-credit-card"></i>결제 완료</h2>
                     </div>
                 </div>
             </div>
@@ -135,20 +87,18 @@ function sample6_execDaumPostcode() {
 		                            		<div class="mb-2">총 가격</div>
 		                            		<div class="h2 font-weight-light">${order.total_price}</div>
 		    		                        <div class="mb-2">
-		    		                        	<button type="button" onclick="history.back(-1);">뒤로가기</button>
-		    		                        	<button type="button" onclick="checkBuy2();">결제하기</button>
+		    		                        	<button type="button" onclick="goList();">쇼핑 더하기</button>
+	    		                        		<button type="button" onclick="goMain();">메인으로</button>
 		    		                        </div>
-		                            		
 		                        		</div>
 		                        		<div class="py-3 px-5 text-right">
 		    		                        <div class="mb-2">주문 하시는 분 : ${requestScope.mem_info.nickname}</div>
 		    		                        <div class="mb-2">
-                                 				배송지 : <input type="text" id="sample6_address" name="address1" placeholder="주소" value="${requestScope.mem_info.address1}" readonly="readonly" ><br>
-                                 				<input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.mem_info.address2}">
-                                 				<br>
-                                 				<input type="button" onclick="sample6_execDaumPostcode()" value="배송지 변경"><br>
-		    		                        </div>
-		    		                        <div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}</div>
+                                				배송지 : ${requestScope.mem_info.address1}<br>
+                                				${requestScope.mem_info.address2}
+                                				<br>
+	    		                        	</div>
+		    		                        <div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}</div>
 										</div>
 		                    		</div>
 		                        </div>

@@ -58,6 +58,7 @@
 		
 		if(stock < count){
 			alert('재고가 부족합니다.')
+			document.myform.count.focus() ;
 			return false;
 		} else{
 			alert('장바구니에 담았습니다.')
@@ -68,6 +69,7 @@
 	function checkBuy(){
 		if(${sessionScope.loginfo.id == null}){
 			alert('미로그인 상태입니다.\n로그인을 진행해주세요.')
+			location.href='<%=request.getContextPath()%>/login.me'
 			return false;
 		}
 		
