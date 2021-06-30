@@ -6,17 +6,22 @@
 
 <head>
 	<script type="text/javascript">
+		var mode = $('#mode').val();
+		var keyword = $('#keyword').val();
+		
 		function writeForm(){
-				location.href='<%=contextPath%>/brinsert.br';
+			location.href='<%=contextPath%>/brinsert.br';
 		}
 		function search(){
-			if( $('#mode').val() == 'all' ){
-				alert('검색 목록을 선택해주세요') ;
-				//$('#mode').focus();
+			if( mode == 'all' ){
+				alert('검색 영역을 선택해주세요') ;
+			}else if(keyword==""){
+				alert('검색어를 입력해주세요') ;
 			}else{
-				//alert('하하') ;
+				location.href='<%=contextPath%>/brlist.br?mode='+ mode +'&keyword='+keyword;
 			}
-			//alert( $('#mode').val() );
+			
+			
 		}
 	</script>	
 </head>
@@ -71,7 +76,7 @@
 										<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag">${bean.mem_id}</a>
 									</div>
 								<h5>
-									<a href="<%=contextPath%>/brdetail.br?id=${bean.bo_id}">${bean.title}</a>
+									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}">${bean.title}</a>
 								</h5>
 	                    </div>
 	                </div>

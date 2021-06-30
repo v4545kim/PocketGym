@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.BoardDao;
@@ -21,18 +22,13 @@ public class BoardDeleteController {
 	
 	
 	@GetMapping("/brdelete.br")
-	private ModelAndView  doGet()
-	{ 
-		System.out.println("여기는???");
-		mav = new ModelAndView();
-		
-		mav.setViewName("boardList");
-		
-		return this.mav;
+	private String doGet(
+			@RequestParam(value = "bo_id", required = true) int bo_id
+			){ 
+		int cnt = -99999;
+		cnt = dao.deleteBoard(bo_id);
+		System.out.println("여기오나 테스트2");
+		return "redirect:/brlist.br";
 	}
 	
-	@PostMapping("/brdelete.br")
-	private String  doPost(Model model){
-		return "";
-	}
 }

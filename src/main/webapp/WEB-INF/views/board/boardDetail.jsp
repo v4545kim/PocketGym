@@ -89,8 +89,8 @@
                            <c:if test="${sessionScope.loginfo.id == bean.mem_id}">
 	                           <div class="social-share">
 	                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
-	                                <a href="/brupdate.br">수정</a>
-	                                <a href="/brdelete.br">삭제</a>
+	                                <a href="/brupdate.br?bo_id=${bean.bo_id}">수정</a>
+	                                <a href="/brdelete.br?bo_id=${bean.bo_id}">삭제</a>
 	                            </div>
                             </c:if>
                             <c:if test="${sessionScope.loginfo.id != bean.mem_id}">
@@ -103,23 +103,28 @@
 	                           <div class="social-share">
 	                                <span>좋아요:</span>
 	                                <a href="#"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
-	                                <a href="/brdelete.br">삭제</a>
+	                                <a href="/brdelete.br?bo_id=${bean.bo_id}">삭제</a>
 	                            </div>
                             </c:if>
                             
                         </div>
+                        <div class="bd-title">
+                            <input type="text" name="mem_id" id="mem_id" value="${lists.mem_id}" />
+                            <p>${lists.context}</p>
+                        </div>
+                        
                         <div class="leave-comment">
                             <h3>Leave A Comment</h3>
-                            <form action="#">
+                            <c:set var="apppath" value="<%=request.getContextPath()%>" />
+                            <form method="post" name="replyform" action="${apppath}/reinsert.br">
+                            	<input type="hidden" name="mem_id"  value="${sessionScope.loginfo.id}" />
+								<input type="hidden" name="bo_id"  value="${bean.bo_id}" />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Name">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Email">
+                                <div class="col-lg-6">
+                                        <input type="hidden" name="nickname" value="${sessionScope.loginfo.nickname}" />
                                     </div>
                                     <div class="col-lg-12">
-                                        <textarea placeholder="Messages"></textarea>
+                                        <textarea rows="8" cols="30" placeholder="Messages" name="context" ></textarea>
                                         <button type="submit">댓글 작성</button>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <button reset="text">뒤로가기</button>
