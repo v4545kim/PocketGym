@@ -18,8 +18,7 @@ public class MyRoutineDeleteController {
 	@Qualifier("rdao")
 	private RoutineDao rdao;
 	
-	
-	
+		
 	@GetMapping("/myroutinedelete.ro")
 	private String  doGet(Model model, HttpSession session, @RequestParam(value="regdate") String regdate, @RequestParam(value="ex_id") String ex_id){
 		

@@ -1,5 +1,7 @@
 Manifest-Version: 1.0
-Built-By: Jo MinWoo
+
+Built-By: nswoo
+
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 

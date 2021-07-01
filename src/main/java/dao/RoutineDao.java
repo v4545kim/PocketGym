@@ -52,7 +52,38 @@ public class RoutineDao {
 	}
 
 	public int insertRoutine(Routine routine) {
-		return 0;
+		return this.abcd.insert(NAMESPACE+"insertRoutine", routine);
+	}
+
+	public String getRoutineId(String ro_name) {
+		return this.abcd.selectOne(NAMESPACE+"getRoutineId",ro_name);
+	}
+
+	public int insertExandRoutine(String ro_id, String ex_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("ro_id", ro_id);
+		map.put("ex_id", ex_id);
+		return this.abcd.insert(NAMESPACE+"insertExandRoutine",map);
+	}
+
+	public Routine selectById(String ro_id) {
+		return this.abcd.selectOne(NAMESPACE+"selectById", ro_id);
+	}
+
+	public List<String> routineExId(String ro_id) {
+		return this.abcd.selectList(NAMESPACE+"routineExId", ro_id);
+	}
+
+	public int updateRoutine(Routine routine) {
+		return this.abcd.update(NAMESPACE+"updateRoutine", routine);
+	}
+
+	public void deleteExandroutine(String ro_id) {
+		this.abcd.delete(NAMESPACE+"deleteExandroutine", ro_id);
+	}
+
+	public void deleteRoutine(String ro_id) {
+		this.abcd.delete(NAMESPACE+"deleteRoutine", ro_id);
 	}
 
 }

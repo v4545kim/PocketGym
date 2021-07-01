@@ -37,9 +37,10 @@
 	</section>
 	
 	<div class="container-fluid">
-		<h2>운동 리스트</h2>
-		<p>운동들에 대한 상세정보를 볼 수 있어요</p>
-		<a href="<%=contextPath%>/insert.ex" class="btn btn-primary" role="button">새로운 운동 추가하기</a>
+		<h2>루틴 리스트</h2>
+		<p>루틴에 대한 상세정보를 볼 수 있어요</p>
+		<a href="<%=contextPath%>/update.ro?ro_id=${ro_id}" class="btn btn-primary" role="button">루틴 수정하기</a>
+		<a href="<%=contextPath%>/delete.ro?ro_id=${ro_id}" class="btn btn-primary" role="button">루틴 삭제하기</a>
 		
 		<table class="table table-hover">
 			<thead>
