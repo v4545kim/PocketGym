@@ -2,6 +2,7 @@ package member.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,8 @@ public class MemberListController {
 		int totalCount = this.mdao.SelectTotalCount();
 		System.out.println(this.getClass() + "totalCount : " + totalCount);
 		
+		// 새로 등록된 회원이 있는지 확인
+		int valid = 1;
 		
 		String myrul = request.getContextPath() + "/list.me";
 		
@@ -50,12 +53,16 @@ public class MemberListController {
 		List<Member> lists = mdao.SelectDataList(pageInfo.getOffset(), pageInfo.getLimit());
 		System.out.println("member size" + lists.size());
 		
-//		for(Member liss : lists)
-//		{
-//			System.out.println("ro_id : " + liss.getRo_id());
-//		}
+		// 루틴이 없는사람이 있는지 확인
+		for(Member list : lists)
+		{
+			if(list.getRo_id() == 0)
+			{
+				valid = 2;
+			}
+		}
 		
-		
+		this.mav.addObject("valid", valid);
 		this.mav.addObject("lists", lists);
 		this.mav.addObject("pagingHtml", pageInfo.getPagingHtml());
 		this.mav.addObject("pagingStatus", pageInfo.getPagingStatus());

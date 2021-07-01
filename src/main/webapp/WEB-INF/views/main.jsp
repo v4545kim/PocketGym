@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
 <style type="text/css">
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
 .single-class-item.set-bg 
 {
     width: 348px;
 }
+.star-rating {
+    height: 7px;
+    margin-top: -13px;
+    margin-bottom: 24px;
+}
+.star-rating i {
+	color: red;
+	font-size: 24px;
+}
 </style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,10 +36,8 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="hero-text">
-                        <span>FITNESS ELEMENTS</span>
-                        <h1>BMI CALCULATOR</h1>
-                        <p>Gutim comes packed with the user-friendly BMI Calculator<br /> shortcode which lets</p>
-                        <a href="#" class="primary-btn">Read More</a>
+                        <h1 style="text-align: center;">내 몸에 잘 맞는 운동, <br>Pocket Gym</h1>
+                        <p style="text-align: center;">우리집 거실이 1:1 PT 스튜디오로<br /> 지금 바로 Pocket Gym과 함께 하세요!</p>
                     </div>
                 </div>
             </div>
@@ -39,22 +51,19 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-pic">
-                        <img src="<%=request.getContextPath() %>/resources/img/about-pic.jpg" alt="">
-                        <a href="https://www.youtube.com/watch?v=SlPhMPnQ58k" class="play-btn video-popup">
+                        <img src="<%=request.getContextPath() %>/resources/img/about-pic2.png" alt="">
+                        <%-- <a href="https://www.youtube.com/watch?v=SlPhMPnQ58k" class="play-btn video-popup">
                             <img src="<%=request.getContextPath() %>/resources/img/play.png" alt="">
-                        </a>
+                        </a> --%>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-text">
-                        <h2>Story About Us</h2>
-                        <p class="first-para">Lorem ipsum proin gravida nibh vel velit auctor aliquet. Aenean pretium
-                            sollicitudin, nascetur auci elit consequat ipsutissem niuis sed odio sit amet nibh vulputate
-                            cursus a amet.</p>
-                        <p class="second-para">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, gravida
-                            quam semper libero sit amet. Etiam rhoncus. Maecenas tempus, tellus eget condimentum
-                            rhoncus, gravida quam semper libero sit amet.</p>
-                        <a href="#" class="primary-btn">Read More</a>
+                        <h2>Introduce</h2>
+                        <p class="first-para">저희 Pocket Gym을 통해서 매일 음식 일기를 기록하고 관리하여 성공적으로 체중을 조절할 수 있도록 이끌어 줍니다.</p>
+                        <p class="second-para">특히 체중 감량, 근육 키우기 등을 위한 개인 맞춤화 루틴운동을 제공하며 이 외에도 섭취 및 소모한 칼로리와 목표 성취율을 보기 쉬운 표로 
+                        한눈에 확인할 수 있습니다.</p>
+                        <!-- <a href="#" class="primary-btn">Read More</a> -->
                     </div>
                 </div>
             </div>
@@ -77,29 +86,25 @@
                             <div class="col-md-6">
                                 <div class="services-item bg-gray">
                                     <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-1.png" alt="">
-                                    <h4>Strategies</h4>
-                                    <p>Aenean massa. Cum sociis Theme et natoque penatibus et magnis dis part urient
-                                        montes.</p>
+                                    <h4>초급</h4>
+                                    <p>모든 운동이 낯설고 운동에 대한 지식이 없으며 운동을 이제 막 처음 시작하시는 분들에게 맞춤적인 루틴</p>
                                 </div>
                                 <div class="services-item bg-gray pd-b">
                                     <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-3.png" alt="">
-                                    <h4>Workout</h4>
-                                    <p>Aenean massa. Cum sociis Theme et natoque penatibus et magnis dis part urient
-                                        montes.</p>
+                                    <h4>중급</h4>
+                                    <p>어느 정도 운동 경험을 가지고 있으며 운동을 꾸준히 하고 목표가 명확하신 분들에게 맞춤적인 루틴</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="services-item">
                                     <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-2.png" alt="">
-                                    <h4>Yoga</h4>
-                                    <p>Aenean massa. Cum sociis Theme et natoque penatibus et magnis dis part urient
-                                        montes.</p>
+                                    <h4>상급</h4>
+                                    <p>운동에 대한 다양한 지식을 보유하고 있으며 단기간에 높은 성과를 내기를 원하시는 분들에게 맞춤적인 루틴</p>
                                 </div>
                                 <div class="services-item pd-b">
                                     <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-4.png" alt="">
-                                    <h4>Weight Loss</h4>
-                                    <p>Aenean massa. Cum sociis Theme et natoque penatibus et magnis dis part urient
-                                        montes.</p>
+                                    <h4>엘리트</h4>
+                                    <p>운동에 대한 전문성을 가지고 있으며 강도 높은 운동 루틴을 충분히 소화 가능하신 분들에게 맞춤적인 루틴</p>
                                 </div>
                             </div>
                         </div>
@@ -116,63 +121,63 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>UNLIMITED CLASSES</h2>
+                        <h2>exercise list</h2>
                     </div>
                 </div>
             </div>
             <div class="row classes-slider owl-carousel">
                 <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-1.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/pushup.jpg">
                         <div class="si-text">
-                            <h4>Yoga</h4>
+                            <h4>팔굽혀펴기</h4>
                             <span><i class="fa fa-user"></i> Ryan Knight</span>
                         </div>
                     </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-4.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/squart.jpg">
                         <div class="si-text">
-                            <h4>Karate</h4>
+                            <h4>스쿼트</h4>
                             <span><i class="fa fa-user"></i> Kevin McCormick</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-2.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/chinning.jpg">
                         <div class="si-text">
-                            <h4>Running</h4>
+                            <h4>턱걸이</h4>
                             <span><i class="fa fa-user"></i> Randy Rivera</span>
                         </div>
                     </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-5.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/plank.jpg">
                         <div class="si-text">
-                            <h4>Dance</h4>
+                            <h4>플랭크</h4>
                             <span><i class="fa fa-user"></i> Russell Lane</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-3.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/burpee.jpg">
                         <div class="si-text">
-                            <h4>Personal Training</h4>
+                            <h4>버피</h4>
                             <span><i class="fa fa-user"></i> Cole Robertson</span>
                         </div>
                     </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-6.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/crunch.jpg">
                         <div class="si-text">
-                            <h4>Weight Loss</h4>
+                            <h4>크런치</h4>
                             <span><i class="fa fa-user"></i> Ryan Scott</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-7.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/dumbbellrow.jpg">
                         <div class="si-text">
-                            <h4>Personal Training</h4>
+                            <h4>덤벨 로우</h4>
                             <span><i class="fa fa-user"></i> Cole Robertson</span>
                         </div>
                     </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/classes-8.jpg">
+                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/running.png">
                         <div class="si-text">
-                            <h4>Weight Loss</h4>
+                            <h4>달리기</h4>
                             <span><i class="fa fa-user"></i> Ryan Scott</span>
                         </div>
                     </div>
@@ -188,7 +193,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>EXPERT TRAINERS</h2>
+                        <h2>Review</h2>
                     </div>
                 </div>
             </div>
@@ -197,10 +202,16 @@
                     <div class="single-trainer-item">
                         <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-1.jpg" alt="">
                         <div class="trainer-text">
-                            <h5>Patrick Cortez</h5>
-                            <span>Leader</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
+	                        <div class="star-rating">
+								<i class="fas fa-star" id="star1" ></i>
+								<i class="fas fa-star" id="star2" ></i>
+								<i class="fas fa-star" id="star3" ></i>
+								<i class="fas fa-star" id="star4"></i>
+								<i class="fas fa-star" id="star5" ></i>
+							</div>
+                            <h5>조녀석</h5>
+                            <span>15kg 감량</span>
+                            <p>매일 식단을 기록하고 관리하며 운동 성취율을 한번에 볼수 있어서 체계적인 몸 관리가 가능한 점이 좋네요ㅎㅎ.</p>
                             <div class="trainer-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
@@ -214,10 +225,16 @@
                     <div class="single-trainer-item">
                         <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-2.jpg" alt="">
                         <div class="trainer-text">
-                            <h5>Gregory Powers</h5>
-                            <span>Gym coach</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
+                       		<div class="star-rating">
+								<i class="fas fa-star" id="star1" ></i>
+								<i class="fas fa-star" id="star2" ></i>
+								<i class="fas fa-star" id="star3" ></i>
+								<i class="fas fa-star" id="star4"></i>
+								<i class="far fa-star" id="star5" ></i>
+							</div>
+                            <h5>나무나무</h5>
+                            <span>18kg 감량</span>
+                            <p>체계적인 루틴 제공 시스템에 만족하며 식단을 매일 기록할수 있어서 좋습니다^^</p>
                             <div class="trainer-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
@@ -231,10 +248,16 @@
                     <div class="single-trainer-item">
                         <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-3.jpg" alt="">
                         <div class="trainer-text">
-                            <h5>Walter Wagner</h5>
-                            <span>Dance trainer</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
+                        	<div class="star-rating">
+								<i class="fas fa-star" id="star1" ></i>
+								<i class="fas fa-star" id="star2" ></i>
+								<i class="fas fa-star" id="star3" ></i>
+								<i class="fas fa-star" id="star4"></i>
+								<i class="far fa-star" id="star5" ></i>
+							</div>
+                            <h5>순섭순섭</h5>
+                            <span>13kg 감량</span>
+                            <p>저에게 알맞는 운동 루틴을 수행할 수 있어 편리하고 각각 운동 방법을 동영상으로 확인할 수 있다는 점이 좋았습니다.</p>
                             <div class="trainer-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
