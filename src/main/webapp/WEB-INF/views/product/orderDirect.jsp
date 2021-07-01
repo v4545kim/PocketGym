@@ -18,6 +18,14 @@ body {
     margin-top: 120px;
     margin-bottom: 120px;
 }
+.black-font{
+    color: black;
+}
+#point {
+    font-size: 50px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
 </style>
 
 <script type="text/javascript">
@@ -111,11 +119,11 @@ function sample6_execDaumPostcode() {
 		                            <table class="table">
 		                                <thead>
 		                                    <tr>
-		                                        <th class="border-0 text-uppercase small font-weight-bold">상품번호</th>
+		                                        <th class="border-0 text-uppercase small font-weight-bold">상품 번호</th>
 		                                        <th class="border-0 text-uppercase small font-weight-bold">상품명</th>
-		                                        <th class="border-0 text-uppercase small font-weight-bold">상품내용</th>
+		                                        <th class="border-0 text-uppercase small font-weight-bold">상품 설명</th>
 		                                        <th class="border-0 text-uppercase small font-weight-bold">수량</th>
-		                                        <th class="border-0 text-uppercase small font-weight-bold">갸격</th>
+		                                        <th class="border-0 text-uppercase small font-weight-bold">가격</th>
 		                                        <th class="border-0 text-uppercase small font-weight-bold">총 가격</th>
 		                                    </tr>
 		                                </thead>
@@ -126,29 +134,29 @@ function sample6_execDaumPostcode() {
 		                                        <td>${product.context}</td>
 		                                        <td>${order.count}</td>
 		                                        <td>${product.price}</td>
-		                                        <td>${order.total_price}</td>
+		                                        <td>${order.total_price}(P)</td>
 		                                    </tr>
 		                                </tbody>
 		                            </table>
 		                            <div class="d-flex flex-row-reverse bg-dark text-white">
 		                        		<div class="py-3 px-5 text-center">
 		                            		<div class="mb-2">총 가격</div>
-		                            		<div class="h2 font-weight-light">${order.total_price}</div>
+		                            		<div class="h2 font-weight-light" id="point">${order.total_price}(P)</div>
 		    		                        <div class="mb-2">
-		    		                        	<button type="button" onclick="history.back(-1);">뒤로가기</button>
-		    		                        	<button type="button" onclick="checkBuy2();">결제하기</button>
+		    		                        	<button type="button" onclick="history.back(-1);" class="btn btn-light">뒤로가기</button>
+		    		                        	<button type="button" onclick="checkBuy2();" class="btn btn-light">결제하기</button>
 		    		                        </div>
 		                            		
 		                        		</div>
 		                        		<div class="py-3 px-5 text-right">
 		    		                        <div class="mb-2">주문 하시는 분 : ${requestScope.mem_info.nickname}</div>
 		    		                        <div class="mb-2">
-                                 				배송지 : <input type="text" id="sample6_address" name="address1" placeholder="주소" value="${requestScope.mem_info.address1}" readonly="readonly" ><br>
-                                 				<input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.mem_info.address2}">
+                                 				배송지 : <input type="text" id="sample6_address" name="address1" placeholder="주소" value="${requestScope.mem_info.address1}" readonly="readonly" class="black-font"><br>
+                                 				<input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.mem_info.address2}" class="black-font">
                                  				<br>
-                                 				<input type="button" onclick="sample6_execDaumPostcode()" value="배송지 변경"><br>
+                                 				<input type="button" onclick="sample6_execDaumPostcode()" value="배송지 변경" class="btn btn-light"><br>
 		    		                        </div>
-		    		                        <div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}</div>
+		    		                        <div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}(P)</div>
 										</div>
 		                    		</div>
 		                        </div>
@@ -162,6 +170,8 @@ function sample6_execDaumPostcode() {
 	</div>
 
 
+	<br>
+	<br>
 
 
 	<!-- Footer Section Begin -->

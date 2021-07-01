@@ -38,6 +38,21 @@
     border-radius: 4px;
     cursor: zoom-in;
 }
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 70%;
+    margin: auto;
+}
 </style>
 
 <script type="text/javascript">
@@ -117,7 +132,7 @@
 
 	<div class="card">
 		<div class="row">
-			<aside class="col-sm-5 border-right">
+			<aside class="col-sm-7 border-right">
 				<article class="gallery-wrap">
 					<div class="img-big-wrap">
 						<div>
@@ -126,22 +141,16 @@
 					</div>
 				</article>
 			</aside>
-			<aside class="col-sm-7">
+			<aside class="col-sm-5">
 				<article class="card-body p-5">
-					<h3 class="title mb-3">제품명 : ${bean.pr_name} </h3>
-					<dl class="item-property">
-						<dt>상품설명</dt>
-						<dd>${bean.context}</dd>
-					</dl>
+					<h3 class="title mb-3">상명 : ${bean.pr_name}</h3>
+					<h4 class="title mb-3">상품 설명 : ${bean.context}</h4>
+					<h4 class="title mb-3">재고 수량 : ${bean.stock}</h4>
 					<p class="price-detail-wrap">
 						<span class="price h3 text-warning">
 							<span class="num">가격 : ${bean.price}</span>
 						</span>
 					</p>
-					<dl class="param param-feature">
-						<dt>재고 수량 : </dt>
-						<dd>${bean.stock}</dd>
-					</dl>
 					<hr>
 					<c:set var="apppath" value="<%=request.getContextPath()%>" />
 					<form:form action="${apppath}/prcart.pr" method="post" name="myform">
@@ -157,7 +166,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-5">
+							<div class="col-sm-8">
 								<dl class="param param-inline">
 									<dt>
 										<button type="button" class="btn btn-default"><i class="fa fa-calculator" onclick="checkBuy();">구매하기</i></button>

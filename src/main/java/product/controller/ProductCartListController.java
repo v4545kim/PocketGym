@@ -41,8 +41,12 @@ public class ProductCartListController {
 			List<Cart> cartlists = cdao.selectCartList(mem_id);
 			
 			if(cartlists.size() == 0) {
+				session.setAttribute("msg", "장바구니가 비어있습니다.");
+				
 				mav.setViewName("redirect:/prlist.pr");
 			} else {
+				session.removeAttribute("msg");
+				
 				mav.addObject("cartlists", cartlists);
 				
 				mav.setViewName("prCart");

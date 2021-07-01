@@ -92,9 +92,9 @@
 								</div>
 							</div>
 						</td>
-						<td data-th="Price">${list.price}</td>
-						<td data-th="Quantity">${list.count}</td>
-						<td data-th="Subtotal" class="text-center">${list.total_price}</td>
+						<td >${list.price}</td>
+						<td >${list.count}</td>
+						<td class="text-center">${list.total_price}</td>
 						<td class="actions" data-th="">
 							<a href="<%=contextPath%>/prcartdelete.pr?cart_id=${list.cart_id}" class="btn btn-danger">
 								<i class="fa fa-trash-o"></i>

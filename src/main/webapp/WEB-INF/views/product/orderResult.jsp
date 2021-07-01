@@ -15,6 +15,14 @@ body {
     margin-top: 120px;
     margin-bottom: 120px;
 }
+.black-font{
+    color: black;
+}
+#point {
+    font-size: 50px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
 </style>
 
 <script type="text/javascript">
@@ -59,11 +67,11 @@ body {
 	                            <table class="table">
 	                                <thead>
 	                                    <tr>
-	                                        <th class="border-0 text-uppercase small font-weight-bold">상품번호</th>
+	                                        <th class="border-0 text-uppercase small font-weight-bold">상품 번호</th>
 	                                        <th class="border-0 text-uppercase small font-weight-bold">상품명</th>
-	                                        <th class="border-0 text-uppercase small font-weight-bold">상품내용</th>
+	                                        <th class="border-0 text-uppercase small font-weight-bold">상품 설명</th>
 	                                        <th class="border-0 text-uppercase small font-weight-bold">수량</th>
-	                                        <th class="border-0 text-uppercase small font-weight-bold">갸격</th>
+	                                        <th class="border-0 text-uppercase small font-weight-bold">가격</th>
 	                                        <th class="border-0 text-uppercase small font-weight-bold">총 가격</th>
 	                                    </tr>
 	                                </thead>
@@ -75,7 +83,7 @@ body {
 		                                        <td>${list.context}</td>
 		                                        <td>${list.count}</td>
 		                                        <td>${list.price}</td>
-		                                        <td>${list.total_price}</td>
+		                                        <td>${list.total_price}(P)</td>
 		                                    </tr>
 	                                    </c:forEach>
 	                                </tbody>
@@ -83,10 +91,10 @@ body {
 	                            <div class="d-flex flex-row-reverse bg-dark text-white">
 	                        		<div class="py-3 px-5 text-center">
 	                            		<div class="mb-2">총 가격</div>
-	                            		<div class="h2 font-weight-light">${total_price}</div>
+	                            		<div class="h2 font-weight-light" id="point">${total_price}(P)</div>
 	    		                        <div class="mb-2">
-	    		                        	<button type="button" onclick="goList();">쇼핑 더하기</button>
-	    		                        	<button type="button" onclick="goMain();">메인으로</button>
+	    		                        	<button type="button" onclick="goList();" class="btn btn-light">쇼핑 더하기</button>
+	    		                        	<button type="button" onclick="goMain();" class="btn btn-light">메인으로</button>
 	    		                        </div>
 	                        		</div>
 	                        		<div class="py-3 px-5 text-right">
@@ -96,7 +104,7 @@ body {
                                 				${requestScope.mem_info.address2}
                                 				<br>
 	    		                        </div>
-	    		                        <div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}</div>
+	    		                        <div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}(P)</div>
 									</div>
 	                    		</div>
 	                        </div>
@@ -108,7 +116,9 @@ body {
 	    </div>
 	</div>
 
-
+	
+	<br>
+	<br>
 
 
 	<!-- Footer Section Begin -->
