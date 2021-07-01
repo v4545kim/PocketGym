@@ -20,7 +20,7 @@
 <script src="<%=request.getContextPath() %>/resources/js_cal/main.js"></script>
   	
 <script type="text/javascript">
-// Given data for events in JSON format
+// 임시값 넣어서 변수 생성
 var event_data = {
     "events": [
     {
@@ -28,61 +28,6 @@ var event_data = {
         "month": 5,
         "day": 10,
         "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 11
     }
     ]
 };
@@ -323,13 +268,18 @@ const months = [
 	            var event_card = $("<div class='event-card'></div>");
 				var ex_name = $("<div class='ex_name'><a href="+contextPath+"/detail.ex?ex_id="+events[i]["ex_id"]+">"+events[i]["ex_name"]+"</a></div>");
 				var ex_cal = $("<div class='ex_cal'>"+events[i]["ex_cal"]+" 칼로리</div>");
+				var year = events[i]["year"];
+				var month = events[i]["month"];
+		        var day = events[i]["day"];;
+				var regdate = [year,month,day].join('/');
+				var ex_del = $("<button type='button' class='btn btn-danger btn-circle' onclick='location.href=\""+contextPath+"/myroutinedelete.ro?ex_id="+events[i]["ex_id"]+"&regdate="+regdate+"\"'>삭제하기</button>");
 				total_cal = total_cal + events[i]["ex_cal"]
 	            if(events[i]["cancelled"]===true) {
 	                $(event_card).css({
 	                    "border-left": "10px solid #FF1744"
 	                });
 	            }
-	            $(event_card).append(ex_name).append(ex_cal);
+	            $(event_card).append(ex_name).append(ex_cal).append(ex_del);
 	            $(".events-container").append(event_card);
 	        }
 	        var event_card = $("<div class='event-card'></div>");
