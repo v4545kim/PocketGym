@@ -27,6 +27,7 @@ public class RoutineDetailController {
 		for (Exercise exercise : list) {
 			System.out.println("루틴 운동 : "+ exercise);
 		}
+		model.addAttribute("ro_id", ro_id);
 		model.addAttribute("list", list);
 		return "roDetail";
 	}

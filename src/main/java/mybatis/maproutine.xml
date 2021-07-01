@@ -28,4 +28,36 @@
 	<select id="routineDetail" parameterType="String" resultType="AlExercise">
 		select er.ex_id, e.ex_name from routines r inner join exandroutine er on r.ro_id = er.ro_id inner join exercises e on er.ex_id = e.ex_id where r.ro_id = #{ro_id}	
 	</select>
+	
+	<insert id="insertRoutine">
+		insert into routines values(routines_seq.nextval, #{ro_name}, #{ro_context})
+	</insert>
+	
+	<select id="getRoutineId" parameterType="String" resultType="String">
+		select ro_id from routines where ro_name = #{ro_name}
+	</select>
+	
+	<insert id="insertExandRoutine">
+		insert into exandroutine values(#{ro_id}, #{ex_id}) 
+	</insert>
+	
+	<select id="selectById" resultType="AlRoutine" parameterType="String">
+		select * from routines where ro_id = #{ro_id}
+	</select>
+	
+	<select id="routineExId" parameterType="String" resultType="String">
+		select er.ex_id from routines r inner join exandroutine er on r.ro_id = er.ro_id inner join exercises e on er.ex_id = e.ex_id where r.ro_id = #{ro_id}
+	</select>
+	
+	<update id="updateRoutine">
+		update routines set ro_name=#{ro_name}, ro_context=#{ro_context} where ro_id = #{ro_id}
+	</update>
+	
+	<delete id="deleteExandroutine">
+		delete from exandroutine where ro_id = #{ro_id}
+	</delete>
+	
+	<delete id="deleteRoutine">
+		delete from routines where ro_id = #{ro_id}
+	</delete>
 </mapper>

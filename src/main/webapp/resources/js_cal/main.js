@@ -241,61 +241,6 @@ var event_data = {
         "month": 5,
         "day": 10,
         "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-        {
-        "year": 2020,
-        "month": 5,
-        "day": 10,
-        "cancelled": true
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 10
-    },
-    {
-        "year": 2020,
-        "month": 5,
-        "day": 11
     }
     ]
 };

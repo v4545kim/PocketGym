@@ -36,7 +36,6 @@ public class RoutineInsertController {
 	public List<Exercise> ex_list(){
 		List<Exercise> list = edao.selectExList();		
 		return list;
-		
 	}
 	
 	@GetMapping("/insert.ro")
@@ -49,10 +48,12 @@ public class RoutineInsertController {
 		String ro_name = routine.getRo_name();
 		List<String> list = routine.getEx_id();
 		int cnt = rdao.insertRoutine(routine);
-		int ro_id = rdao.getRoutineId(ro_name);
-		for (String string : list) {
-			System.out.println(string);
+		
+		String ro_id = rdao.getRoutineId(ro_name);
+		
+		for (String ex_id : list) {
+			int cnt2 = rdao.insertExandRoutine(ro_id, ex_id);
 		}
-		return "";
+		return "redirect:/list.ro";
 	}
 }
