@@ -47,8 +47,8 @@ public class BoardDao {
 	public Board selectById(int bo_id) {
 		return this.abcd.selectOne(namespace + "selectById", bo_id);
 	}
-	public Reply replyList(int bo_id) {
-		return this.abcd.selectOne("mapReply." + "replyList", bo_id);
+	public List<Reply> replyList(int bo_id) {
+		return this.abcd.selectList("mapReply." + "replyList", bo_id);
 	}
 	
 	//답글 추가하기 
@@ -57,10 +57,8 @@ public class BoardDao {
 		bean.setBo_id(bo_id);
 		bean.setMem_id(mem_id);
 		bean.setContext(context);
-		
-		
 		System.out.println(this.getClass() + " : 댓글을 등록합니다." ); 
-		return this.abcd.insert(namespace + "insertReply", bean);
+		return this.abcd.insert("mapReply." + "insertReply", bean);
 	
 	}
 	
@@ -69,17 +67,21 @@ public class BoardDao {
 		System.out.println(this.getClass() + " : 게시물을 등록합니다." ); 
 		return this.abcd.insert(namespace + "insertBoard", bean);
 	}
-
+	
+	//게시글 수정하기
 	public int updateBoard(Board bean) {
 		// TODO Auto-generated method stub
 		System.out.println(bean.toString());
 		return this.abcd.update(namespace + "updateBoard", bean);
 	}
-
+	
+	//게시글 삭제하기
 	public int deleteBoard(int bo_id) {
 		return this.abcd.delete(namespace + "deleteBoard", bo_id);
 	}
-	
-	
+	//댓글 삭제하기
+	public int deleteReply(int re_id) {
+		return this.abcd.delete("mapReply." + "deleteReply", re_id);
+	}
 
 }
