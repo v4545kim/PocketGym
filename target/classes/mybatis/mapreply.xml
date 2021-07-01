@@ -7,5 +7,12 @@
 		select * from reply where bo_id = #{bo_id}
 	</select>
 	
+	<insert id="insertReply" parameterType="ALReply">
+		insert into reply (re_id, bo_id, mem_id, context, regdate)
+		values(reply_seq.nextval, #{bo_id}, #{mem_id}, #{context}, sysdate)
+	</insert>
 
+	<delete id="deleteReply" parameterType="int">
+		delete from reply where re_id = #{re_id} 
+	</delete>
 </mapper>

@@ -1,5 +1,7 @@
 package board.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,8 @@ public class BoardDetailController {
 		model.addAttribute("bean",bean);
 		
 		//댓글리스트를 가져오기
-		Reply lists = dao.replyList(bo_id);
+		List<Reply> lists = dao.replyList(bo_id);
+		
 		model.addAttribute("lists", lists);
 		
 		return "boardDetail";
