@@ -60,5 +60,8 @@
 		select*from members
 	</select>
    
+   <update id="giveRoutine" parameterType="AlMember" >
+		update members set ro_id=#{ro_id} where id = #{id}
+	</update>
    
 </mapper>

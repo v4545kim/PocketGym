@@ -74,6 +74,18 @@ public class MemberDao {
 				
 		return this.abcd.selectList(NAMESPACE + "SelectDataList", null, rbs);
 	}
+
+	public int giveRoutine(int ro_id, String id) 
+	{
+		System.out.println("여긴 들어오나요");
+		Member member = new Member();
+		member.setId(id);
+		member.setRo_id(ro_id);
+		
+		System.out.println("12111111111111111");
+		
+		return this.abcd.update(NAMESPACE + "giveRoutine", member);
+	}
 	
 	
 

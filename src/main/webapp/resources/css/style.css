@@ -345,7 +345,8 @@ ul, ol {
 	color: #6b6b6b;
 }
 .about-text p.first-para {
-	margin-bottom: 10px;
+    margin-bottom: 18px;
+    margin-top: 46px;
 }
 .about-text p.second-para {
 	margin-bottom: 50px;

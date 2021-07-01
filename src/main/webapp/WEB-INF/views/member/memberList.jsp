@@ -14,6 +14,36 @@
 
 
 <style type="text/css">
+.alert 
+{
+background-position: 2% 7px;
+background-repeat: no-repeat;
+background-size: auto 35px;
+background-color: rgba(0, 0, 0, 0);
+border: 0;
+min-width: auto !important;
+text-align: left;
+padding-left: 68px;
+}
+.alert.alert-danger {
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAARVBMVEX////7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0P7y0NAQECdhUHYsUKGdEG1l0JLSEBuYkHkukPKU8NPAAAADnRSTlMA4EDAoCAQ8IBgkDDQUFItelQAAAC0SURBVHherZBLDsMwCAVD7Nj5gvPr/Y/a0FpGLTibdnbozQJN829agPZu7/CiuxE8C76+T/hiqgruLbjqh5ip/TljZrb3AQuDKYAIYO09L3TBRq/3EHk4shCDEkZkTqITmdGMLIIO7r8FbzfaiDappSNjIkpZcCqyCDo4WAJYkR8prTp4ADSBUCIX9uPY5epL5AJdyBWDRDYFHCWyCiXBObKwrh+nl4g2TiLVhSXW97g0v/MEHIQbCYeFmYAAAAAASUVORK5CYII=);
+border-top: 1px solid rgba(140, 0, 0, 0.4);
+border-bottom: 1px solid rgba(140, 0, 0, 0.4);
+}
+.alert.alert-info {
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAADBklEQVR42u3YyWsTURwHcP8aQUWtWlu7JEbtpngQvIqXevDWm1fXehO12BTErdQiVMFQ8ODBusWkmSa1lVrTxdrG0FA9WJtkljfL19/LTDKMibl0EorkwReSCQ8+fN+bl2G2AdhSqYH+P1CpAS0DfXUI+ufzUCfaoQptYMIxsMhRsE/d0L4/BNR0qcnug4y159CmTkOLdkKNdnBQAaNEjkAZ90EOH4YcOQ51dQQVBRnLN6DHuqDFOqGZGEpbaVDICynkAVvoRUVAxuqQE8PjXC7C/AX64KG0gq3ch6sgQ1zkEBtTph2FY8JeApkYKdgCMdgMPTMP10D64kUOsTDtDsw/27FAIge9b4Y8e8EdELS0jTAh5TF2Ow5Q9l0TDDWNTYOMjSkLQREcEAdGCRfvHdFcLgI1EegQtPXY5kFactAE2JDyGHvvONrhILZ81w3QIxNQCEfw2JvYxpRYKrMdSqNLoNSzPMBGTJwEmz4HuSSGMnkWYrgjv1Rm3jZATQ5vHqT//sgRVhtmI8p0NwADbOF6EUaOX4GiZCHGzhAkD2ogUD20XxNw5baXhRN2G2EvR+QwhqFDme91YJgiQfpyCTamkTAHaQm97p1DauIBR1jxWI14CHMNuqZCmbsKmcKYBLkYQzkA9m3APRA/P6TxrvztbCfYkoOoqgKVydTQ5ZIYMdgKQ91wD8SHvj7JAYXb2T5jmqEkhiEnHnNIESb7po72joCK/Ntray8sRD7UBkVeGoBEIQilwYFRUwFU9HmIrdzjCHtpKNJXP48FqSfIfspe2jf+Sj4P2UOMnOKQfCOE6Ye0eMdqZR+yr/fwc8icXA2QmnzCD7pCI+JiH8SFPt4KYXYjO7YTLDFYPZCensu3QakjzC2I8zcJsguZsR3IvNoOfWO2eiA+tJ9jfI9Q+qEkn1JGoCz1UW5D+/HSnFhNUCqVQjwezyUajSIUChW+02/VB42OjqJMaqCtB5qZmUEgEIDf73eEXxMEofogPtLpNHp6euDz+Xhyn+lauUm1tx81UMXzBw5wT9JYWi53AAAAAElFTkSuQmCC);
+border-top:1px solid rgba(255, 165, 0,0.4);
+border-bottom:1px solid rgba(255, 165, 0,0.4);
+color:  rgb(225, 75, 0);
+margin-bottom: -23px;
+text-align: center;
+background-position-x: 376px;
+}
+.alert.alert-success {
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAqFBMVEX////w8PDw8PDw8PDw8PDw8PDw8PDw8PDW1tbn5+ff398PnVjd3d3i4uIPnVjk5OQPnVjg4OAPnVgzqW8PnVgPnVjT09Pw8PDG4NOp1sBjvJHu7u4PmVYqp2ri6+YcomFHsn4bmlzHzsoPnFeuxbl9tJk0n2t/xqSVvqqNzK1ZqYKJuaJVt4c4rHQnnWPl5eXj4+MPm1fe3t6b0bfc3NxBo3TY2NjX19eKj23kAAAAFXRSTlMA8BCwcFCgkP4f3NDnrzCHoM8Qc/Avz3otAAAA9klEQVR4Xq2T2XKDMAwAMRACNGdbyUDus/d9/f+f1VHEiFamfcm+7qIZGTs4IWEcGeswURz6dGIbJCrp0MeC6QTBCADO2Hetokv+vNXbyvnLAc9v8cA+NH4/veAFEr/f7HIe0OJvETMKYhLlLw8fiNinICKxnHHCfr92QY8CcwwAloX41cFjSoElCnBU89pvkeCAeAPH4or89Bp1YG+g5uUOPQEP5wWbgZzjPRDiU1mTmD/wggyvGVspZgCP4rGvjrpYuAWFTP+sounzwPO7n8SnNEBdmGesGZLUV+6V/ZilLt7F+6/95BMxHf71cCZfefbf0zsl3w3QOjVy6QFpAAAAAElFTkSuQmCC);
+border-top:1px solid limegreen;
+border-bottom:1px solid limegreen;
+}
 .panel {
 	background-color: #FFFFFF;
 	border: 1px solid rgba(0, 0, 0, 0);
@@ -147,6 +177,7 @@ CSS from v3 snipp
 </head>
 
 <body>
+
 	<!-- header Section -->
 	<jsp:include page="./../header.jsp" />
 	<section class="breadcrumb-section set-bg"
@@ -156,7 +187,8 @@ CSS from v3 snipp
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
 						<h2>
-							<i class="fa fa-camera" aria-hidden="true"></i> 식단
+						<i class="far fa-file-alt"></i>
+							<i class="fa fa-address-book"></i> 회원 리스트
 						</h2>
 					</div>
 				</div>
@@ -164,28 +196,19 @@ CSS from v3 snipp
 		</div>
 	</section>
 	<!-- header Section End -->
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	<c:set var="valid" value="${requestScope.valid}" />
+	<c:if test="${valid == 2}">
+		<div class="container">
+			<div class="alert alert-info">새로 등록된 회원이 있습니다. 루틴을 정해주세요!</div>
+		</div>
+	</c:if>
 	<br>
 	<br>
 	<div class="container">
 		<div class="well span8 offset2">
-
-
-
-
-
-
+		
+			<!-- 회원 리스트 for문으로 모두 출력 -->
 			<c:forEach var="lists" items="${requestScope.lists}">
 				<div class="row-fluid user-row">
 					<div class="span1">
@@ -242,7 +265,7 @@ CSS from v3 snipp
 											class="table table-condensed table-responsive table-user-information" >
 												<tr>
 													<td>Id &nbsp;&nbsp;&nbsp;: </td>
-													<td colspan="10"> ${lists.id } </td>
+													<td> ${lists.id } </td>
 												</tr>
 												<tr>
 													<td>PassWord:</td>
@@ -276,7 +299,18 @@ CSS from v3 snipp
 													<td>운동 경력(month)</td>
 													<td>${lists.career}</td>
 												</tr>
-												
+												<tr>
+													<td>목표 기간(Week)</td>
+													<td>${lists.period}</td>
+												</tr>
+												<tr>
+													<td>목표 몸무게</td>
+													<td>${lists.aim_weight}kg</td>
+												</tr>
+												<tr>
+													<td>보유 포인트</td>
+													<td>${lists.point} &nbsp;&nbsp; Point</td>
+												</tr>
 										</table>
 									</div>
 								</div>
@@ -288,10 +322,16 @@ CSS from v3 snipp
 									<i class="icon-envelope icon-white"></i>
 								</button>
 								<span class="pull-right">
-									<button class="btn btn-warning" type="button"
+									
+									
+									<button class="btn btn-warning" type="button" 
+									onclick="window.open('<%=contextPath%>/rogive.me?&mem_id=${lists.id}&nickname=${lists.nickname }','window팝업','width=600, height=500');"
 										data-toggle="tooltip" data-original-title="Edit this user">
 										<i class="icon-edit icon-white"></i>
 									</button>
+									
+									
+									
 									<button class="btn btn-danger" type="button"
 										data-toggle="tooltip" data-original-title="Remove this user">
 										<i class="icon-remove icon-white"></i>
@@ -302,33 +342,9 @@ CSS from v3 snipp
 					</div>
 				</div>
 			</c:forEach>
-
-
-
-
-
-
 		</div>
 	</div>
 	<div align="center">${requestScope.pagingHtml}</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
