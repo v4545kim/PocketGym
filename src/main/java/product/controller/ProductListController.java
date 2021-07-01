@@ -40,7 +40,7 @@ public class ProductListController {
 		// 파라미터 확인을 위한 출력
 		System.out.println(this.getClass() + " : " + parameters.toString());
 		
-		int totalCount = pdao.SelectTotalCount(
+		int totalCount = pdao.selectTotalCount(
 				parameters.getMode(), 
 				parameters.getKeyword());
 	

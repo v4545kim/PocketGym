@@ -1,5 +1,7 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product 
 {
 	private int pr_id;
@@ -11,6 +13,19 @@ public class Product
 	private String context;
 	private String image;
 	
+	private MultipartFile abcd;
+	
+	
+	public MultipartFile getAbcd() {
+		return abcd;
+	}
+	public void setAbcd(MultipartFile abcd) {
+		this.abcd = abcd;
+		
+		if(this.abcd != null) {
+			this.image = this.abcd.getOriginalFilename();
+		}
+	}
 	
 	public int getPr_id() {
 		return pr_id;

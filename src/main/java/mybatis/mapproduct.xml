@@ -30,18 +30,30 @@
 		update products set stock = stock - #{count} where pr_id = #{pr_id}
 	</update>
 	
-	<select id="SelectTotalCount" resultType="Integer">
+	<select id="selectTotalCount" resultType="Integer">
 		select  count(*) as cnt from products
 		<if test="mode == 'title'">
-			where pr_name like #{keyword}
+			where pr_name like #{keyword} and stock > 0
+		</if>
+		<if test="mode != 'title'">
+			where stock > 0
 		</if>
 	</select>
 	
 	<select id="selectAll" resultType="AlProduct">
 		select * from products
 		<if test="mode == 'title'">
-			where pr_name like #{keyword}
+			where pr_name like #{keyword} and stock > 0
+		</if>
+		<if test="mode != 'title'">
+			where stock > 0
 		</if>
 		order by pr_id desc
 	</select>
+	
+	<insert id="insertData" parameterType="AlProduct">
+		insert into products(pr_id, pr_name, price, image, stock, inputdate, context, category)
+		values(products_seq.nextval, #{pr_name}, #{price}, #{image}, #{stock}, sysdate, #{context}, #{category})
+	</insert>
+	
 </mapper>

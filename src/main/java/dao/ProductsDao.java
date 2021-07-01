@@ -51,12 +51,12 @@ public class ProductsDao {
 		return this.abcd.update(NAMESPACE + "updateStock", map);
 	}
 
-	public int SelectTotalCount(String mode, String keyword) {
+	public int selectTotalCount(String mode, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mode", mode);
 		map.put("keyword", "%" + keyword + "%");
 		
-		return this.abcd.selectOne(NAMESPACE + "SelectTotalCount", map);
+		return this.abcd.selectOne(NAMESPACE + "selectTotalCount", map);
 	}
 
 	public List<Product> selectAll(int offset, int limit, String mode, String keyword) {
@@ -66,5 +66,9 @@ public class ProductsDao {
 		map.put("keyword", "%" + keyword + "%");
 		
 		return this.abcd.selectList(NAMESPACE + "selectAll", map, rowBounds);
+	}
+
+	public int insertData(Product product) {
+		return this.abcd.insert(NAMESPACE + "insertData", product);
 	}
 }

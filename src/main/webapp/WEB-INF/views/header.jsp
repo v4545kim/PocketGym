@@ -13,6 +13,12 @@
 body {
     background:#f0f0f0;
 }
+img.logoimg {
+    vertical-align: middle;
+    width: 96px;
+    margin-bottom: -26px;
+    margin-top: -20px;
+}
 .nav {
     left:50%;
     margin-left:-150px;
@@ -75,6 +81,15 @@ ul.nav.navbar-nav {
 }
 </style>
 
+<script type="text/javascript">
+	function check() {
+		location.href='<%=request.getContextPath()%>/prcartlist.pr'
+		
+		if (${sessionScope.msg != null}) {
+			alert('${sessionScope.msg}')	
+		}
+	}
+</script>
 
 </head>
 
@@ -88,8 +103,8 @@ ul.nav.navbar-nav {
 	<header class="header-section">
 		<div class="container">
 			<div class="logo">
-				<a href="<%=contextPath%>/main.ma"> <img
-					src="<%=contextPath%>/resources/img/logo.png" alt="">
+				<a href="<%=contextPath%>/main.ma">
+					<img class="logoimg" src="<%=contextPath%>/resources/img/logo_new.png" alt="">
 				</a>
 			</div>
 			<div class="nav-menu">
@@ -162,6 +177,8 @@ ul.nav.navbar-nav {
 									<li><a href="<%=contextPath%>/mydietlist.di">my 식단<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="<%=contextPath%>/mybolist.br">my sns보기<span
+											class="glyphicon glyphicon-cog pull-right"></span></a></li>
+									<li><a href="#" onclick="check();">my 장바구니 보기<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="<%=contextPath%>/logout.me">로그아웃<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>

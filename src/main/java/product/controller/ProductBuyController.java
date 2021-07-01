@@ -189,11 +189,4 @@ public class ProductBuyController {
 		
 		return this.mav;
 	}
-	
-	@GetMapping("result.pr")
-	private ModelAndView resultGet() {
-		this.mav.setViewName("orderResult");
-		
-		return mav;
-	}
 }
