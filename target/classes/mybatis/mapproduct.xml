@@ -2,46 +2,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapProduct">
-	<select id="selectDataByPk" parameterType="Integer" resultType="AlProduct">
-		select pr_id, pr_name, price, image, stock, inputdate, context, category
-		from products
-		where pr_id = #{pr_id}
-	</select>
+<mapper namespace="mapProduct"> 
+
+	<select id="selectDataByPk" parameterType="Integer" resultType="AlProduct"> 
+		select pr_id, pr_name, price, image, stock, inputdate, context, category 
+		from products 
+		where pr_id = #{pr_id} 
+	</select> 
 	
-	<select id="selectPriceByPk" parameterType="Integer" resultType="Integer">
-		select price
-		from products
-		where pr_id = #{pr_id}
-	</select>
+	<select id="selectPriceByPk" parameterType="Integer" resultType="Integer"> 
+		select price 
+		from products 
+		where pr_id = #{pr_id} 
+	</select> 
 	
-	<select id="selectStockByPk" parameterType="Integer" resultType="Integer">
-		select Stock
-		from products
-		where pr_id = #{pr_id}
-	</select>
+	<select id="selectStockByPk" parameterType="Integer" resultType="Integer"> 
+		select Stock 
+		from products 
+		where pr_id = #{pr_id} 
+	</select> 
 	
-	<insert id="insertOrder" parameterType="AlOrder">
-		insert into orders(od_id, orderdate, mem_id, pr_id, count, total_price, address1, address2)
-		values(orders_seq.nextval,sysdate, #{mem_id}, #{pr_id}, #{count}, #{total_price}, #{address1}, #{address2})
-	</insert>
+	<insert id="insertOrder" parameterType="AlOrder"> 
+		insert into orders(od_id, orderdate, mem_id, pr_id, count, total_price, address1, address2) 
+		values(orders_seq.nextval,sysdate, #{mem_id}, #{pr_id}, #{count}, #{total_price}, #{address1}, #{address2}) 
+	</insert> 
 	
-	<update id="updateStock" parameterType="Integer">
-		update products set stock = stock - #{count} where pr_id = #{pr_id}
-	</update>
+	<update id="updateStock" parameterType="Integer"> 
+		update products set stock = stock - #{count} where pr_id = #{pr_id} 
+	</update> 
 	
-	<select id="SelectTotalCount" resultType="Integer">
-		select  count(*) as cnt from products
-		<if test="mode == 'title'">
-			where pr_name like #{keyword}
-		</if>
-	</select>
+	<select id="selectTotalCount" resultType="Integer"> 
+		select  count(*) as cnt from products 
+		<if test="mode == 'title'"> 
+			where pr_name like #{keyword} and stock > 0 
+		</if> 
+		<if test="mode != 'title'"> 
+			where stock > 0 
+		</if> 
+	</select> 
 	
-	<select id="selectAll" resultType="AlProduct">
-		select * from products
-		<if test="mode == 'title'">
-			where pr_name like #{keyword}
-		</if>
-		order by pr_id desc
-	</select>
-</mapper>
+	<select id="selectAll" resultType="AlProduct"> 
+		select * from products 
+		<if test="mode == 'title'"> 
+			where pr_name like #{keyword} and stock > 0 
+		</if> 
+		<if test="mode != 'title'"> 
+			where stock > 0 
+		</if> 
+		order by pr_id desc 
+	</select> 
+	
+	<insert id="insertData" parameterType="AlProduct"> 
+		insert into products(pr_id, pr_name, price, image, stock, inputdate, context, category) 
+		values(products_seq.nextval, #{pr_name}, #{price}, #{image}, #{stock}, sysdate, #{context}, #{category}) 
+	</insert> 
+	
+</mapper> 
