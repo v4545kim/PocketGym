@@ -54,25 +54,59 @@ public class MyRoutineController {
 			
 			return "myRoutine";
 		}else {
-			// 완료한 운동 routinecheck table에 값 넣기 
-			rdao.routineCheck(id, ex_id, regdate);
-			
-			// 내 루틴에 속해 있는 운동들 가져오기
-			List<Exercise> lists = rdao.myRoutine(id);
-			// routinecheck table에 있는 값 가져오기
-			List<MyRoutineCheck> lists2 = rdao.myRoutineCheck(id);
-			model.addAttribute("lists", lists);
-			for(MyRoutineCheck el : lists2) {
-				System.out.println(el);
-			}
-			JSONArray jsonArray = new JSONArray();
-			System.out.println(jsonArray.fromObject(lists2));
-			System.out.println(jsonArray.fromObject(lists2).size());	
-			model.addAttribute("lists2", jsonArray.fromObject(lists2));
-			model.addAttribute("size", jsonArray.fromObject(lists2).size());
-			String contextPath = request.getContextPath();
-			model.addAttribute("contextPath",contextPath);
-			return "myRoutine";
+			//오늘 루틴에서 완료한 운동이 이미 DB에 들어있는지 확인하는 과정
+			String mem_id = rdao.findRoutineCheck(id, ex_id, regdate);
+
+				try {
+					
+					Boolean b = mem_id.equals(null);
+					
+					//mem_id가 null이 아니면 이미 완료한 운동이므로 아래 try문 정상 실행
+					
+					String message = "이미 완료한 운동입니다";
+					model.addAttribute("err",message);
+					// 내 루틴에 속해 있는 운동들 가져오기
+					List<Exercise> lists = rdao.myRoutine(id);
+					// routinecheck table에 있는 값 가져오기
+					List<MyRoutineCheck> lists2 = rdao.myRoutineCheck(id);
+					model.addAttribute("lists", lists);
+					for(MyRoutineCheck el : lists2) {
+						System.out.println(el);
+					}
+					JSONArray jsonArray = new JSONArray();
+					System.out.println(jsonArray.fromObject(lists2));
+					System.out.println(jsonArray.fromObject(lists2).size());	
+					model.addAttribute("lists2", jsonArray.fromObject(lists2));
+					model.addAttribute("size", jsonArray.fromObject(lists2).size());
+					String contextPath = request.getContextPath();
+					model.addAttribute("contextPath",contextPath);
+					return "myRoutine";
+					
+					
+				} catch (NullPointerException e) {
+					//mem_id가 null이라서 nullpointexception 발생하면 처음 완료하는 운동이니까 catch해서 아래 코딩 실행
+					
+					// 완료한 운동 routinecheck table에 값 넣기
+					rdao.routineCheck(id, ex_id, regdate);
+					
+					// 내 루틴에 속해 있는 운동들 가져오기
+					List<Exercise> lists = rdao.myRoutine(id);
+					// routinecheck table에 있는 값 가져오기
+					List<MyRoutineCheck> lists2 = rdao.myRoutineCheck(id);
+					model.addAttribute("lists", lists);
+					for(MyRoutineCheck el : lists2) {
+						System.out.println(el);
+					}
+					JSONArray jsonArray = new JSONArray();
+					System.out.println(jsonArray.fromObject(lists2));
+					System.out.println(jsonArray.fromObject(lists2).size());	
+					model.addAttribute("lists2", jsonArray.fromObject(lists2));
+					model.addAttribute("size", jsonArray.fromObject(lists2).size());
+					String contextPath = request.getContextPath();
+					model.addAttribute("contextPath",contextPath);
+					return "myRoutine";
+				}
+		
 		}		
 	}
 }

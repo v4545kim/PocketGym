@@ -37,8 +37,8 @@
             </div>
         </div>
 	</section>
-	<div class="container-fluid">
-		<h2>운동 수정하기</h2>
+	<div class="container">
+		<br><br>
 		<c:set var="xx" value="<%=request.getContextPath()%>"></c:set>
 		<form:form action="${xx}/update.ex" method="post" modelAttribute="bean">
 			<div class="form-group">
@@ -57,6 +57,11 @@
 				<label for="ex_calorie">칼로리:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter calorie" path="ex_calorie" value="${bean.ex_calorie }"/>
+			</div>
+			<div class="form-group">
+				<label for="context">운동설명:</label> 
+				<form:input type="text"
+					class="form-control" placeholder="Enter context" path="context" value="${bean.context }"/>
 			</div>
 			<div class="form-group">
 				<label for="url">URL:</label> 

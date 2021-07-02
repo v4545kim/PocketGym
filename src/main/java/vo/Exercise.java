@@ -1,10 +1,25 @@
 package vo;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Exercise 
 {
+	private final String MUST_INPUT = "필수 입력 사항입니다.";
+	
 	private int ex_id;
+	
+	@NotEmpty(message="운동이름은 " + MUST_INPUT)
 	private String ex_name;
+	
+	@Min(value=1, message="칼로리는 " + MUST_INPUT)
 	private int ex_calorie;
+	
+	@NotEmpty(message="운동설명은 " + MUST_INPUT)
+	private String context;
+	
+	@NotEmpty(message="운동영상은 " + MUST_INPUT)
 	private String url;
 	
 	
@@ -32,15 +47,17 @@ public class Exercise
 	public void setUrl(String upl) {
 		this.url = upl;
 	}
-	
-	
+
+	public String getContext() {
+		return context;
+	}
+	public void setContext(String context) {
+		this.context = context;
+	}
 	@Override
 	public String toString() {
-		return "Exercise [ex_id=" + ex_id + ", ex_name=" + ex_name + ", ex_calorie=" + ex_calorie + ", url=" + url
-				+ "]";
+		return "Exercise [ex_id=" + ex_id + ", ex_name=" + ex_name + ", ex_calorie=" + ex_calorie + ", context="
+				+ context + ", url=" + url + "]";
 	}
-	
-	
-	
-	
+
 }

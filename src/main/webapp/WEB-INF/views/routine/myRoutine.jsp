@@ -8,17 +8,14 @@
 <html lang="zxx">
 
 <head>   
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css_cal/style.css">
 <script src="<%=request.getContextPath() %>/resources/js_cal/jquery.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js_cal/popper.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js_cal/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js_cal/main.js"></script>
-  	
 <script type="text/javascript">
 // 임시값 넣어서 변수 생성
 var event_data = {
@@ -327,6 +324,11 @@ const months = [
 					<h2 class="heading-section">나의 운동 일지</h2>
 				</div>
 			</div>
+			<c:if test="${err!=null }">
+				<div class="alert alert-warning">
+					<strong>죄송합니다</strong> ${err}
+				</div>
+			</c:if>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="content w-100">

@@ -2,10 +2,13 @@ package routine.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,16 +47,23 @@ public class RoutineInsertController {
 	}
 	
 	@PostMapping("/insert.ro")
-	private String  doPost(Model model, @ModelAttribute("bean") Routine routine){
-		String ro_name = routine.getRo_name();
-		List<String> list = routine.getEx_id();
-		int cnt = rdao.insertRoutine(routine);
+	private String  doPost(Model model, @ModelAttribute("bean") @Valid Routine routine, BindingResult asdf){
 		
-		String ro_id = rdao.getRoutineId(ro_name);
-		
-		for (String ex_id : list) {
-			int cnt2 = rdao.insertExandRoutine(ro_id, ex_id);
-		}
-		return "redirect:/list.ro";
+		if(asdf.hasErrors()) {
+			System.out.println("유효성 검사 실패");
+			model.addAttribute("routine",routine);
+			return "roInsertForm";
+		}else {
+			String ro_name = routine.getRo_name();
+			List<String> list = routine.getEx_id();
+			int cnt = rdao.insertRoutine(routine);
+			
+			String ro_id = rdao.getRoutineId(ro_name);
+			
+			for (String ex_id : list) {
+				int cnt2 = rdao.insertExandRoutine(ro_id, ex_id);
+			}
+			return "redirect:/list.ro";
+		}		
 	}
 }

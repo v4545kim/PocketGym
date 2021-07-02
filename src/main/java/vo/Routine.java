@@ -2,11 +2,26 @@ package vo;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Routine 
 {
+	private final String MUST_INPUT = "필수 입력 사항입니다." ;	
+
+	
 	private int ro_id;
+	
+	@NotEmpty(message= "루틴이름은 " + MUST_INPUT)
 	private String ro_name;
+	
+	@NotEmpty(message= "루틴내용은 " + MUST_INPUT)
 	private String ro_context;
+	
+	@NotNull(message= "루틴 운동들은 " + MUST_INPUT)
+	@Size(min = 1, message = "루틴운동은 1개 이상 등록되어야 합니다")
 	private List<String> ex_id;
 	
 	
