@@ -120,7 +120,10 @@
                             <a href="<%=contextPath%>/update.me?myWeight=${myWeight}">
 								<br>
 								<br>
-								<button type="button" class="btn btn-primary">회원 정보 수정하기</button>
+								<c:set value="${sessionScope.loginfo.id}" var="id" />
+								<c:if test="${id eq member.id}">
+									<button type="button" class="btn btn-primary">회원 정보 수정하기</button>
+								</c:if>
 							</a>
                         </div>
                     </form:form>

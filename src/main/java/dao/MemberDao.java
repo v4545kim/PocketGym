@@ -82,9 +82,14 @@ public class MemberDao {
 		member.setId(id);
 		member.setRo_id(ro_id);
 		
-		System.out.println("12111111111111111");
-		
 		return this.abcd.update(NAMESPACE + "giveRoutine", member);
+	}
+
+	public int deleteMember(String id) 
+	{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		return this.abcd.delete(NAMESPACE + "DeleteMember", map);
 	}
 	
 	
