@@ -11,10 +11,10 @@
 	<select id="SelectTotalCount" resultType="int">
 		select  count(*) as cnt from boards
 		<if test="mode == 'title'">
-			where b.title like #{keyword}
+			where title like #{keyword}
 		</if>
 		<if test="mode == 'context'">
-			where b.context like #{keyword}
+			where context like #{keyword}
 		</if>
 		<if test="mode == 'mem_id'">
 			where mem_id like #{keyword}
@@ -26,16 +26,16 @@
 	</sql> 	
 	<select id="selectAll" resultType="AlBoard">
 		<include refid="myselect" />
-		<if test="mode == 'b.title'">
-			where title like #{keyword} 
+		<if test="mode == 'title'">
+			where b.title like #{keyword} 
 		</if>
-		<if test="mode == 'b.context'">
-			where context like #{keyword} 
+		<if test="mode == 'context'">
+			where b.context like #{keyword} 
 		</if>
-		<if test="mode == 'm.nickname'">
-			where nickname like #{keyword} 
+		<if test="mode == 'mem_id'">
+			where b.mem_id like #{keyword} 
 		</if>
-		order by bo_id desc
+		order by b.bo_id desc
 	</select>	
 	
 	<!-- 한글의대한 정보 가져오기 -->
@@ -43,15 +43,47 @@
 		select * from boards where bo_id = #{bo_id}
 	</select>
 		
-	
+	<!-- 게시글수정 -->
 	<update id="updateBoard" parameterType="AlBoard">
 		update boards set 
 		title=#{title}, context=#{context}, 
 		be_image=#{be_image}, af_image=#{af_image}, regdate=sysdate
 		where bo_id = #{bo_id} 
 	</update>
+	
+	<!-- 게시글삭제 -->
 	<delete id="deleteBoard" parameterType="int">
 		delete from boards where bo_id = #{bo_id} 
 	</delete>
+	
+	<!-- 나의sns확인 -->
+	<select id="MyListCount" resultType="int">
+		select  count(*) as cnt from boards where mem_id like #{keyword}
+	</select>
+	<select id="myBoardList" resultType="AlBoard">
+		<include refid="myselect" />
+		where b.mem_id like #{keyword} order by b.bo_id desc
+	</select>	
+	
+	<!-- 좋아요 갯수 가져오기 -->
+	<select id="countLike" resultType="int">
+		select count(distinct mem_id) as likes from likeboard where bo_id = #{bo_id}
+	</select>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="insertLike" parameterType="AlBoard">
+		insert into likeboard (bo_id, mem_id) values (#{bo_id}, #{mem_id})
+	</insert>
+	
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike" parameterType="AlBoard">
+		delete from likeboard where bo_id = #{bo_id} and mem_id = #{mem_id}
+	</delete>
+	
+	<!-- 좋아요한 멤버 아이디가져오기 -->	
+	<select id="likeList" parameterType="Integer" resultType="AlBoard">
+		select mem_id from likeboard where bo_id = #{bo_id}
+	</select>
 	
 </mapper>

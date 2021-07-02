@@ -15,4 +15,9 @@
 	<delete id="deleteReply" parameterType="int">
 		delete from reply where re_id = #{re_id} 
 	</delete>
+	
+	<select id="updateReply" parameterType="ALReply">
+		update reply set context = #{context} where re_id = #{re_id}
+	</select>
+	
 </mapper>

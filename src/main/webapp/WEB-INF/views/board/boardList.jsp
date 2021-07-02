@@ -55,7 +55,7 @@
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control btn-xs" name="keyword"
-									id="keyword" placeholder="검색 키워드">
+									placeholder="검색 키워드">
 							</div>
 							<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
 							<button class="btn btn-default btn-info" type="button"
@@ -70,13 +70,13 @@
             	<c:forEach var="bean" items="${requestScope.lists}">
 	                <div class="col-lg-4 col-md-6">
 	                    <div class="single-blog-item">
-	                        <img src="<%=contextPath %>/resources/img/blog/blog-1.jpg" alt="">
+	                        <img src="<%=contextPath%>/upload/${bean.be_image}" alt="no image">
 									<div class="blog-widget">
 										<div class="bw-date">${bean.regdate}</div>
 										<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag">${bean.mem_id}</a>
 									</div>
-								<h5>
-									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}">${bean.title}</a>
+								<h5>																
+									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">${bean.title}</a>
 								</h5>
 	                    </div>
 	                </div>
