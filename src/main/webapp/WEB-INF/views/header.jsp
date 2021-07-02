@@ -168,17 +168,20 @@ ul.nav.navbar-nav {
 								
 								
 								<c:if test="${whologin != 2}">
-								<li><a href="<%=contextPath%>/detail.me">my 상세정보<span
+									<li><a href="<%=contextPath%>/detail.me">my 상세정보<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
+									<li><a href="<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}">my mail<span
+											class="glyphicon glyphicon-cog pull-right"></span></a></li>		
 									<li><a href="<%=contextPath%>/plan.me">my 성취율<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="<%=contextPath%>/myroutine.ro">my 루틴<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="<%=contextPath%>/mydietlist.di">my 식단<span
-											class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="<%=contextPath%>/mybolist.br">my sns보기<span
-											class="glyphicon glyphicon-cog pull-right"></span></a></li>
+									<li><a href="<%=contextPath%>/mybolist.br?mode='작성자 아이디'&keyword=${sessionScope.loginfo.id}">my sns보기<span
+                                 class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="#" onclick="check();">my 장바구니 보기<span
+											class="glyphicon glyphicon-cog pull-right"></span></a></li>
+									<li><a href="<%=contextPath%>/delete.me?id=${sessionScope.loginfo.id}" 
+									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="<%=contextPath%>/logout.me">로그아웃<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
