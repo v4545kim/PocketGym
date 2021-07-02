@@ -39,7 +39,37 @@
     background-clip: border-box;
     border: 0px solid rgba(0,0,0,.125);
 }
+.card-6 .card-footer {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 50px 360px;
+}
+/* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
+.err{ 
+   font-size : 10pt;
+   color:red;
+   font-weight: bolder;
+}
 </style>
+<script type="text/javascript">
+	function checkBtn() {
+		if(${sessionScope.loginfo.id == null}){
+			alert('관리자로 로그인 해주세요.')
+			return false;
+		}
+		if(${sessionScope.loginfo.id != 'admin'}){
+			alert('관리자가 아니면 상품 등록이 안 됩니다.')
+			return false;
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -71,22 +101,20 @@
                 </div>
                 <div class="card-body">
                 	<c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <%-- <form:form method="post" action="${apppath}/insert.pr" modelAttribute="product" enctype="multipart/form-data"> --%>
-                    <form:form modelAttribute="product" class="form-horizontal" role="form" action="${apppath}/insert.pr"
-					method="post">
+                    <form:form method="post" action="${apppath}/insert.pr" modelAttribute="product" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="name">상품명</div>
                             <div class="value">
-                                <%-- <form:input class="input--style-6" type="text" path="pr_name" /> --%>
-                                <input type="text" name="pr_name">
+                                <form:input class="input--style-6" type="text" path="pr_name" />
+                                <form:errors cssClass="err" path="pr_name" />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="name">상품설명</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <%-- <form:textarea class="textarea--style-6" path="context"/> --%>
-                                    <textarea name="context"></textarea>
+                                    <form:textarea class="textarea--style-6" path="context"/>
+                                    <form:errors cssClass="err" path="context" />
                                 </div>
                             </div>
                         </div>
@@ -95,11 +123,28 @@
                             <div class="value">
                                 <div class="input-group">
                                     <select name="category">
-                                    	<option value="-" selected="selected">카테고리를 선택해 주세요.
-                                    	<option value="음식">음식
-                                    	<option value="기구">기구
-                                    	<option value="의류">의류
+                                    	<option value="" selected="selected">카테고리를 선택해 주세요.
+                                    	<c:if test="${bean.category == '음식'}">
+                                    		<option value="음식" selected="selected">음식
+                                    	</c:if>
+                                    	<c:if test="${bean.category != '음식'}">
+                                    		<option value="음식">음식
+                                    	</c:if>
+                                    	<c:if test="${bean.category == '기구'}">
+                                    		<option value="기구" selected="selected">기구
+                                    	</c:if>
+                                    	<c:if test="${bean.category != '기구'}">
+                                    		<option value="기구">기구
+                                    	</c:if>
+                                    	<c:if test="${bean.category == '의류'}">
+                                    		<option value="의류" selected="selected">의류
+                                    	</c:if>
+                                    	<c:if test="${bean.category != '의류'}">
+                                    		<option value="의류">의류
+                                    	</c:if>
                                     </select>
+                                    <br>
+                                    <form:errors cssClass="err" path="category" />
                                 </div>
                             </div>
                         </div>
@@ -107,8 +152,8 @@
                             <div class="name">상품 재고</div>
                             <div class="value">
                                 <div class="input-group">
-                                	<%-- <form:input class="input--style-6" type="number" path="stock" /> --%>
-                                	<input type="number" name="stock">
+                                	<form:input class="input--style-6" type="number" path="stock" />
+                                	<form:errors cssClass="err" path="stock" />
                                 </div>
                             </div>
                         </div>
@@ -116,8 +161,8 @@
                             <div class="name">상품 가격</div>
                             <div class="value">
                                 <div class="input-group">
-                                	<%-- <form:input class="input--style-6" type="number" path="price" /> --%>
-                                	<input type="number" name="price">
+                                	<form:input class="input--style-6" type="number" path="price" />
+                                	<form:errors cssClass="err" path="price" />
                                 </div>
                             </div>
                         </div>
@@ -127,11 +172,14 @@
                                 <div class="input-group js-input-file">
                                     <input class="input-file" type="file" name="abcd" id="file">
                                     <label class="label--file" for="file">Choose file</label>
+                                    <br>
+                                    <form:errors cssClass="err" path="image" />
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                    		<button class="btn btn--radius-2 btn--blue-2" type="submit">등록 하기</button>
+	         				<button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o" onclick="checkBtn();">등록 하기</i></button>
+							<button class="btn btn-default" type="reset"><i class="fa fa-recycle">초기화</i></button>
                 		</div>
                     </form:form>
                 </div>

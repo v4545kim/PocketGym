@@ -27,8 +27,4 @@ public class CartDao {
 	public int deleteCart(int cart_id) {
 		return this.abcd.delete(NAMESPACE + "deleteCart", cart_id);
 	}
-
-	
-	
-
 }

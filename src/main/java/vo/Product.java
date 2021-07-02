@@ -1,16 +1,33 @@
 package vo;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product 
 {
 	private int pr_id;
+	
+	@Length(min=3, max=20, message="상품명은 3글자 이상 20글자 이하이어야 합니다.")
 	private String pr_name;
+	
+	@Min(1)
 	private int price;
+	
+	@Min(1)
 	private int stock;
+	
 	private String inputdate;
+	
+	@NotEmpty(message="카테고리는 필수 선택 사항입니다.")
 	private String category;
+	
+	@Length(min = 10, max = 100, message = "상품설명은 10글자 이상 100글자 이하이어야 합니다.")
 	private String context;
+	
+	@NotEmpty(message= "첨부 이미지를 넣어주세요.")
 	private String image;
 	
 	private MultipartFile abcd;
