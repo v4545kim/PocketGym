@@ -33,15 +33,8 @@
                 <div class="col-lg-6">
                     <div class="about-text">
                         <h2>${ex.ex_name }</h2>
-                        <p class="first-para">Lorem ipsum proin gravida nibh vel velit auctor aliquet. Aenean pretium
-                            sollicitudin, nascetur auci elit consequat ipsutissem niuis sed odio sit amet nibh vulputate
-                            cursus a amet.</p>
-                        <p class="second-para">	${ex.ex_calorie } 칼로리</p>
-                        <img src="<%=request.getContextPath() %>/resources/img/about-signature.png" alt="">
-                        <div class="at-author">
-                            <h4>Lettie Chavez</h4>
-                            <span>CEO - Founder</span>
-                        </div>
+                        <p class="first-para">${ex.context }</p>
+                        <p class="second-para">	${ex.ex_calorie } 칼로리</p>                     
                     </div>
                 </div>
                 <c:if test="${whologin == 2}">

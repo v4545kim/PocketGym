@@ -86,5 +86,13 @@ public class RoutineDao {
 		this.abcd.delete(NAMESPACE+"deleteRoutine", ro_id);
 	}
 
+	public String findRoutineCheck(String id, String ex_id, String regdate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("regdate", regdate);
+		map.put("ex_id", ex_id);
+		return this.abcd.selectOne(NAMESPACE+"findRoutineCheck", map);
+	}
+
 }
                                                                                                                                                                                            

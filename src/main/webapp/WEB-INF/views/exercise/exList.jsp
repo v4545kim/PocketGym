@@ -35,30 +35,24 @@
             </div>
         </div>
 	</section>
-	
-	<div class="container-fluid">
+	<div class="container">
 		<h2>운동 리스트</h2>
 		<p>운동들에 대한 상세정보를 볼 수 있어요</p>
 		<a href="<%=contextPath%>/insert.ex" class="btn btn-primary" role="button">새로운 운동 추가하기</a>
-		
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>운동</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list }" var="item">
-					<tr>	
-						<td>
-							<a href="<%=contextPath%>/detail.ex?ex_id=${item.ex_id}">
+		 <br><br>
+		<div class="card-columns">
+			<c:forEach items="${list }" var="item">
+				<div class="card bg-primary">
+					<div class="card-body text-center">
+						<p class="card-text" style="color: white">
+						<a href="<%=contextPath%>/detail.ex?ex_id=${item.ex_id}" style="color: white">
 								${item.ex_name }
-							</a>
-						</td>
-					</tr>
-				</c:forEach>		
-			</tbody>
-		</table>
+						</a>
+						</p>	
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 
 	<!-- Js Plugins -->

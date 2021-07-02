@@ -60,4 +60,8 @@
 	<delete id="deleteRoutine">
 		delete from routines where ro_id = #{ro_id}
 	</delete>
+	
+	<select id="findRoutineCheck" resultType="String">
+		select mem_id from routinecheck where mem_id = #{id} and regdate = #{regdate} and ex_id = #{ex_id}
+	</select>
 </mapper>

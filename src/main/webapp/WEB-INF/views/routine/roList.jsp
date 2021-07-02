@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="./../header.jsp"/>
 	<section class="breadcrumb-section set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
-		 <div class="container">
+		 <div class="container" align="center">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
@@ -36,15 +36,19 @@
         </div>
 	</section>
 	
-	<div class="container-fluid">
+	<div class="container" align="center">
 		<h2>루틴 리스트</h2>
 		<p>루틴에 대한 상세정보를 볼 수 있어요</p>
-		<a href="<%=contextPath%>/insert.ro" class="btn btn-primary" role="button">새로운 루틴 추가하기</a>
+		<div align="right">
+			<a href="<%=contextPath%>/insert.ro" class="btn btn-primary" role="button">새로운 루틴 추가하기</a>
+		</div>
 		
-		<table class="table table-hover">
-			<thead>
+		
+		<table class="table table-hover w-auto">
+		
+			<thead class="thead-light">
 				<tr>
-					<th>루틴이름</th>
+					<th class="col-sm-2">루틴이름</th>
 					<th>루틴설명</th>
 				</tr>
 			</thead>

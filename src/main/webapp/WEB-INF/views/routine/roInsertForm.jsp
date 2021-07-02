@@ -8,6 +8,18 @@
 <html lang="zxx">
 
 <head>
+<style type="text/css">
+	.form-group {
+		margin-bottom: 3px;
+	}
+	.good-result{/* 상태 양호 */
+		font-size : 10pt;
+		color:blue;
+		font-weight: bolder;
+	}
+	
+	.err{ color: red; font-size: 9pt ; font-weight: bold ; }
+</style>
 <title>exercise insert</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,23 +49,26 @@
             </div>
         </div>
 	</section>
-	<div class="container-fluid">
-		<h2>루틴 추가하기</h2>
+	<div class="container">
+		<br><br>
 		<c:set var="xx" value="<%=request.getContextPath()%>"></c:set>
 		<form:form action="${xx}/insert.ro" method="post" modelAttribute="bean">
 			<div class="form-group">
-				<label for="ex_name">이름:</label> 
+				<label for="ro_name">이름:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter name" path="ro_name"/>
+				<form:errors cssClass="err" path="ro_name" />
 			</div>
 			<div class="form-group">
-				<label for="ex_calorie">설명:</label> 
+				<label for="ro_context">설명:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter calorie" path="ro_context"/>
+				<form:errors cssClass="err" path="ro_context" />
 			</div>
 			<div class="form-group">
-				<label for="url">운동:</label>
+				<label for="ex_id">운동:</label>
 				<form:checkboxes items="${ex}" path="ex_id" itemLabel="ex_name" itemValue="ex_id"/>
+				<form:errors cssClass="err" path="ex_id" />
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>

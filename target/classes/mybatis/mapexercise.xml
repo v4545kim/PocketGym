@@ -13,11 +13,11 @@
 	</select>
 	
 	<insert id="insertExercise" parameterType="AlExercise">
-		insert into exercises values(exercises_SEQ.nextval, #{ex_name}, #{ex_calorie}, #{url})
+		insert into exercises values(exercises_SEQ.nextval, #{ex_name}, #{ex_calorie}, #{url}, #{context})
 	</insert>
 	
 	<update id="updateExercise" parameterType="AlExercise">
-		update exercises set ex_name = #{ex_name}, ex_calorie = #{ex_calorie}, url = #{url} where ex_id = ${ex_id}
+		update exercises set ex_name = #{ex_name}, ex_calorie = #{ex_calorie}, url = #{url}, context = #{context} where ex_id = ${ex_id}
 	</update>
 	
 	<delete id="deleteExercise" parameterType="int">
