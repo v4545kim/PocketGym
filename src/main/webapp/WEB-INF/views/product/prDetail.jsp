@@ -136,14 +136,14 @@
 				<article class="gallery-wrap">
 					<div class="img-big-wrap">
 						<div>
-							<img src="${bean.image}" alt="${bean.image}">
+							<img src="<%=contextPath%>/upload/${bean.image}" alt="<%=contextPath%>/upload/${bean.image}">
 						</div>
 					</div>
 				</article>
 			</aside>
 			<aside class="col-sm-5">
 				<article class="card-body p-5">
-					<h3 class="title mb-3">상명 : ${bean.pr_name}</h3>
+					<h3 class="title mb-3">상품명 : ${bean.pr_name}</h3>
 					<h4 class="title mb-3">상품 설명 : ${bean.context}</h4>
 					<h4 class="title mb-3">재고 수량 : ${bean.stock}</h4>
 					<p class="price-detail-wrap">

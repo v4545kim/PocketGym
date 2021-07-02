@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import dao.CartDao;
+import dao.ProductsDao;
 
 @Controller
 public class ProductDeleteController {
 	
 	@Autowired
-	@Qualifier("cdao")
-	private CartDao cdao;
+	@Qualifier("pdao")
+	private ProductsDao pdao;
 	
-	@GetMapping("prcartdelete.pr")
+	@GetMapping("delete.pr")
 	private ModelAndView doGet(
-			@RequestParam(value = "cart_id", required = true) int cart_id){
+			@RequestParam(value = "pr_id", required = true) int pr_id){
 		
 		ModelAndView mav = new ModelAndView();
 		
 		int cnt = -1;
-		cnt = cdao.deleteCart(cart_id);
+		cnt = pdao.deleteData(pr_id);
 		
-		mav.setViewName("redirect:/prcartlist.pr");
+		mav.setViewName("redirect:/prlist.pr");
 		
 		return mav;
 	}

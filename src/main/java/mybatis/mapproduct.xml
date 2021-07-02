@@ -55,6 +55,15 @@
 	<insert id="insertData" parameterType="AlProduct"> 
 		insert into products(pr_id, pr_name, price, image, stock, inputdate, context, category) 
 		values(products_seq.nextval, #{pr_name}, #{price}, #{image}, #{stock}, sysdate, #{context}, #{category}) 
-	</insert> 
+	</insert>
+	
+	<update id="updateData" parameterType="AlProduct"> 
+		update products set pr_name = #{pr_name}, price = #{price}, image = #{image}, stock = #{stock}, inputdate = sysdate, context = #{context}, category = #{category}
+		where pr_id = #{pr_id} 
+	</update>  
+	
+	<delete id="deleteData" parameterType="Integer">
+		delete from products where pr_id = #{pr_id}
+	</delete>
 	
 </mapper> 

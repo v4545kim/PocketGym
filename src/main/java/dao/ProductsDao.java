@@ -68,7 +68,16 @@ public class ProductsDao {
 		return this.abcd.selectList(NAMESPACE + "selectAll", map, rowBounds);
 	}
 
-	public int insertData(Product product) {
-		return this.abcd.insert(NAMESPACE + "insertData", product);
+	public int insertData(Product bean) {
+		return this.abcd.insert(NAMESPACE + "insertData", bean);
+	}
+
+	public int updateData(Product bean) {
+		return this.abcd.update(NAMESPACE + "updateData", bean);
+		
+	}
+
+	public int deleteData(int pr_id) {
+		return this.abcd.delete(NAMESPACE + "deleteData", pr_id);
 	}
 }
