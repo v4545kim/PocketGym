@@ -47,7 +47,7 @@
 									</c:if>								
 									
 									<c:if test="${not empty bean.be_image}">
-										<img src="${applicationScope.uploadedPath}/${bean.be_image}"
+										<img src="<%=contextPath%>/upload/${bean.be_image}"
 											class="img-thumbnail" width="200" height="200"
 											alt="${bean.be_image}">
 									</c:if>
@@ -64,7 +64,7 @@
 									</c:if>								
 									
 									<c:if test="${not empty bean.af_image}">
-										<img src="${applicationScope.uploadedPath}/${bean.af_image}"
+										<img src="<%=contextPath%>/upload/${bean.be_image}"
 											class="img-thumbnail" width="200" height="200"
 											alt="${bean.af_image}">
 									</c:if>
@@ -88,43 +88,59 @@
                         <div class="tag-share">
                            <c:if test="${sessionScope.loginfo.id == bean.mem_id}">
 	                           <div class="social-share">
-	                                <a href="<%=contextPath%>"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
 	                                <a href="<%=contextPath%>/brupdate.br?bo_id=${bean.bo_id}">수정</a>
 	                                <a href="<%=contextPath%>/brdelete.br?bo_id=${bean.bo_id}">삭제</a>
 	                            </div>
                             </c:if>
-                            <c:if test="${sessionScope.loginfo.id != bean.mem_id}">
+                            <c:if test="${sessionScope.loginfo.id != bean.mem_id && whologin != 2}">
 	                           <div class="social-share">
-	                                <span>좋아요:</span>
-	                                <a href="<%=contextPath%>"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                           <c:if test="${valid == 1}">
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                           </c:if>
+	                           <c:if test="${valid == 2}"> 
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                           </c:if>     
+	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
 	                            </div>
                             </c:if>
                             <c:if test="${whologin == 2}">
 	                           <div class="social-share">
-	                                <span>좋아요:</span>
-	                                <a href="<%=contextPath%>"><i class="fa fa-facebook">좋아요실시간 갯수</i></a>
+	                           <c:if test="${valid == 1}">
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                           </c:if>
+	                           <c:if test="${valid == 2}">     
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                           </c:if>     
+	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
 	                                <a href="<%=contextPath%>/brdelete.br?bo_id=${bean.bo_id}">삭제</a>
 	                            </div>
                             </c:if>
                             
                         </div>
-                        <c:forEach var="lists" items="${requestScope.lists}">
-	                        <div class="bd-title">
-	                            <p>${lists.mem_id}</p><div>${lists.regdate}</div>
-	                            <p>${lists.context}</p>
-	                        </div>
-	                        <c:if test="${sessionScope.loginfo.id == lists.mem_id}">
-		                        <div class="social-share">
-		                        	<button type="button" class="btn btn-info btn-circle" onclick="window.open('<%=contextPath%>/mydietupdate.di?&foodname=${lunchlists.foodname}&calorie=${lunchlists.calorie}&year=${year}&month=${month}&day=${day}&inputdate=${inputdate }&diet_id=${lunchlists.diet_id }','window팝업','width=1000, height=600');"><i class="glyphicon glyphicon-pencil"></i></button>
-	                                <a href="<%=contextPath%>/reupdate.br?re_id=${lists.re_id}">댓글 수정</a>
-	                                &nbsp;&nbsp;&nbsp;&nbsp;
-	                                <a href="<%=contextPath%>/redelete.br?re_id=${lists.re_id}&bo_id=${lists.bo_id}">댓글 삭제</a>
+                        
+                        <span id="more" style="CURSOR: hand" onclick="if(story.style.display=='none') 
+                        	{story.style.display='';more.innerText='댓글 접기'} else {story.style.display='none';more.innerText='댓글 펼치기'}">댓글 펼치기
+                        </span>
+						<div id="story" style="display: none">
+	                        <c:forEach var="lists" items="${requestScope.lists}">
+		                        <!-- cif로 lists사이즈가 0이상이이면 쭉가고 0이면 현재 작성된댓글이 없습니다. -->
+		                        <div class="bd-title">
+		                            <p>${lists.mem_id}</p><div>${lists.regdate}</div>
+		                            <p>${lists.context}</p>
 		                        </div>
-	                        </c:if>
-	                        <c:if test="${whologin == 2}">
-	                        	<a href="<%=contextPath%>/redelete.br?re_id=${lists.re_id}&bo_id=${lists.bo_id}">댓글 삭제</a>
-	                        </c:if>
-                        </c:forEach>
+		                        <c:if test="${sessionScope.loginfo.id == lists.mem_id}">
+			                        <div class="social-share">
+			                        	<button type="button" class="btn btn-info btn-circle" onclick="window.open('<%=contextPath%>/reupdate.br?bo_id=${lists.bo_id}&re_id=${lists.re_id}&mem_id=${lists.mem_id }&context=${lists.context}','window팝업','width=1000, height=600');"><i class="glyphicon glyphicon-pencil"></i></button>
+		                                &nbsp;&nbsp;&nbsp;&nbsp;
+		                                <a href="<%=contextPath%>/redelete.br?re_id=${lists.re_id}&bo_id=${lists.bo_id}">댓글 삭제</a>
+			                        </div>
+		                        </c:if>
+		                        <c:if test="${whologin == 2}">
+		                        	<a href="<%=contextPath%>/redelete.br?re_id=${lists.re_id}&bo_id=${lists.bo_id}">댓글 삭제</a>
+		                        </c:if>
+	                        </c:forEach>
+                        </div>
                         <div class="leave-comment">
                             <h3>Leave A Comment</h3>
                             <c:set var="apppath" value="<%=request.getContextPath()%>" />
@@ -139,7 +155,7 @@
                                         <textarea rows="8" cols="30" placeholder="Messages" name="context" ></textarea>
                                         <button type="submit">댓글 작성</button>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button reset="text">뒤로가기</button>
+                                        <button type="button" onclick="history.back(-1);">뒤로가기</button>
                                     </div>
                                 </div>
                             </form>
