@@ -11,11 +11,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 <style type="text/css">
+.row.justify-content-center {
+    margin-top: 200px;
+}
 textarea.form-control 
 {
     height: 200px;
 }
 </style>
+
+
 </head>
 
 <body>
@@ -28,10 +33,11 @@ textarea.form-control
                     <!--Form with header-->
 
                     <form action="<%=contextPath%>/mailinsert.ml" method="post">
+                    <input type="hidden" name="id" value="${sessionScope.loginfo.id}">
                         <div class="card border-primary rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
-                                    <h3><i class="fa fa-envelope"></i> Contactanos</h3>
+                                    <h3><i class="fa fa-envelope"></i> 메일 쓰기</h3>
                                     <p class="m-0">Con gusto te ayudaremos</p>
                                 </div>
                             </div>
@@ -43,7 +49,18 @@ textarea.form-control
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                         </div>
+                                        <c:set var="replyid" value="${replyreceiveid}" />
+                                        <c:choose>
+
+                                        <c:when test="${empty replyid}">
                                         <input type="text" class="form-control" id="nombre" name="receiveid" placeholder="받는사람 아이디를 입력해주세요." required>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                        <input type="text" class="form-control" id="nombre" name="receiveid" value="${replyid}">
+                                        </c:otherwise>
+
+                                        </c:choose>
                                     </div>
                                 </div>
                                 <div class="form-group">

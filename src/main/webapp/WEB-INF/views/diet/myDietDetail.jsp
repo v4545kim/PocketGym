@@ -262,7 +262,7 @@ PRICING STYLES
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-camera" aria-hidden="true"></i> 식단</h2>
+                        <h2><i class="fa fa-cutlery" aria-hidden="true"></i> 식단</h2>
                         
                     </div>
                 </div>
