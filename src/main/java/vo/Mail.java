@@ -8,7 +8,20 @@ public class Mail
 	private String subject;
 	private String context;
 	private String senddate;
+	private int readcheck;
 	
+	
+	
+	
+	
+	
+	
+	public int getReadcheck() {
+		return readcheck;
+	}
+	public void setReadcheck(int readcheck) {
+		this.readcheck = readcheck;
+	}
 	public int getMailnum() {
 		return mailnum;
 	}
