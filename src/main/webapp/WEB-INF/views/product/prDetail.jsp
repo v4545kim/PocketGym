@@ -169,8 +169,14 @@
 							<div class="col-sm-8">
 								<dl class="param param-inline">
 									<dt>
-										<button type="button" class="btn btn-default"><i class="fa fa-calculator" onclick="checkBuy();">구매하기</i></button>
-										<button type="submit" class="btn btn-default" onclick="checkCart();"><i class="fa fa-shopping-basket"></i>장바구니</button>
+										<c:if test="${whologin == 1}">
+											<button type="button" class="btn btn-default"><i class="fa fa-calculator" onclick="checkBuy();">구매하기</i></button>
+											<button type="submit" class="btn btn-default" onclick="checkCart();"><i class="fa fa-shopping-basket"></i>장바구니</button>
+										</c:if>
+										<c:if test="${whologin == 2}">
+											<a href="<%=contextPath%>/update.pr?pr_id=${bean.pr_id}" class="btn btn-success">수정</a>
+											<a href="<%=contextPath%>/delete.pr?pr_id=${bean.pr_id}" class="btn btn-danger">삭제</a>
+										</c:if>
 									</dt>
 								</dl>
 							</div>
