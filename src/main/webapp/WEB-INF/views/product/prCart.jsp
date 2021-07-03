@@ -82,13 +82,10 @@
 					<tr>
 						<td data-th="Product">
 							<div class="row">
-								<div class="col-sm-2 hidden-xs">
-									<img src="${list.image}" alt="엑박"
-										class="img-responsive" />
-								</div>
 								<div class="col-sm-10">
-									<h4 class="nomargin">${list.pr_name}</h4>
-									<p>${list.context}</p>
+									<h4 class="nomargin">
+										<a href="<%=contextPath%>/prdetail.pr?pr_id=${list.pr_id}" style="color: black">${list.pr_name}</a>
+									</h4>
 								</div>
 							</div>
 						</td>
