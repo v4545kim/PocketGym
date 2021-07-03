@@ -64,7 +64,7 @@
 									</c:if>								
 									
 									<c:if test="${not empty bean.af_image}">
-										<img src="<%=contextPath%>/upload/${bean.be_image}"
+										<img src="<%=contextPath%>/upload/${bean.af_image}"
 											class="img-thumbnail" width="200" height="200"
 											alt="${bean.af_image}">
 									</c:if>
