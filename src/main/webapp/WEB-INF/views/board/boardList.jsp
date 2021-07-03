@@ -23,10 +23,59 @@
 			
 			
 		}
-	</script>	
+	</script>
+	<style type="text/css">
+		.single-blog-item{
+			text-align: center;
+		}
+		form { 
+
+        margin: 0 auto; 
+
+        width:700px;
+
+    	}
+    	#input1{
+    		width: 300px;
+    		height: 50px;
+    		border-top: none;
+    		border-left: none;
+    		border-right: none;
+    		border-bottom: 3px solid black;
+    	}  
+    	#mode{
+    		width: 150px;
+    		height: 50px;
+    		border-top: none;
+    		border-left: none;
+    		border-right: none;
+    		border-bottom: 3px solid black;
+    	}
+    	#button{
+    		width: 100px;
+    		height: 50px;
+    		border-top: none;
+    		border-left: none;
+    		border-right: none;
+    		border-bottom: 3px solid black;
+    		background-color: black;
+    		font-weight: bold;
+    	}
+    	#button2{
+    		width: 100px;
+    		height: 50px;
+    		border-top: none;
+    		border-left: none;
+    		border-right: none;
+    		border-bottom: 3px solid black;
+    		background-color: black;
+    		font-weight: bold;
+    	
+    </style>	
 </head>
 
 <body>
+
 <jsp:include page="./../header.jsp" />
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="<%=contextPath %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
@@ -45,23 +94,30 @@
     <!-- Blog Section Begin -->
     <div class="panel-heading">
     	<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/brlist.br" method="get">
-							<div class="form-group">
+							<div class="form-group" >
+								<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">-- 선택하세요---------
+									<option value="all" selected="selected">-- 선택하세요--
 									<option value="mem_id" >작성자 아이디
 									<option value="title" >제목									
 									<option value="context" >글 내용									
 								</select>
+								</div>
+								<div class="form-group">
+									<input id="input1" type="text" class="form-control btn-xs" name="keyword"
+										placeholder="검색 키워드">
+								</div>
+								<div class="form-group">
+									<button id="button" class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
+									<button id="button2" class="btn btn-default btn-info" type="button"
+										onclick="writeForm();">글 쓰기</button>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+								<div class="form-group">
+									<p class="form-control-static">${requestScope.pagingStatus}</p>
+								</div>
 							</div>
-							<div class="form-group">
-								<input type="text" class="form-control btn-xs" name="keyword"
-									placeholder="검색 키워드">
-							</div>
-							<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
-							<button class="btn btn-default btn-info" type="button"
-								onclick="writeForm();">글 쓰기</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<p class="form-control-static">${requestScope.pagingStatus}</p>
+								
 		</form>
     </div>
     <section class="blog-section spad">
@@ -70,19 +126,21 @@
             	<c:forEach var="bean" items="${requestScope.lists}">
 	                <div class="col-lg-4 col-md-6">
 	                    <div class="single-blog-item">
-	                        <img src="<%=contextPath%>/upload/${bean.be_image}" alt="no image">
-									<div class="blog-widget">
-										<div class="bw-date">${bean.regdate}</div>
-										<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag">${bean.mem_id}</a>
-									</div>
+	                        <img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image">
 								<h5>																
-									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">${bean.title}</a>
+									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">
+										<font size="5"> ${bean.title}</font>
+									</a>
 								</h5>
+								<div class="blog-widget">
+									<div class="bw-date">${bean.regdate}</div>
+									<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag"><b>${bean.mem_id}<b></a>
+								</div>
 	                    </div>
 	                </div>
                 </c:forEach>
             </div>
-            <div align="center">
+            <div align="center" style="font-size: 1.5em;">
 				${requestScope.pagingHtml}			
 			</div>	
         </div>

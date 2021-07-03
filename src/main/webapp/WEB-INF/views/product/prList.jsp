@@ -60,14 +60,6 @@
 							</div>
 							<h5>
 								<a style="color: black" href="<%=contextPath%>/prdetail.pr?pr_id=${bean.pr_id}">${bean.pr_name}</a>
-								<c:if test="${whologin == 2}">
-									<a href="<%=contextPath%>/update.pr?pr_id=${bean.pr_id}" class="btn btn-success">
-										수정
-									</a>
-									<a href="<%=contextPath%>/delete.pr?pr_id=${bean.pr_id}" class="btn btn-danger">
-										삭제
-									</a>
-								</c:if>
 							</h5>
 	                    </div>
 	                </div>

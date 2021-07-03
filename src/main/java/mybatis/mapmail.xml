@@ -3,16 +3,48 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapMail">
-	
+
+
+	<!-- 나에게 온 메일 리스트들을 보여준다 -->	
 	<select id="receiveMailList" parameterType="String" resultType="AlMail">
-		select * from mails	where receiveid = #{id}
+		select * from mails	where receiveid = #{id} order by mailnum desc
 	</select>
 	
+	<!-- 내가 보낸 메일 리스트들을 보여준다 -->	
+	<select id="sendMailList" parameterType="String" resultType="AlMail">
+		select * from mails	where sendid = #{id} order by mailnum desc
+	</select>
 
 
+	<!-- 메일 상세보기 -->
 	<select id="selectByNum" parameterType="Integer" resultType="AlMail">
 		select * from mails where mailnum = #{mailnum}
 	</select>
+
+	
+	<!-- 메일을 작성하면 테이블에 데이터 insert -->
+	<select id="sendMail" parameterType="AlMail" resultType="Integer">
+		insert into mails values(mails_SEQ.nextval, #{sendid}, #{receiveid}, #{subject}, #{context}, TO_CHAR(sysdate, 'YY/MM/DD HH24:MI:SS'), default)
+	</select>
+	
+	
+	
+	<!-- 회원이 메일을 확인화면 readCheck 해준다. -->
+	<select id="updateReadComplete" parameterType="AlMail">
+		update mails set readcheck=1 where mailnum = #{mailnum}
+	</select>
+
+
+	<!-- 페이질처리를 위한 보낸 메일함 개수 출력 -->
+    <select id="SendTotalCount" resultType="int">
+		select count(*) as cnt from mails where sendid = #{id}
+	</select>	
+
+	<!-- 페이질처리를 위한 받은 메일함 개수 출력 -->
+    <select id="ReceiveTotalCount" resultType="int">
+		select count(*) as cnt from mails where receiveid = #{id}
+	</select>	
+
 
 
 </mapper>

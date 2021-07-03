@@ -33,10 +33,13 @@ public class MailDetailController
 	{
 		mav = new ModelAndView();
 		
-		System.out.println("메일 넘버 : " + mailnum);
-		
+		// 해당 메일의 상세정보들을 불러온다
 		Mail bean = mldao.selectByNum(mailnum);
+		int cnt = -99999;
 		
+		
+		// 메일 상세보기후 읽었다는 표시
+		cnt = mldao.readComplete(mailnum);
 		
 		this.mav.addObject("bean", bean);
 		this.mav.setViewName("mailDetail");

@@ -34,9 +34,16 @@ public class MailInsertController
 	
 	@GetMapping("/mailinsert.ml")
 	private ModelAndView  doGet(@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "sendid", required = false) String sendid,
 			HttpSession session)
 	{
 		
+		// 답장하기시 보낸 사람을 답장 받을 사람으로 넘긴다.
+		String replyreceiveid = sendid;
+		
+		
+		System.out.println("답장받을 사람은 : " + replyreceiveid);
+		this.mav.addObject("replyreceiveid", replyreceiveid);
 		this.mav.setViewName("mailInsertForm");
 		
 		return this.mav;
@@ -47,13 +54,25 @@ public class MailInsertController
 	private ModelAndView  doPost(HttpServletRequest request,
 			HttpSession session)
 	{
+		String id = request.getParameter("id");
 		String subject = request.getParameter("subject");
 		String receiveid = request.getParameter("receiveid");
 		String context = request.getParameter("context");
 		
+		int cnt = -99999;
+		
+		cnt = mldao.sendmail(id, receiveid, subject, context);
 		
 		
-		this.mav.setViewName("mailList");
+		System.out.println(cnt);
+		
+		
+		
+		
+		
+		
+		this.mav.addObject("id", id);
+		this.mav.setViewName("redirect:/maillist.ml");
 		
 		return this.mav;
 	}
