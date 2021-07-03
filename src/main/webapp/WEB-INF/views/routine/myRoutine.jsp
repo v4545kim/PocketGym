@@ -252,8 +252,8 @@ const months = [
 	    console.log(event_data["events"]);
 	    // If there are no events for this date, notify the user
 	    if(events.length===0) {
-	        var event_card = $("<div class='event-card'></div>");
-	        var event_name = $("<div class='event-name'>운동 기록이 없습니다.</div>");
+	        var event_card = $("<div class='card'></div>");
+	        var event_name = $("<div class='card-body'>운동 기록이 없습니다.</div>");
 	        $(event_card).css({ "border-left": "10px solid #FF1744" });
 	        $(event_card).append(event_name);
 	        $(".events-container").append(event_card);
@@ -262,9 +262,9 @@ const months = [
 	        // Go through and add each event as a card to the events container
 	        var total_cal = 0;
 	        for(var i=0; i<events.length; i++) {
-	            var event_card = $("<div class='event-card'></div>");
-				var ex_name = $("<div class='ex_name'><a href="+contextPath+"/detail.ex?ex_id="+events[i]["ex_id"]+">"+events[i]["ex_name"]+"</a></div>");
-				var ex_cal = $("<div class='ex_cal'>"+events[i]["ex_cal"]+" 칼로리</div>");
+	            var event_card = $("<div class='card'></div>");
+				var ex_name = $("<div class='card-body'><a href="+contextPath+"/detail.ex?ex_id="+events[i]["ex_id"]+">"+events[i]["ex_name"]+"</a></div>");
+				var ex_cal = $("<div class='card-body'>"+events[i]["ex_cal"]+" 칼로리</div>");
 				var year = events[i]["year"];
 				var month = events[i]["month"];
 		        var day = events[i]["day"];;
@@ -279,8 +279,8 @@ const months = [
 	            $(event_card).append(ex_name).append(ex_cal).append(ex_del);
 	            $(".events-container").append(event_card);
 	        }
-	        var event_card = $("<div class='event-card'></div>");
-	        var to_cal = $("<div class='to_cal'>총 칼로리 : "+total_cal+"</div>");
+	        var event_card = $("<div class='card bg-success text-white'></div>");
+	        var to_cal = $("<h4 class='card-body'>총 칼로리 : "+total_cal+"</h4>");
 	        $(event_card).append(to_cal);
 	        $(".events-container").append(event_card);
 	    }
@@ -373,7 +373,7 @@ const months = [
 			              </tbody> 
 				          </table>
 				        </div> 
-				        <button class="button" id="add-button">Add Event</button>
+				        <button class="button btn-lg" id="add-button">운동 기록하기</button>
 				      </div>
 				    </div>
 				    <div class="events-container">
@@ -387,15 +387,15 @@ const months = [
 				            <input class="input" type="text" id="name" maxlength="36">
 				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
 				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7"> -->
-				            <label class="form-label" id="valueFromMyButton" for="ex">나의 운동</label>
-				            <select class="select" id="ex">
+				           
+				            <select class="form-control form-control-lg" id="ex">
 				            	<c:forEach items="${lists}" var="item">
 				            		<option value="${item.ex_name},${item.ex_calorie},${item.ex_id},<%=contextPath%>" id="ex">${item.ex_name } : ${item.ex_calorie} 칼로리
 				            	</c:forEach>
 				            </select>
 				            <br><br>
-				            <input type="button" value="Cancel" class="button" id="cancel-button">
-				            <input type="button" value="OK" class="button button-white" id="ok-button">		            
+				            <input type="button" value="취소" class="button" id="cancel-button">
+				            <input type="button" value="확인" class="button button-white" id="ok-button">		            
 				          </div>
 				        </form>
 				      </div>

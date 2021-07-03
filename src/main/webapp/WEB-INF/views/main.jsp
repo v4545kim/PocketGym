@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -73,46 +73,24 @@
 
     <!-- Services Section Begin -->
     <section class="services-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="services-pic">
-                        <img src="<%=request.getContextPath() %>/resources/img/services/service-pic.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="service-items">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="services-item bg-gray">
-                                    <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-1.png" alt="">
-                                    <h4>초급</h4>
-                                    <p>모든 운동이 낯설고 운동에 대한 지식이 없으며 운동을 이제 막 처음 시작하시는 분들에게 맞춤적인 루틴</p>
-                                </div>
-                                <div class="services-item bg-gray pd-b">
-                                    <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-3.png" alt="">
-                                    <h4>중급</h4>
-                                    <p>어느 정도 운동 경험을 가지고 있으며 운동을 꾸준히 하고 목표가 명확하신 분들에게 맞춤적인 루틴</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="services-item">
-                                    <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-2.png" alt="">
-                                    <h4>상급</h4>
-                                    <p>운동에 대한 다양한 지식을 보유하고 있으며 단기간에 높은 성과를 내기를 원하시는 분들에게 맞춤적인 루틴</p>
-                                </div>
-                                <div class="services-item pd-b">
-                                    <img src="<%=request.getContextPath() %>/resources/img/services/service-icon-4.png" alt="">
-                                    <h4>엘리트</h4>
-                                    <p>운동에 대한 전문성을 가지고 있으며 강도 높은 운동 루틴을 충분히 소화 가능하신 분들에게 맞춤적인 루틴</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		<div class="container">
+			<div class="about-text" align="center">
+				<h2>루틴 종류</h2>
+				<a href="<%=contextPath%>/list.ro">
+					<button>루틴 상세보기</button>
+				</a>
+			</div>
+			<c:forEach items="${roList }" var="item">
+				<div class="services-item bg-gray" style="float: left;">
+					<img
+						src="<%=request.getContextPath()%>/resources/img/services/service-icon-1.png"
+						alt="">
+					<h4>${item.ro_name }</h4>
+					<p>${item.ro_context }</p>
+				</div>
+			</c:forEach>
+		</div>
+	</section>
     <!-- Services Section End -->
 
     <!-- Classes Section Begin -->
@@ -270,292 +248,8 @@
             </div>
         </div>
     </section>
-    <!-- Trainer Section End -->
 
-    <!-- Testimonial Section Begin -->
-    <section class="testimonial-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>success stories</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="testimonial-slider owl-carousel">
-                        <div class="testimonial-item">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                            <div class="ti-pic">
-                                <img src="<%=request.getContextPath() %>/resources/img/testimonial/testimonial-1.jpg" alt="">
-                                <div class="quote">
-                                    <img src="<%=request.getContextPath() %>/resources/img/testimonial/quote-left.png" alt="">
-                                </div>
-                            </div>
-                            <div class="ti-author">
-                                <h4>Patrick Cortez</h4>
-                                <span>Leader</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                            <div class="ti-pic">
-                                <img src="<%=request.getContextPath() %>/resources/img/testimonial/testimonial-1.jpg" alt="">
-                                <div class="quote">
-                                    <img src="<%=request.getContextPath() %>/resources/img/testimonial/quote-left.png" alt="">
-                                </div>
-                            </div>
-                            <div class="ti-author">
-                                <h4>Patrick Cortez</h4>
-                                <span>Leader</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonial Section End -->
-
-    <!-- Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/banner-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="banner-text">
-                        <h2>Get training today</h2>
-                        <p>Gimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry’s standard.</p>
-                        <a href="#" class="primary-btn banner-btn">Contact Now</a>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <img src="<%=request.getContextPath() %>/resources/img/banner-person.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Banner Section End -->
-
-    <!-- Membership Section Begin -->
-    <section class="membership-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>MEMBERSHIP PLANS</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="membership-item">
-                        <div class="mi-title">
-                            <h4>Basic</h4>
-                            <div class="triangle"></div>
-                        </div>
-                        <h2 class="mi-price">$17<span>/01 mo</span></h2>
-                        <ul>
-                            <li>
-                                <p>Duration</p>
-                                <span>12 months</span>
-                            </li>
-                            <li>
-                                <p>Personal trainer</p>
-                                <span>00 person</span>
-                            </li>
-                            <li>
-                                <p>Amount of people</p>
-                                <span>01 person</span>
-                            </li>
-                            <li>
-                                <p>Number of visits</p>
-                                <span>Unlimited</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="primary-btn membership-btn">Start Now</a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="membership-item">
-                        <div class="mi-title">
-                            <h4>Standard</h4>
-                            <div class="triangle"></div>
-                        </div>
-                        <h2 class="mi-price">$57<span>/01 mo</span></h2>
-                        <ul>
-                            <li>
-                                <p>Duration</p>
-                                <span>12 months</span>
-                            </li>
-                            <li>
-                                <p>Personal trainer</p>
-                                <span>01 person</span>
-                            </li>
-                            <li>
-                                <p>Amount of people</p>
-                                <span>01 person</span>
-                            </li>
-                            <li>
-                                <p>Number of visits</p>
-                                <span>Unlimited</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="primary-btn membership-btn">Start Now</a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="membership-item">
-                        <div class="mi-title">
-                            <h4>Premium</h4>
-                            <div class="triangle"></div>
-                        </div>
-                        <h2 class="mi-price">$98<span>/01 mo</span></h2>
-                        <ul>
-                            <li>
-                                <p>Duration</p>
-                                <span>12 months</span>
-                            </li>
-                            <li>
-                                <p>Personal trainer</p>
-                                <span>01 person</span>
-                            </li>
-                            <li>
-                                <p>Amount of people</p>
-                                <span>01 person</span>
-                            </li>
-                            <li>
-                                <p>Number of visits</p>
-                                <span>Unlimited</span>
-                            </li>
-                        </ul>
-                        <a href="#" class="primary-btn membership-btn">Start Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Membership Section End -->
-
-    <!-- Register Section Begin -->
-    <section class="register-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="register-text">
-                        <div class="section-title">
-                            <h2>Register Now</h2>
-                            <p>The First 7 Day Trial Is Completely Free With The Teacher</p>
-                        </div>
-                        <form action="#" class="register-form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="name">First Name</label>
-                                    <input type="text" id="name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="email">Your email address</label>
-                                    <input type="text" id="email">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="last-name">Last Name</label>
-                                    <input type="text" id="last-name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="mobile">Mobile No*</label>
-                                    <input type="text" id="mobile">
-                                </div>
-                            </div>
-                            <button type="submit" class="register-btn">Get Started</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="register-pic">
-                        <img src="<%=request.getContextPath() %>/resources/img/register-pic.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Register Section End -->
-
-    <!-- Latest Blog Section Begin -->
-    <section class="latest-blog-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Latest Blog</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-1.jpg" alt="">
-                        <div class="blog-widget">
-                            <div class="bw-date">February 17, 2019</div>
-                            <a href="#" class="tag">#Gym</a>
-                        </div>
-                        <h4><a href="#">10 States At Risk of Rural Hospital Closures</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-2.jpg" alt="">
-                        <div class="blog-widget">
-                            <div class="bw-date">February 17, 2019</div>
-                            <a href="#" class="tag">#Sport</a>
-                        </div>
-                        <h4><a href="#">Diver who helped save Thai soccer team</a></h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/blog/blog-3.jpg" alt="">
-                        <div class="blog-widget">
-                            <div class="bw-date">February 17, 2019</div>
-                            <a href="#" class="tag">#Body</a>
-                        </div>
-                        <h4><a href="#">Man gets life in prison for stabbing</a></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Latest Blog Section End -->
-
-    <!-- Footer Banner Section Begin -->
-    <section class="footer-banner">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="footer-banner-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/footer-banner/footer-banner-1.jpg">
-                        <span>New member</span>
-                        <h2>7 days for free</h2>
-                        <p>Complete the training sessions with us, surely you will be happy</p>
-                        <a href="#" class="primary-btn">Get Started</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer-banner-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/footer-banner/footer-banner-2.jpg">
-                        <span>contact us</span>
-                        <h2>09 746 204</h2>
-                        <p>If you trust us on your journey they dark sex does not disappoint you!</p>
-                        <a href="#" class="primary-btn">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Footer Banner Section End -->
-
+ 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
