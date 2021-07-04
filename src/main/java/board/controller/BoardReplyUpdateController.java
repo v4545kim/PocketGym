@@ -42,6 +42,7 @@ public class BoardReplyUpdateController {
 		int cnt = -999999 ;
 		cnt = dao.updateReply(bo_id, re_id, mem_id, context);
 		model.addAttribute("bo_id",bo_id);
+		model.addAttribute("mem_id",mem_id);
 		return "redirect:/brdetail.br";
 	}
 }

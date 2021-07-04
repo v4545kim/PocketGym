@@ -32,6 +32,7 @@ public class BoardReplyInsertController {
 		int cnt = dao.insertReply(bo_id, mem_id, context);
 		
 		model.addAttribute("bo_id", bo_id);
+		model.addAttribute("mem_id", mem_id);
 		return "redirect:/brdetail.br";
 	}
 }

@@ -3,102 +3,149 @@
 <%@ include file="./../common.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<% int twelve = 12 ; %>
-<c:set var="twelve" value="12" />
-<%
-	int myoffset = 2;
-	int mywidth = twelve - 2 * myoffset;
-	int formleft = 3 ;
-	int formright = twelve - formleft ; 
-%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 
 <head>
-<meta charset="UTF-8">
-<title>BootStrap Sample</title>
-	<style type="text/css">
-		.form-group{ margin-bottom : 3px; }
-	</style>
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+<!-- Main CSS-->
+<link href="<%=contextPath%>/resources/css/prinsertmain.css" rel="stylesheet" media="all">
+
+<!-- Jquery JS-->
+<script src="<%=contextPath%>/resources/vendor/jquery/prinsertjquery.min.js"></script>
+
+<!-- Main JS-->
+<script src="<%=contextPath%>/resources/js/prinsertglobal.js"></script>
+
+<style type="text/css">
+
+.dark-bg {
+    background-color: black;
+}
+.card-6 .card-heading {
+    background: black;
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid rgba(0,0,0,.125);
+}
+.card-6 .card-footer {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 50px 360px;
+}
+/* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
+.err{ 
+   font-size : 10pt;
+   color:red;
+   font-weight: bolder;
+}
+</style>
 </head>
 
 <body>
 	<jsp:include page="./../header.jsp"/>
+
 	<!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="<%=contextPath %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/breadcrumb/classes-breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <h2><i class="fa fa-pencil" aria-hidden="true"></i> 후기작성</h2>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-	
-	<div class="container col-sm-offset-<%=myoffset%> col-sm-<%=mywidth%>">
-		<div class="panel panel-default panel-primary">
-			<div class="panel-heading"><h4>후기 등록</h4></div>
-			<div class="panel-body">
-				<c:set var="apppath" value="<%=request.getContextPath()%>" />
-				<form:form modelAttribute="board" class="form-horizontal" role="form" action="${apppath}/brinsert.br"
-					method="post" enctype="multipart/form-data">
-					
-					<input type="hidden" name="mem_id" id="mem_id"
+    
+    
+    
+    
+    
+    <div class="page-wrapper dark-bg p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">후기 등록</h2>
+                </div>
+                <div class="card-body">
+                	<c:set var="apppath" value="<%=request.getContextPath()%>" />
+                    <form:form method="post" action="${apppath}/brinsert.br" modelAttribute="board" enctype="multipart/form-data">
+                        <form:input type="hidden" path="mem_id"
 								value="${sessionScope.loginfo.id}" />
-								
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="title">제목</label>
-						<div class="col-sm-<%=formright%>">
-							<input  type="text" class="form-control" name="title" id="title" value="${bean.title}" />
-								<form:errors cssClass="err" path="title" />
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="abcd1">다이어트 전</label>
-						<div class="col-sm-<%=formright%>">
-							<input type="file" class="form-control" name="abcd1" value="${bean.be_image}"
-								id="abcd1" placeholder="before 사진을 넣어주세요">
-							<form:errors cssClass="err" path="be_image" />							
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="abcd2">다이어트 후</label>
-						<div class="col-sm-<%=formright%>">
-							<input type="file" class="form-control" name="abcd2" value="${bean.af_image}"
-								id="abcd2" placeholder="after 사진을 넣어주세요">
-							<form:errors cssClass="err" path="af_image" />							
-						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label class="control-label col-sm-<%=formleft%>" for="context">후기</label>
-						<div class="col-sm-<%=formright%>">
-							<textarea rows="8" cols="30" class="form-control" name="context" id="context" value="${bean.context}"></textarea>
-								<form:errors cssClass="err" path="context" />
-						</div>
-					</div>					
-					<div class="form-group">
-						<div align="center" class="col-sm-offset-3 col-sm-6">
-							<button class="btn btn-default" type="submit">후기 등록</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button class="btn btn-default" type="reset">초기화</button>
-						</div>
-					</div>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!-- Footer Section Begin -->
+                        <div class="form-row">
+                            <div class="name">제목</div>
+                            <div class="value">
+                                <form:input class="input--style-6" type="text" path="title" />
+                                <form:errors cssClass="err" path="title" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">다이어트 전</div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input class="input-file" type="file" name="abcd1" id="be_image">
+                                    <label class="label--file" for="file">Choose file</label>
+                                    <br>
+                                    <form:errors cssClass="err" path="be_image" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">다이어트 후</div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input class="input-file" type="file" name="abcd2" id="af_image">
+                                    <label class="label--file" for="file">Choose file</label>
+                                    <br>
+                                    <form:errors cssClass="err" path="af_image" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">후기</div>
+                            <div class="value">
+                                <form:textarea rows="8" cols="30" class="input--style-6" type="text" path="context"></form:textarea>
+                                <form:errors cssClass="err" path="context" />
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer">
+	         				<button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o" >등록 하기</i></button>
+							<button class="btn btn-default" type="reset"><i class="fa fa-recycle">초기화</i></button>
+                		</div>
+                    </form:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="row">
