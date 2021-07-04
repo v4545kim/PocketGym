@@ -14,25 +14,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import vo.Board;
 import dao.BoardDao;
 
 @Controller
 public class BoardInsertController {
+	ModelAndView mav = null;
+	
+	@ModelAttribute("board")
+	public Board board() {
+		return new Board();
+	}
 	
 	@Autowired
 	@Qualifier("bdao")
 	private BoardDao dao ;
 	
+	public BoardInsertController() {
+		this.mav = new ModelAndView();
+	}
+	
 	@GetMapping("/brinsert.br")
-	private String  doGet(Model model){
-		return "boardInsertForm";
+	private ModelAndView doGet(){
+		this.mav.setViewName("boardInsertForm");
+		return this.mav;
 	}
 	
 	@PostMapping("/brinsert.br")
-	private String  doPost(
-			Model model,
+	private ModelAndView  doPost(
 			@ModelAttribute("board") @Valid Board bean,
 			BindingResult asdf,
 			HttpServletRequest request){
@@ -40,9 +51,8 @@ public class BoardInsertController {
 		if (asdf.hasErrors()) {
 			System.out.println("유효성 검사에 문제 있슴");
 			System.out.println(asdf);
-			model.addAttribute("bean", bean);	
-			return "boardInsertForm";
-			
+			mav.addObject("bean", bean);
+			mav.setViewName("boardInsertForm");
 		} else {
 			System.out.println("유효성 검사에 문제 없슴");
 			MultipartFile multi1 = bean.getAbcd1() ;
@@ -64,12 +74,12 @@ public class BoardInsertController {
 				bean.setAf_image(destination2.getName());
 				this.dao.insertBoard(bean);
 				
-				return "redirect:/brlist.br";
+				mav.setViewName("redirect:/brlist.br");
 			} catch (Exception e) {				
 				e.printStackTrace();
-				return null;
+				mav.setViewName("redirect:/brlist.br");
 			}
 		}			
-		
+		return this.mav;
 	}
 }

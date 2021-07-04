@@ -126,15 +126,17 @@
             	<c:forEach var="bean" items="${requestScope.lists}">
 	                <div class="col-lg-4 col-md-6">
 	                    <div class="single-blog-item">
-	                        <img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image">
+	                        <a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">
+	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image">
+							</a>
 								<h5>																
 									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">
 										<font size="5"> ${bean.title}</font>
 									</a>
 								</h5>
 								<div class="blog-widget">
+									<div><a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag"><b>${bean.mem_id}<b></a></div>
 									<div class="bw-date">${bean.regdate}</div>
-									<a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag"><b>${bean.mem_id}<b></a>
 								</div>
 	                    </div>
 	                </div>
