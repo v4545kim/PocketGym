@@ -73,10 +73,11 @@ public class BoardInsertController {
 				bean.setBe_image(destination1.getName());
 				bean.setAf_image(destination2.getName());
 				this.dao.insertBoard(bean);
-				
 				mav.setViewName("redirect:/brlist.br");
 			} catch (Exception e) {				
 				e.printStackTrace();
+				//이쪽부분 재수정 필요
+				System.out.println("예외처리확인");
 				mav.setViewName("redirect:/brlist.br");
 			}
 		}			

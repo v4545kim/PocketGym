@@ -88,6 +88,12 @@
                         </div>
                         
                         <div class="tag-share">
+                        	<div class="social-share">
+                        		<b>조회수 : ${readhits}<b>
+                        	</div>
+                        </div>
+                        <div class="tag-share">
+                        	
                            <c:if test="${sessionScope.loginfo.id == bean.mem_id}">
 	                           <div class="social-share">
 	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
@@ -122,14 +128,15 @@
                         </div>
                         <c:if test="${cnt != 0}">
                         <span id="more" style="CURSOR: hand" onclick="if(story.style.display=='none') 
-                        	{story.style.display='';more.innerText='댓글 접기'} else {story.style.display='none';more.innerText='댓글 펼치기'}"><b>댓글 펼치기<b>
+                        	{story.style.display='';more.innerText='댓글 접기 ▲'} else {story.style.display='none';more.innerText='댓글 펼치기 ▼'}"><b>댓글 펼치기 ▼<b>                        
                         </span>
 						<br>
 							<div id="story" style="display: none">
 		                        <c:forEach var="lists" items="${requestScope.lists}">
 				                        <div class="bd-title">
-				                            <div><p style="font-size: 14px; font-weight: bold; color:#FFA500;	"
-				                            	>${lists.mem_id}</p> ${lists.regdate}
+				                            <div>
+				                            	<p style="font-size: 14px; font-weight: bold; color:#FFA500;">${lists.mem_id}</p> 
+				                            		${lists.regdate}
 				                            </div>
 				                            <div><p>${lists.context}</p></div>
 				                        </div>

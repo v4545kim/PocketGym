@@ -87,6 +87,11 @@ public class BoardListController {
 			System.out.println("잘넘어가는지 확인"+lists.get(i).getTitle());
 		};
 		
+		
+		//좋아요 높은순 top 3
+		List<Board> lists2 = dao.likeTopList();
+		model.addAttribute("lists2",lists2);
+		
 		return "boardList" ;
 				
 	}

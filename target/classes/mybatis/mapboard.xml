@@ -38,6 +38,12 @@
 		order by b.bo_id desc
 	</select>	
 	
+	<!-- 좋아요순 top3가져오기 -->
+	<select id="likeTopList" resultType="AlBoard">
+		select ranking, bo_id, mem_id, title, context, be_image, af_image, regdate, likes from( select bo_id, mem_id, title, context, be_image, af_image, regdate, likes, rank() over(order by likes desc) as ranking from( select b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate, count(distinct l.mem_id) as likes from boards b inner join likeboard l on b.bo_id = l.bo_id group by b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate order by likes desc)) where ranking between 1 and 3
+	</select>
+	
+	
 	<!-- 한글의대한 정보 가져오기 -->
 	<select id="selectById" parameterType="Integer" resultType="AlBoard">
 		select * from boards where bo_id = #{bo_id}
@@ -85,5 +91,15 @@
 	<select id="likeList" parameterType="Integer" resultType="AlBoard">
 		select mem_id from likeboard where bo_id = #{bo_id}
 	</select>
+	
+	<!-- 조회수 가져오기 -->
+	<select id="countReadHit" resultType="int">
+		select count(mem_id) as likes from readhits where bo_id = #{bo_id}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<insert id="insertReadHit" parameterType="AlBoard">
+		insert into readhits (bo_id, mem_id) values (#{bo_id}, #{mem_id})
+	</insert>
 	
 </mapper>
