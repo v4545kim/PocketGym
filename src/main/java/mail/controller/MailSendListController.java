@@ -52,11 +52,8 @@ public class MailSendListController
 		
 		
 		
-		
 		//내가 보낸 메일 리스트를 가져온다.
 		List<Mail> lists = mldao.MySendMailList(id, pageInfo.getOffset(), pageInfo.getLimit());
-		
-		
 		
 		this.mav.addObject("unread", unreadnum);
 		this.mav.addObject("id", id);

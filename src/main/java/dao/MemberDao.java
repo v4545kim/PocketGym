@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import vo.Member;
+import vo.MyWeight;
 import vo.Order;
 
 @Component("mdao")
@@ -92,6 +93,15 @@ public class MemberDao {
 		return this.abcd.delete(NAMESPACE + "DeleteMember", map);
 	}
 	
+	//나의 몸무게 성취율 리스트
+	public List<MyWeight> SelectMyWeightList(String id) 
+	{
+		return this.abcd.selectList(NAMESPACE + "SelectMyWeightList", id);
+	}
+	
+	public int insertMyWeight(MyWeight myweight) {
+		return this.abcd.insert(NAMESPACE + "insertMyWeight", myweight);
+	}
 	
 
 }

@@ -12,7 +12,7 @@
 
 <style type="text/css">
 .row.justify-content-center {
-    margin-top: 200px;
+    margin-top: 60px;
 }
 input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block 
 {
@@ -45,11 +45,19 @@ textarea.form-control
                         <div class="card border-primary rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
-                                    <h3><i class="fa fa-envelope"></i> 받은 메일</h3>
+                                    <h3><i class="fa fa-envelope"></i>
+                                    <c:choose>
+                                    <c:when test="${requestScope.valid == 0 }">
+                                    	받은 메일
+                                    </c:when>
+                                    <c:otherwise>
+                                    	보낸 메일
+                                    </c:otherwise>
+                                    </c:choose>
+                                    </h3>
                                 </div>
                             </div>
                             <div class="card-body p-3">
-
                                 <!--Body-->
                                 <div class="form-group">
                                 <i class="text-info">보낸사람</i>
@@ -61,6 +69,16 @@ textarea.form-control
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                <i class="text-info">받는사람</i>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                                        </div>
+                                        <input type="text" disabled="disabled" class="form-control" id="nombre" name="receiveid" value="${requestScope.bean.receiveid }">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                 <i class="text-info">제목</i>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-edit text-info"></i></div>
@@ -70,6 +88,7 @@ textarea.form-control
                                 </div>
 
                                 <div class="form-group">
+                                 <i class="text-info">내용</i>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
@@ -79,8 +98,15 @@ textarea.form-control
                                 </div>
 								
 								<div class="text-center">
-                                    <input type="button" value="뒤로가기" class="btn btn-info btn-block rounded-0 py-2" onclick="location.href='<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}';">
-                                    <input type="button" value="답장하기" class="btn btn-info btn-block rounded-0 py-2" onclick="location.href='<%=contextPath%>/mailinsert.ml?sendid=${requestScope.bean.sendid}';">
+									<c:choose>
+                                    <c:when test="${requestScope.valid == 0 }">
+	                                    <input type="button" value="뒤로가기" class="btn btn-info btn-block rounded-0 py-2" onclick="location.href='<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}';">
+	                                    <input type="button" value="답장하기" class="btn btn-info btn-block rounded-0 py-2" onclick="location.href='<%=contextPath%>/mailinsert.ml?sendid=${requestScope.bean.sendid}';">
+                                	</c:when>
+                                	<c:otherwise>
+                                		<input type="button" value="뒤로가기" class="btn btn-info btn-block rounded-0 py-2" onclick="location.href='<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}';" style="width:480px;">
+                                	</c:otherwise>
+                                	</c:choose>
                                 </div>
                             </div>
 
