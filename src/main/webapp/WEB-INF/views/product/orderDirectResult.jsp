@@ -18,11 +18,6 @@ body {
 .black-font{
     color: black;
 }
-#point {
-    font-size: 50px;
-    margin-top: -8px;
-    margin-bottom: 10px;
-}
 </style>
 
 <script type="text/javascript">
@@ -92,8 +87,8 @@ body {
 		                            </table>
 		                            <div class="d-flex flex-row-reverse bg-dark text-white">
 		                        		<div class="py-3 px-5 text-center">
-		                            		<div class="mb-2">총 가격</div>
-		                            		<div class="h2 font-weight-light" id="point">${order.total_price}(P)</div>
+		                        			<div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}(P)</div>
+		                            		<div class="mb-2">총 가격(p) : ${order.total_price}(P)</div>
 		    		                        <div class="mb-2">
 		    		                        	<button type="button" onclick="goList();" class="btn btn-light">쇼핑 더하기</button>
 	    		                        		<button type="button" onclick="goMain();" class="btn btn-light">메인으로</button>
@@ -106,7 +101,6 @@ body {
                                 				${requestScope.mem_info.address2}
                                 				<br>
 	    		                        	</div>
-		    		                        <div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}(P)</div>
 										</div>
 		                    		</div>
 		                        </div>

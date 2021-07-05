@@ -180,6 +180,10 @@ ul.nav.navbar-nav {
                                  class="glyphicon glyphicon-cog pull-right"></span></a></li>
 									<li><a href="#" onclick="check();">my 장바구니 보기<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											
+									<li><a href="#" onclick="window.open('<%=contextPath%>/myweightinsert.me','window팝업','width=600, height=500');">
+									몸무게 입력<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+											
 									<li><a href="<%=contextPath%>/delete.me?id=${sessionScope.loginfo.id}" 
 									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>

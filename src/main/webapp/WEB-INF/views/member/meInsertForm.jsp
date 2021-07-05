@@ -210,8 +210,9 @@ function isCheckFalse()
                                    <label for="meal_preference">우편 번호</label>
                                  <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                                  <input type="text" id="sample6_address" name="address1" placeholder="주소" value="${requestScope.bean.address1}" readonly="readonly" ><br>
-                                 <input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.bean.address2}">
                                  <form:errors cssClass="err" path="address1" />
+                                 <input type="text" id="sample6_detailAddress" name="address2" placeholder="상세주소" value="${requestScope.bean.address2}">
+                                 <form:errors cssClass="err" path="address2" />
                               </div>
                                 
                                 <div class="form-input">

@@ -21,11 +21,6 @@ body {
 .black-font{
     color: black;
 }
-#point {
-    font-size: 50px;
-    margin-top: -8px;
-    margin-bottom: 10px;
-}
 </style>
 
 <script type="text/javascript">
@@ -136,8 +131,8 @@ body {
 		                            </table>
 		                            <div class="d-flex flex-row-reverse bg-dark text-white">
 		                        		<div class="py-3 px-5 text-center">
-		                            		<div class="mb-2">총 가격</div>
-		                            		<div class="h2 font-weight-light" id="point">${total_price}(P)</div>
+		                        			<div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}(P)</div>
+		                            		<div class="mb-2">총 가격(p) : ${total_price}(P)</div>
 		                            		<input type="hidden" name="pay" value="${total_price}">
 		    		                        <div class="mb-2">
 		    		                        	<button type="button" onclick="history.back(-1);" class="btn btn-light">뒤로가기</button>
@@ -153,7 +148,6 @@ body {
                                  				<br>
                                  				<input type="button" onclick="sample6_execDaumPostcode()" value="배송지 변경" class="btn btn-light"><br>
 		    		                        </div>
-		    		                        <div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}(P)</div>
 										</div>
 		                    		</div>
 		                        </div>

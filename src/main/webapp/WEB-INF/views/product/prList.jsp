@@ -3,15 +3,92 @@
 <%@ include file="./../common.jsp"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<script type="text/javascript">
-		function search(){
-			if( $('#mode').val() == 'all' ){
-				alert('검색 목록을 선택해주세요') ;
-			}
+<script type="text/javascript">
+	function search(){
+		if( $('#mode').val() == 'all' ){
+			alert('검색 목록을 선택해주세요') ;
 		}
-	</script>
+	}
+</script>
+	<style type="text/css">
+	.single-blog-item{
+		text-align: center;
+	}
+	form { 
+       margin: 0 auto; 
+       width:700px;
+   	}
+   	#input1{
+   		width: 300px;
+   		height: 50px;
+   		border-top: none;
+   		border-left: none;
+   		border-right: none;
+   		border-bottom: 3px solid black;
+   	}  
+   	#mode{
+   		width: 150px;
+   		height: 50px;
+   		border-top: none;
+   		border-left: none;
+   		border-right: none;
+   		border-bottom: 3px solid black;
+   	}
+   	#button1{
+   		width: 100px;
+   		height: 50px;
+   		border-top: none;
+   		border-left: none;
+   		border-right: none;
+   		border-bottom: 3px solid black;
+   		background-color: black;
+   		font-weight: bold;
+   		color: white;
+   	}
+   	#button2{
+   		width: 100px;
+   		height: 50px;
+   		border-top: none;
+   		border-left: none;
+   		border-right: none;
+   		background-color: white;
+   		font-weight: bold;
+   		color: black;
+   	}
+	#category.dropdown-menu>li>a {
+    color:black;
+	}
+	.dropdown ul#category.dropdown-menu{
+		border-radius: 0px;
+    	box-shadow: none;
+    	margin-top: -2px;
+    	margin-left: -1px;
+    	width: 161px;
+    	background-color: white;
+	}
+	.dropdown ul#category.dropdown-menu:before {
+	    content: "";
+	    border-bottom: 0;
+	    border-right: 0;
+	    border-left: 0;
+	    position: absolute;
+	    top: 50px;
+	    right: 16px;
+	    z-index: 10;
+	}
+	.dropdown ul#category.dropdown-menu:after {
+	    content: "";
+	    border-bottom: 0;
+	    border-right: 0;
+	    border-left: 0;
+	    position: absolute;
+	    top: 50px;
+	    right: 14px;
+	    z-index: 9;
+	}
+    	
+   </style>
 </head>
 
 <body>
@@ -34,16 +111,24 @@
     	<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/prlist.pr" method="get">
 			<div class="form-group">
 				<select class="form-control" name="mode" id="mode">
-					<option value="all" selected="selected">-- 선택하세요---------
+					<option value="all" selected="selected">-- 선택하세요 --
 					<option value="title" >제목
 				</select>
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control btn-xs" name="keyword" placeholder="검색 키워드">
+				<input id="input1" type="text" class="form-control btn-xs" name="keyword" placeholder="검색 키워드">
 			</div>
-			<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
+			<button id="button1" class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<p class="form-control-static">${requestScope.pagingStatus}</p>
+				<div class="dropdown category" style="width: 0px;">
+					<button id="button2" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;">카테고리를 선택하세요
+					</button>
+					<ul class="dropdown-menu" id="category">
+						<li><a href="<%=contextPath%>/prlist.pr?mode=category&keyword=음식">음식</a></li>
+						<li><a href="<%=contextPath%>/prlist.pr?mode=category&keyword=기구">기구</a></li>
+						<li><a href="<%=contextPath%>/prlist.pr?mode=category&keyword=의류">의류</a></li>
+					</ul>
+				</div>
 		</form>
     </div>
     <section class="blog-section spad">
@@ -65,9 +150,9 @@
 	                </div>
                 </c:forEach>
             </div>
-            <div align="center">
-				${requestScope.pagingHtml}
-			</div>	
+            <div align="center" style="font-size: 1.5em;">
+				${requestScope.pagingHtml}<p class="form-control-static">${requestScope.pagingStatus}</p>
+			</div>
         </div>
     </section>
     <br><br><br><br>

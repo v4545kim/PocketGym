@@ -23,6 +23,7 @@ public class ProductListController {
 	@Qualifier("pdao")
 	private ProductsDao pdao;
 	
+	// 네비게이션 바에 있는 쇼핑몰 버튼을 클릭할 때
 	@GetMapping("/prlist.pr")
 	private ModelAndView doGet(
 			HttpServletRequest request,
@@ -40,6 +41,7 @@ public class ProductListController {
 		// 파라미터 확인을 위한 출력
 		System.out.println(this.getClass() + " : " + parameters.toString());
 		
+		// mode와 keyword에 따른 총개수를 가져온다.
 		int totalCount = pdao.selectTotalCount(
 				parameters.getMode(), 
 				parameters.getKeyword());

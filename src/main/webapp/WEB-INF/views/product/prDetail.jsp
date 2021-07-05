@@ -10,15 +10,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 <style type="text/css">
-    
 .gallery-wrap .img-big-wrap img {
     height: 450px;
     width: auto;
     display: inline-block;
     cursor: zoom-in;
 }
-
-
 .gallery-wrap .img-small-wrap .item-gallery {
     width: 60px;
     height: 60px;
@@ -27,7 +24,6 @@
     display: inline-block;
     overflow: hidden;
 }
-
 .gallery-wrap .img-small-wrap {
     text-align: center;
 }
@@ -143,14 +139,10 @@
 			</aside>
 			<aside class="col-sm-5">
 				<article class="card-body p-5">
-					<h3 class="title mb-3">상품명 : ${bean.pr_name}</h3>
+					<h4 class="title mb-3">상품명 : ${bean.pr_name}</h4>
 					<h4 class="title mb-3">상품 설명 : ${bean.context}</h4>
 					<h4 class="title mb-3">재고 수량 : ${bean.stock}</h4>
-					<p class="price-detail-wrap">
-						<span class="price h3 text-warning">
-							<span class="num">가격 : ${bean.price}</span>
-						</span>
-					</p>
+					<h4 class="title mb-3">가격 : ${bean.price}(P)</h4>
 					<hr>
 					<c:set var="apppath" value="<%=request.getContextPath()%>" />
 					<form:form action="${apppath}/prcart.pr" method="post" name="myform">

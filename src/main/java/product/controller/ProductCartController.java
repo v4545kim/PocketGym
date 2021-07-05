@@ -27,6 +27,7 @@ public class ProductCartController {
 	@Qualifier("pdao")
 	ProductsDao pdao;
 	
+	// 상품 상세 페이지에서 장바구니 버튼을 클릭할 때
 	@PostMapping("/prcart.pr")
 	private ModelAndView  doPost(
 			@ModelAttribute Cart cart ,
@@ -37,7 +38,10 @@ public class ProductCartController {
 		int pr_id = cart.getPr_id();
 		int count = cart.getCount();
 		
+		// 상품의 현재 재고 수량을 가져온다.
 		int stock = pdao.selectStockByPk(pr_id);
+		
+		// 상품의 현재 가격을 가져온다.
 		int price = pdao.selectPriceByPk(pr_id);
 		
 		if(loginfo == null) {

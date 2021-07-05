@@ -16,6 +16,7 @@ public class ProductDeleteController {
 	@Qualifier("pdao")
 	private ProductsDao pdao;
 	
+	// 관리자가 상품 상세 페이지에서 삭제 버튼을 클릭할 때
 	@GetMapping("delete.pr")
 	private ModelAndView doGet(
 			@RequestParam(value = "pr_id", required = true) int pr_id){

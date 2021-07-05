@@ -36,17 +36,23 @@
 		<if test="mode == 'title'"> 
 			where pr_name like #{keyword} and stock > 0 
 		</if> 
-		<if test="mode != 'title'"> 
+		<if test="mode == 'category'"> 
+			where category like #{keyword} and stock > 0 
+		</if>  
+		<if test="mode != 'title' &amp;&amp; mode != 'category'"> 
 			where stock > 0 
-		</if> 
+		</if>  
 	</select> 
 	
 	<select id="selectAll" resultType="AlProduct"> 
 		select * from products 
 		<if test="mode == 'title'"> 
 			where pr_name like #{keyword} and stock > 0 
-		</if> 
-		<if test="mode != 'title'"> 
+		</if>
+		<if test="mode == 'category'"> 
+			where category like #{keyword} and stock > 0 
+		</if>  
+		<if test="mode != 'title' &amp;&amp; mode != 'category'"> 
 			where stock > 0 
 		</if> 
 		order by pr_id desc 
@@ -66,4 +72,4 @@
 		delete from products where pr_id = #{pr_id}
 	</delete>
 	
-</mapper> 
+</mapper>

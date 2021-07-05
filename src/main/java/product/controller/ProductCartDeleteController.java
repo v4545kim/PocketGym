@@ -18,6 +18,7 @@ public class ProductCartDeleteController {
 	@Qualifier("cdao")
 	private CartDao cdao;
 	
+	// 장바구니에서 휴지통 버튼을 클릭할 때
 	@GetMapping("prcartdelete.pr")
 	private ModelAndView doGet(
 			@RequestParam(value = "cart_id", required = true) int cart_id){

@@ -36,6 +36,7 @@ public class Member
    @NotEmpty(message="주소는 " + MUST_INPUT)
    private String address1;
    
+   @NotEmpty(message="상세 주소는 " + MUST_INPUT)
    private String address2;
    
    @NotEmpty(message="성별은 " + MUST_INPUT)
