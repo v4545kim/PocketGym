@@ -38,10 +38,12 @@ public class ProductUpdateController {
 		this.mav = new ModelAndView();
 	}	
 	
+	// 관리자가 상품 상세 페이지에서 수정 버튼을 클릭할 때
 	@GetMapping("/update.pr")
 	private ModelAndView doGet(
 			@RequestParam(value = "pr_id", required = true) int pr_id){
 		
+		// 수정할 상품의 정보를 가져온다.
 		Product bean = pdao.selectDataByPk(pr_id);
 		
 		this.mav.addObject("bean", bean);
@@ -50,6 +52,7 @@ public class ProductUpdateController {
 		return this.mav;
 	}
 	
+	// 수정하기 폼에서 수정하기 버튼을 클릭할 때
 	@PostMapping("/update.pr")
 	private ModelAndView doPost(
 			@ModelAttribute("product") @Valid Product bean,

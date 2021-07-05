@@ -19,7 +19,7 @@ public class ProductDetailController {
 	@Qualifier("pdao")
 	private ProductsDao dao;
 	
-	
+	// 상품 리스트 페이지에서 상품의 사진이나 제목을 클릭할 때
 	@GetMapping("/prdetail.pr")
 	private ModelAndView  doGet(
 			@RequestParam(value = "pr_id", required = true) int pr_id){

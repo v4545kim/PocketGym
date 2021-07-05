@@ -37,6 +37,7 @@ public class ProductInsertController {
 		this.mav = new ModelAndView();
 	}
 	
+	// 관리자가 상품 등록을 클릭할 때
 	@GetMapping("/insert.pr")
 	private ModelAndView doGet(){
 		
@@ -45,6 +46,7 @@ public class ProductInsertController {
 		return this.mav;
 	}
 	
+	// 상품 등록 폼에서 등록하기 버튼을 클릭할 때
 	@PostMapping("/insert.pr")
 	private ModelAndView doPost(
 			@ModelAttribute("product") @Valid Product bean,
@@ -56,6 +58,8 @@ public class ProductInsertController {
 		
 		if(loginfo == null) {
 			mav.setViewName("redirect:/login.me");
+			
+		// 현재 로그인한 사람이 관리자인지 확인한다.	
 		} else if(! loginfo.getId().equals("admin")) {
 			mav.setViewName("redirect:/main.ma");
 		} else {

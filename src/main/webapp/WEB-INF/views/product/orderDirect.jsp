@@ -21,11 +21,6 @@ body {
 .black-font{
     color: black;
 }
-#point {
-    font-size: 50px;
-    margin-top: -8px;
-    margin-bottom: 10px;
-}
 </style>
 
 <script type="text/javascript">
@@ -140,13 +135,12 @@ function sample6_execDaumPostcode() {
 		                            </table>
 		                            <div class="d-flex flex-row-reverse bg-dark text-white">
 		                        		<div class="py-3 px-5 text-center">
-		                            		<div class="mb-2">총 가격</div>
-		                            		<div class="h2 font-weight-light" id="point">${order.total_price}(P)</div>
+		                        			<div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}(P)</div>
+		                            		<div class="mb-2">총 가격(p) : ${order.total_price}(P)</div>
 		    		                        <div class="mb-2">
 		    		                        	<button type="button" onclick="history.back(-1);" class="btn btn-light">뒤로가기</button>
 		    		                        	<button type="button" onclick="checkBuy2();" class="btn btn-light">결제하기</button>
 		    		                        </div>
-		                            		
 		                        		</div>
 		                        		<div class="py-3 px-5 text-right">
 		    		                        <div class="mb-2">주문 하시는 분 : ${requestScope.mem_info.nickname}</div>
@@ -156,7 +150,6 @@ function sample6_execDaumPostcode() {
                                  				<br>
                                  				<input type="button" onclick="sample6_execDaumPostcode()" value="배송지 변경" class="btn btn-light"><br>
 		    		                        </div>
-		    		                        <div class="mb-2">보유 포인트 : ${requestScope.mem_info.point}(P)</div>
 										</div>
 		                    		</div>
 		                        </div>

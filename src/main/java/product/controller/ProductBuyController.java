@@ -40,6 +40,7 @@ public class ProductBuyController {
 		this.mav = new ModelAndView();
 	}
 	
+	// 장바구니에서 구매하기 버튼을 클릭할 때
 	@GetMapping("prbuy.pr")
 	private ModelAndView doGet(
 			@RequestParam(value = "mem_id", required = true) String mem_id){
@@ -47,10 +48,12 @@ public class ProductBuyController {
 		// order.jsp에 나오는 사용자의 정보를 가져오기 위한 메소드
 		Member mem_info = mdao.selectForOrder(mem_id);
 		
+		// 현재 장바구니에 담겨있는 리스트들을 가져오기 위한 메소드
 		List<Cart> cartlists = cdao.selectCartList(mem_id);
 		
 		int total_price = 0 ;
 		
+		// 카트에 담겨있는 개수만큼 for문을 돌려 총 가격을 구한다.
 		for (Cart cart : cartlists) {
 			total_price += cart.getTotal_price();
 		}
@@ -63,6 +66,7 @@ public class ProductBuyController {
 		return this.mav;
 	}
 	
+	// 상품 상세 페이지에서 구매하기 버튼을 클릭할 때
 	@GetMapping("prbuy2.pr")
 	private ModelAndView directBuyDoGet(
 			@RequestParam(value = "mem_id", required = true) String mem_id,
@@ -72,6 +76,7 @@ public class ProductBuyController {
 		// order.jsp에 나오는 사용자의 정보를 가져오기 위한 메소드
 		Member mem_info = mdao.selectForOrder(mem_id);
 		
+		// 사용자가 구매하기 위해 선택한 상품의 정보를 그대로 가져온다.
 		Product product = pdao.selectDataByPk(pr_id);
 		
 		int price = product.getPrice();
@@ -90,6 +95,7 @@ public class ProductBuyController {
 		return this.mav;
 	}
 	
+	// order.jsp에서 결제하기 버튼을 클릭할 때
 	@PostMapping("prbuy.pr")
 	private ModelAndView doPost(
 			@RequestParam(value = "address1", required = true) String orderaddress1,
@@ -106,6 +112,7 @@ public class ProductBuyController {
 		String mem_id = loginfo.getId();
 		int point = loginfo.getPoint();
 		
+		// 만약 보유 포인트가 지불할 가격보다 낮은 경우 다시 장바구니 리스트로 돌아간다.
 		if (point < pay) {
 			this.mav.setViewName("redirect:/prcartlist.pr");
 			
@@ -116,7 +123,7 @@ public class ProductBuyController {
 			int count=0;
 			int total_price=0;
 			
-			
+			// 사용자의 장바구니 리스트에 담겨있는 정보들을 가져온다. 
 			List<Cart> cartlists = cdao.selectCartList(mem_id);
 			
 			for (Cart cart : cartlists) {
@@ -142,14 +149,17 @@ public class ProductBuyController {
 				
 				// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
 				cnt = mdao.changePoint(order);
-		}
-		
+				
+				loginfo = mdao.selectById(mem_id);
+				
+				this.mav.addObject("mem_info", loginfo);
+			}
 		this.mav.setViewName("orderResult");
 		}
-		
 		return this.mav;
 	}
 	
+	// orderDirect.jsp에서 결제하기 버튼을 클릭할 때
 	@PostMapping("prbuy2.pr")
 	private ModelAndView directBuyDoPost(
 			@RequestParam(value = "address1", required = true) String orderaddress1,
@@ -159,6 +169,7 @@ public class ProductBuyController {
 			@RequestParam(value = "total_price", required = true) int ordertotal_price,
 			HttpSession session){
 		
+		// orderDirect.jsp에서 미리 포인트가 상품의 가격보다 낮을 경우 안 넘어가도록 처리하였음.
 		Order order = null;
 		
 		String address1 = orderaddress1;
@@ -184,6 +195,11 @@ public class ProductBuyController {
 		
 		// 결제한 후 사용자의 포인트에서 총 금액을 차감 해준다.
 		cnt = mdao.changePoint(order);
+		
+		loginfo = mdao.selectById(mem_id);
+		
+		this.mav.addObject("order",order);
+		this.mav.addObject("mem_info", loginfo);
 		
 		this.mav.setViewName("orderDirectResult");
 		

@@ -90,8 +90,9 @@ body {
 	                            </table>
 	                            <div class="d-flex flex-row-reverse bg-dark text-white">
 	                        		<div class="py-3 px-5 text-center">
-	                            		<div class="mb-2">총 가격</div>
-	                            		<div class="h2 font-weight-light" id="point">${total_price}(P)</div>
+	                        			<div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}(P)</div>
+	                            		<div class="mb-2">총 가격(p) : ${total_price}(P)</div>
+	                            		<div class="h2 font-weight-light" id="point"></div>
 	    		                        <div class="mb-2">
 	    		                        	<button type="button" onclick="goList();" class="btn btn-light">쇼핑 더하기</button>
 	    		                        	<button type="button" onclick="goMain();" class="btn btn-light">메인으로</button>
@@ -104,7 +105,6 @@ body {
                                 				${requestScope.mem_info.address2}
                                 				<br>
 	    		                        </div>
-	    		                        <div class="mb-2">잔여 포인트 : ${requestScope.mem_info.point}(P)</div>
 									</div>
 	                    		</div>
 	                        </div>
