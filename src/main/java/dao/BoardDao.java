@@ -142,6 +142,24 @@ public class BoardDao {
 	}
 	
 	
+	//좋아요 높은순 탑3 후기 가져오기
+	public List<Board> likeTopList() {
+		Map<String, String> map = new HashMap<String, String>() ;
+		return this.abcd.selectList(namespace + "likeTopList", map);
+	}
+	
+	//게시물의 조회수 가져오기
+	public int countReadHit(int bo_id) {
+		return this.abcd.selectOne(namespace + "countReadHit", bo_id);
+	}
+	
+	//게시물 조회수 추가
+	public int insertReadHit(int bo_id, String mem_id) {
+		Board bean = new Board();
+		bean.setBo_id(bo_id);
+		bean.setMem_id(mem_id);
+		return this.abcd.insert(namespace + "insertReadHit", bean);
+	}
 	
 
 }

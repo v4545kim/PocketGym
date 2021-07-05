@@ -122,15 +122,45 @@
     </div>
     <section class="blog-section spad">
         <div class="container">
-            <div class="row">
-            	<c:forEach var="bean" items="${requestScope.lists}">
-	                <div class="col-lg-4 col-md-6">
-	                    <div class="single-blog-item">
-	                        <a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">
-	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image">
+            <div>
+            <p style="font-size: 24px; font-weight: bold; color:#000080; 
+                            	font-family:arial; line-height: 40px;">
+            	인기순 top 3 후기
+            </p>
+            	<c:forEach var="bean" items="${requestScope.lists2}">
+	                <div class="col-lg-4 col-md-6" style="width: 500px; height: 500px; vertical-align: middle; display: table; ">
+	                    <div class="single-blog-item" style="display: table-cell; vertical-align: middle;">
+	                        <a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
+	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image" height="300"  width="300" >
 							</a>
 								<h5>																
-									<a href="<%=contextPath%>/brdetail.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}">
+									<a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
+										<font size="5"> ${bean.title}</font>
+									</a>
+								</h5>
+								<div class="blog-widget">
+									<div><a href="<%=contextPath%>/detail.me?mem_id=${bean.mem_id}" class="tag"><b>${bean.mem_id}<b></a></div>
+									<div class="bw-date">${bean.regdate}</div>
+								</div>
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div>
+        </div>
+    </section>
+
+    <hr style="border:2px solid#878787; height: 1px !important; display: orange !important; width: 50% !important;"/>
+    <section class="blog-section spad">
+        <div class="container">
+            <div >
+            	<c:forEach var="bean" items="${requestScope.lists}">
+	                <div class="col-lg-4 col-md-4" style="width: 500px; height: 500px; vertical-align: middle; display: table; ">
+	                    <div class="single-blog-item" style="display: table-cell; vertical-align: middle;">
+	                        <a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
+	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image" height="300"  width="300" >
+							</a>
+								<h5>																
+									<a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
 										<font size="5"> ${bean.title}</font>
 									</a>
 								</h5>

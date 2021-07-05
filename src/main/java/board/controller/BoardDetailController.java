@@ -31,21 +31,21 @@ public class BoardDetailController {
 		
 		
 		//게시글을 좋아요한 아이디리스트 가져오기
-				List<Board> member = dao.likeList(bo_id, mem_id);
-				//좋아요 추가와 좋아요 취소 처리를 위한 변수 생성
-				int valid = -99999;
-				for(Board mem : member) {
-					System.out.println("회원 아이디 있는사람은 : " + mem.getMem_id());
-					if(mem.getMem_id().equals(mem_id))
-					{
-						valid = 0;
-					}
-				}
-				
-				System.out.println("회원아이디 : " + mem_id);
-				System.out.println("valid : " + valid);
-				
-				model.addAttribute("valid", valid);
+		List<Board> member = dao.likeList(bo_id, mem_id);
+		//좋아요 추가와 좋아요 취소 처리를 위한 변수 생성
+		int valid = -99999;
+		for(Board mem : member) {
+			System.out.println("회원 아이디 있는사람은 : " + mem.getMem_id());
+			if(mem.getMem_id().equals(mem_id))
+			{
+				valid = 0;
+			}
+		}
+		
+		System.out.println("회원아이디 : " + mem_id);
+		System.out.println("valid : " + valid);
+		
+		model.addAttribute("valid", valid);
 		
 		
 		//댓글리스트를 가져오기
@@ -59,9 +59,13 @@ public class BoardDetailController {
 		model.addAttribute("lists", lists);
 		
 		//좋아요갯수 가져오기
-				int like = dao.countLike(bo_id);
-				model.addAttribute("like", like);
-				System.out.println("좋아요 갯수 : "+ like);
+		int like = dao.countLike(bo_id);
+		model.addAttribute("like", like);
+		System.out.println("좋아요 갯수 : "+ like);
+		
+		//조회수 가져오기
+		int readhits = dao.countReadHit(bo_id);
+		model.addAttribute("readhits",readhits);
 		
 		return "boardDetail";
 	}
