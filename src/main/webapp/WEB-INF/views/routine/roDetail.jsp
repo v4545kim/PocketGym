@@ -20,6 +20,34 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+	td{
+		color: white;
+	}
+	* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 20%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+td {
+    font-size: x-large;
+}
+.text-white {
+    color: #fff!important;
+    font-size: x-large;
+}
+</style>
 </head>
 
 <body>
@@ -39,20 +67,25 @@
 		</div>
 	</section>
 	<div class="container">
-		<h2>루틴 리스트</h2>
-		<p>루틴에 대한 상세정보를 볼 수 있어요</p>
+		<h2>${ro_name } 루틴</h2>
 		<a href="<%=contextPath%>/update.ro?ro_id=${ro_id}"
 			class="btn btn-primary" role="button">루틴 수정하기</a> <a
 			href="<%=contextPath%>/delete.ro?ro_id=${ro_id}"
 			class="btn btn-primary" role="button">루틴 삭제하기</a> <br>
 		<br>
-		<div class="card-columns">
-			<c:forEach items="${list }" var="item">
-				<div class="card bg-primary">
-					<div class="card-body text-center">
-						<p class="card-text" style="color: white">${item.ex_name }</p>
+		<div class="row">
+			<c:forEach items="${list}" var="item">
+				<div class="column">
+					<div class="container">
+						<a href="<%=contextPath%>/detail.ex?ex_id=${item.ex_id}">
+							<img src="<%=contextPath%>/upload/${item.ex_image}" alt="${item.ex_name}"
+								style="width: 200px; height: 150px">
+						</a>
+							<div class="middle">
+								<div class="text">${item.ex_name}</div>
+							</div>
+						</div>
 					</div>
-				</div>
 			</c:forEach>
 		</div>
 	</div>

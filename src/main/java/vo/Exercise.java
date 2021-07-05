@@ -3,6 +3,7 @@ package vo;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Exercise 
 {
@@ -22,7 +23,28 @@ public class Exercise
 	@NotEmpty(message="운동영상은 " + MUST_INPUT)
 	private String url;
 	
+	@NotEmpty(message= "운동이미지는" + MUST_INPUT)
+	private String ex_image;
 	
+	public String getEx_image() {
+		return ex_image;
+	}
+	public void setEx_image(String ex_image) {
+		this.ex_image = ex_image;
+	}
+	private MultipartFile mpf ;
+	
+	public MultipartFile getMpf() {
+		return mpf;
+	}
+	public void setMpf(MultipartFile mpf) {
+		this.mpf = mpf;
+		
+		if(this.mpf != null) {
+			this.ex_image = this.mpf.getOriginalFilename();
+		}
+	}
+		
 	public int getEx_id() {
 		return ex_id;
 	}
@@ -57,7 +79,8 @@ public class Exercise
 	@Override
 	public String toString() {
 		return "Exercise [ex_id=" + ex_id + ", ex_name=" + ex_name + ", ex_calorie=" + ex_calorie + ", context="
-				+ context + ", url=" + url + "]";
+				+ context + ", url=" + url + ", ex_image=" + ex_image + "]";
 	}
 
+	
 }

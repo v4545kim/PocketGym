@@ -27,20 +27,25 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-pic">
-                       ${ex.url }
+                    <img alt="" src="<%=contextPath %>/upload/${ex.ex_image }">
+                      <a href="${ex.url}" class="play-btn video-popup">
+                         <img src="<%=request.getContextPath() %>/resources/img/play.png" alt="">
+                     </a>                  
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-text">
                         <h2>${ex.ex_name }</h2>
                         <p class="first-para">${ex.context }</p>
-                        <p class="second-para">	${ex.ex_calorie } 칼로리</p>                     
-                    </div>
-                </div>
-                <c:if test="${whologin == 2}">
-                	<a href="<%=contextPath%>/update.ex?ex_id=${ex.ex_id}" class="btn btn-primary" role="button">운동 수정하기</a>
-                	<a href="<%=contextPath%>/delete.ex?ex_id=${ex.ex_id}" class="btn btn-primary" role="button">운동 삭제하기</a>
-                </c:if>
+                        <p class="second-para">소모 칼로리 : ${ex.ex_calorie } 칼로리</p>
+						<c:if test="${whologin == 2}">
+							<a href="<%=contextPath%>/update.ex?ex_id=${ex.ex_id}"
+								class="btn btn-primary" role="button">수정하기</a>
+							<a href="<%=contextPath%>/delete.ex?ex_id=${ex.ex_id}"
+								class="btn btn-primary" role="button">삭제하기</a>
+						</c:if>
+					</div>					
+				</div>               
             </div>
         </div>
     </section>

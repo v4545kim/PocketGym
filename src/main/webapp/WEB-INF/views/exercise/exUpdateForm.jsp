@@ -40,7 +40,7 @@
 	<div class="container">
 		<br><br>
 		<c:set var="xx" value="<%=request.getContextPath()%>"></c:set>
-		<form:form action="${xx}/update.ex" method="post" modelAttribute="bean">
+		<form:form action="${xx}/update.ex" method="post" modelAttribute="bean" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="ex_id">아이디:</label> 
 				<form:input type="text"
@@ -57,16 +57,25 @@
 				<label for="ex_calorie">칼로리:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter calorie" path="ex_calorie" value="${bean.ex_calorie }"/>
+				<form:errors cssClass="err" path="ex_calorie" />
 			</div>
 			<div class="form-group">
 				<label for="context">운동설명:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter context" path="context" value="${bean.context }"/>
+				<form:errors cssClass="err" path="context" />
+			</div>
+			<div class="form-group">
+				<label for="mpf">사진:</label>
+				<form:input type="file" class="form-control"
+					placeholder="patch image" path="mpf" value="${bean.ex_image }"/>
+				<form:errors cssClass="err" path="ex_image" />
 			</div>
 			<div class="form-group">
 				<label for="url">URL:</label> 
 				<form:input type="text"
 					class="form-control" placeholder="Enter url" path="url" value="${bean.url }"/>
+				<form:errors cssClass="err" path="url" />
 			</div>
 			<button type="submit" class="btn btn-primary">수정</button>
 		</form:form>
