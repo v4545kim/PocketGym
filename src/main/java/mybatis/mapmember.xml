@@ -68,5 +68,18 @@
 		delete from members	where id = #{id}
 	</delete>	
 	
+	
+	<!-- 최근 7개의 몸무게 변화 데이터 가져온다 / 부등호를 TAG로 인식하기때문에 <![CDATA[내용]]>으로 묶어준다 -->
+	<select id="SelectMyWeightList" resultType="AlMyWeight">
+		<![CDATA[select * from myweight where mem_id=#{id} and rownum <= 7 order by regdate asc]]>
+	</select>
+	
+	<!-- 나의 몸무게 변화 입력 -->
+	<insert id="insertMyWeight" parameterType="AlWeight">
+		insert into myweight(mem_id, weight, regdate, weight_id) 
+		values(#{mem_id}, #{weight}, #{regdate}, myweight_seq.nextval)
+	</insert>
+	
+	
    
 </mapper>

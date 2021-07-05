@@ -3,6 +3,7 @@ package mail.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.MailDao;
 import vo.Mail;
+import vo.Member;
 
 
 @Controller
@@ -28,19 +30,32 @@ public class MailDetailController
 
 	
 	@GetMapping("/maildetail.ml")
-	private ModelAndView  doGet(@RequestParam(value = "mailnum", required = true) int mailnum,
+	private ModelAndView  doGet(
+			@RequestParam(value = "mailnum", required = true) int mailnum,
+			@RequestParam(value = "senddetail", required = false) String senddetail,
 			HttpSession session)
 	{
 		mav = new ModelAndView();
 		
+		Member member = (Member) session.getAttribute("loginfo");
+		String id = member.getId();
+		int valid = 0;
+		
 		// 해당 메일의 상세정보들을 불러온다
 		Mail bean = mldao.selectByNum(mailnum);
-		int cnt = -99999;
 		
 		
 		// 메일 상세보기후 읽었다는 표시
+		int cnt = -99999;
 		cnt = mldao.readComplete(mailnum);
 		
+		//보낸메일함 받은메일함 구분을 위한 valid
+		if(bean.getSendid().equals(id))
+		{
+			valid = 1;
+		}
+		
+		this.mav.addObject("valid", valid);
 		this.mav.addObject("bean", bean);
 		this.mav.setViewName("mailDetail");
 		

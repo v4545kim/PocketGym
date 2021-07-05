@@ -45,12 +45,6 @@ public class MyDietInsertController {
 			)
 	{
 		
-		System.out.println("여기는 인설트 컨트롤러(get)");
-		System.out.println("mealtime : " + mealtime);
-		System.out.println("year : " + year);
-		System.out.println("month : " + month);
-		System.out.println("day : " + day);
-		
 		
 		mav.addObject("mealtime", mealtime);
 		mav.addObject("year", year);
