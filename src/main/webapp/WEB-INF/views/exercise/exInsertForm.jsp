@@ -54,29 +54,35 @@
 	<div class="container">
 	<br><br><br>
 		<c:set var="xx" value="<%=request.getContextPath()%>"></c:set>
-		<form:form action="${xx}/insert.ex" method="post" modelAttribute="bean">
+		<form:form action="${xx}/insert.ex" method="post" modelAttribute="bean" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="ex_name">이름:</label> 
 				<form:input type="text"
-					class="form-control" placeholder="Enter name" path="ex_name" value="${exercise.ex_name }"/>
+					class="form-control" placeholder="Enter name" path="ex_name" value="${bean.ex_name }"/>
 				<form:errors cssClass="err" path="ex_name" />
 			</div>
 			<div class="form-group">
 				<label for="context">운동설명:</label> 
 				<form:input type="text"
-					class="form-control" placeholder="Enter context" path="context" value="${exercise.context }"/>
+					class="form-control" placeholder="Enter context" path="context" value="${bean.context }"/>
 				<form:errors cssClass="err" path="context" />
 			</div>
 			<div class="form-group">
 				<label for="ex_calorie">칼로리:</label> 
 				<form:input type="text"
-					class="form-control" placeholder="Enter calorie" path="ex_calorie" value="${exercise.ex_calorie }"/>
+					class="form-control" placeholder="Enter calorie" path="ex_calorie" value="${bean.ex_calorie }"/>
 				<form:errors cssClass="err" path="ex_calorie" />
+			</div>
+			<div class="form-group">
+				<label for="mpf">사진:</label> 
+				<form:input type="file"
+					class="form-control" placeholder="patch image" path="mpf"/>
+				<form:errors cssClass="err" path="ex_image" />
 			</div>
 			<div class="form-group">
 				<label for="url">URL:</label> 
 				<form:input type="text"
-					class="form-control" placeholder="Enter url" path="url" value="${exercise.url }"/>
+					class="form-control" placeholder="Enter url" path="url" value="${bean.url }"/>
 				<form:errors cssClass="err" path="url" />
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>

@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="routineDetail" parameterType="String" resultType="AlExercise">
-		select er.ex_id, e.ex_name from routines r inner join exandroutine er on r.ro_id = er.ro_id inner join exercises e on er.ex_id = e.ex_id where r.ro_id = #{ro_id}	
+		select er.ex_id, e.ex_name, e.ex_image from routines r inner join exandroutine er on r.ro_id = er.ro_id inner join exercises e on er.ex_id = e.ex_id where r.ro_id = #{ro_id}	
 	</select>
 	
 	<insert id="insertRoutine">

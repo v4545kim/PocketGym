@@ -62,7 +62,7 @@
 			<div class="form-group">
 				<label for="ro_context">설명:</label> 
 				<form:input type="text"
-					class="form-control" placeholder="Enter calorie" path="ro_context"/>
+					class="form-control" placeholder="Enter context" path="ro_context"/>
 				<form:errors cssClass="err" path="ro_context" />
 			</div>
 			<div class="form-group">
@@ -70,7 +70,7 @@
 				<form:checkboxes items="${ex}" path="ex_id" itemLabel="ex_name" itemValue="ex_id"/>
 				<form:errors cssClass="err" path="ex_id" />
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">저장</button>
 		</form:form>
 	</div>
 	<!-- Js Plugins -->

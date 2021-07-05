@@ -40,12 +40,10 @@
 		<h2>루틴 리스트</h2>
 		<p>루틴에 대한 상세정보를 볼 수 있어요</p>
 		<div align="right">
-			<a href="<%=contextPath%>/insert.ro" class="btn btn-primary" role="button">새로운 루틴 추가하기</a>
-		</div>
-		
-		
-		<table class="table table-hover w-auto">
-		
+			
+		</div>		
+		<table class="table table-hover w-auto">	
+		<a href="<%=contextPath%>/insert.ro" class="btn btn-primary" role="button">새로운 루틴 추가하기</a>
 			<thead class="thead-light">
 				<tr>
 					<th class="col-sm-2">루틴이름</th>
@@ -56,7 +54,7 @@
 				<c:forEach items="${list}" var="item">
 					<tr>	
 						<td>
-							<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}">
+							<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}&ro_name=${item.ro_name}">
 								${item.ro_name }
 							</a>
 						</td>

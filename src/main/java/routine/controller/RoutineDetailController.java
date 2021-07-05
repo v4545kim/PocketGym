@@ -22,12 +22,13 @@ public class RoutineDetailController {
 	RoutineDao rdao;
 	
 	@GetMapping("/detail.ro")
-	private String  doGet(Model model, @RequestParam String ro_id){
+	private String  doGet(Model model, @RequestParam String ro_id, @RequestParam String ro_name){
 		List<Exercise> list = rdao.routineDetail(ro_id);
 		for (Exercise exercise : list) {
 			System.out.println("루틴 운동 : "+ exercise);
 		}
 		model.addAttribute("ro_id", ro_id);
+		model.addAttribute("ro_name", ro_name);
 		model.addAttribute("list", list);
 		return "roDetail";
 	}

@@ -25,6 +25,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -76,22 +77,32 @@
 		<div class="container">
 			<div class="about-text" align="center">
 				<h2>루틴 종류</h2>
-				<a href="<%=contextPath%>/list.ro">
-					<button>루틴 상세보기</button>
-				</a>
 			</div>
-			<c:forEach items="${roList }" var="item">
-				<div class="services-item bg-gray" style="float: left;">
-					<img
-						src="<%=request.getContextPath()%>/resources/img/services/service-icon-1.png"
-						alt="">
-					<h4>${item.ro_name }</h4>
-					<p>${item.ro_context }</p>
-				</div>
-			</c:forEach>
+			
+			<div class="card-columns">
+				<c:forEach items="${roList }" var="item">
+					<div class="card bg-light" style="height: 150px">
+						<div class="card-body text-center">
+							<h4 class="card-title">${item.ro_name}</h4>
+							<p class="card-text" >
+								${item.ro_context } 
+							</p>
+							<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}&ro_name=${item.ro_name}" class="btn btn-primary stretched-link">상세보기</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+<%-- 			<c:forEach items="${roList }" var="item">
+				<div class="services-item bg-gray" style="float: left; width: 25%">
+					<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}&ro_name=${item.ro_name}">
+						<img src="<%=request.getContextPath()%>/resources/img/services/service-icon-1.png" alt="">
+						<h4>${item.ro_name }</h4>
+						<p>${item.ro_context }</p>				
+					</a>			
+				</div>			
+			</c:forEach> --%>
 		</div>
 	</section>
-    <!-- Services Section End -->
 
     <!-- Classes Section Begin -->
     <section class="classes-section spad">
@@ -104,62 +115,18 @@
                 </div>
             </div>
             <div class="row classes-slider owl-carousel">
-                <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/pushup.jpg">
-                        <div class="si-text">
-                            <h4>팔굽혀펴기</h4>
-                            <span><i class="fa fa-user"></i> Ryan Knight</span>
-                        </div>
-                    </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/squart.jpg">
-                        <div class="si-text">
-                            <h4>스쿼트</h4>
-                            <span><i class="fa fa-user"></i> Kevin McCormick</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/chinning.jpg">
-                        <div class="si-text">
-                            <h4>턱걸이</h4>
-                            <span><i class="fa fa-user"></i> Randy Rivera</span>
-                        </div>
-                    </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/plank.jpg">
-                        <div class="si-text">
-                            <h4>플랭크</h4>
-                            <span><i class="fa fa-user"></i> Russell Lane</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/burpee.jpg">
-                        <div class="si-text">
-                            <h4>버피</h4>
-                            <span><i class="fa fa-user"></i> Cole Robertson</span>
-                        </div>
-                    </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/crunch.jpg">
-                        <div class="si-text">
-                            <h4>크런치</h4>
-                            <span><i class="fa fa-user"></i> Ryan Scott</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/dumbbellrow.jpg">
-                        <div class="si-text">
-                            <h4>덤벨 로우</h4>
-                            <span><i class="fa fa-user"></i> Cole Robertson</span>
-                        </div>
-                    </div>
-                    <div class="single-class-item set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/classes/running.png">
-                        <div class="si-text">
-                            <h4>달리기</h4>
-                            <span><i class="fa fa-user"></i> Ryan Scott</span>
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach items="${exList }" var="item">
+	                <div class="col-lg-4">       	
+	                	<div class="single-class-item set-bg" data-setbg="<%=contextPath %>/upload/${item.ex_image }" >                         	      	  
+	                        <div class="si-text">
+	                        	<a href="<%=contextPath%>/detail.ex?ex_id=${item.ex_id}">
+	                           	 <h4>${ item.ex_name}</h4>
+	                            </a>
+	                            <span><i class="fa fa-user"></i>${item.ex_calorie } 칼로리</span>
+	                        </div>
+	                    </div>              	           
+	                </div>
+            	</c:forEach>  
             </div>
         </div>
     </section>
