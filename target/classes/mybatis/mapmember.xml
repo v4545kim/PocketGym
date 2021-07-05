@@ -70,7 +70,7 @@
 	
 	
 	<!-- 최근 7개의 몸무게 변화 데이터 가져온다 / 부등호를 TAG로 인식하기때문에 <![CDATA[내용]]>으로 묶어준다 -->
-	<select id="SelectMyWeightList" resultType="AlMyWeight">
+	<select id="SelectMyWeightList" resultType="AlWeight">
 		<![CDATA[select * from myweight where mem_id=#{id} and rownum <= 7 order by regdate asc]]>
 	</select>
 	
