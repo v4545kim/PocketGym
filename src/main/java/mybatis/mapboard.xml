@@ -40,7 +40,7 @@
 	
 	<!-- 좋아요순 top3가져오기 -->
 	<select id="likeTopList" resultType="AlBoard">
-		select ranking, bo_id, mem_id, title, context, be_image, af_image, regdate, likes from( select bo_id, mem_id, title, context, be_image, af_image, regdate, likes, rank() over(order by likes desc) as ranking from( select b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate, count(distinct l.mem_id) as likes from boards b inner join likeboard l on b.bo_id = l.bo_id group by b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate order by likes desc)) where ranking between 1 and 3
+		<![CDATA[select ranking, bo_id, mem_id, title, context, be_image, af_image, regdate, likes from( select bo_id, mem_id, title, context, be_image, af_image, regdate, likes, rank() over(order by likes desc) as ranking from( select b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate, count(distinct l.mem_id) as likes from boards b inner join likeboard l on b.bo_id = l.bo_id group by b.bo_id, b.mem_id, b.title, b.context, b.be_image, b.af_image, b.regdate order by likes desc)) where rownum <= 3 and ranking between 1 and 3]]>
 	</select>
 	
 	
