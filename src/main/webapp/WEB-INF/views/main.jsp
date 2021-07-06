@@ -21,6 +21,9 @@
 	color: red;
 	font-size: 24px;
 }
+.single-blog-item{
+			text-align: center;
+}
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -138,81 +141,36 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Review</h2>
+                        <h2>SNS</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-trainer-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-1.jpg" alt="">
-                        <div class="trainer-text">
-	                        <div class="star-rating">
-								<i class="fas fa-star" id="star1" ></i>
-								<i class="fas fa-star" id="star2" ></i>
-								<i class="fas fa-star" id="star3" ></i>
-								<i class="fas fa-star" id="star4"></i>
-								<i class="fas fa-star" id="star5" ></i>
-							</div>
-                            <h5>조녀석</h5>
-                            <span>15kg 감량</span>
-                            <p>매일 식단을 기록하고 관리하며 운동 성취율을 한번에 볼수 있어서 체계적인 몸 관리가 가능한 점이 좋네요ㅎㅎ.</p>
-                            <div class="trainer-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-trainer-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-2.jpg" alt="">
-                        <div class="trainer-text">
-                       		<div class="star-rating">
-								<i class="fas fa-star" id="star1" ></i>
-								<i class="fas fa-star" id="star2" ></i>
-								<i class="fas fa-star" id="star3" ></i>
-								<i class="fas fa-star" id="star4"></i>
-								<i class="far fa-star" id="star5" ></i>
-							</div>
-                            <h5>나무나무</h5>
-                            <span>18kg 감량</span>
-                            <p>체계적인 루틴 제공 시스템에 만족하며 식단을 매일 기록할수 있어서 좋습니다^^</p>
-                            <div class="trainer-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-trainer-item">
-                        <img src="<%=request.getContextPath() %>/resources/img/trainer/trainer-3.jpg" alt="">
-                        <div class="trainer-text">
-                        	<div class="star-rating">
-								<i class="fas fa-star" id="star1" ></i>
-								<i class="fas fa-star" id="star2" ></i>
-								<i class="fas fa-star" id="star3" ></i>
-								<i class="fas fa-star" id="star4"></i>
-								<i class="far fa-star" id="star5" ></i>
-							</div>
-                            <h5>순섭순섭</h5>
-                            <span>13kg 감량</span>
-                            <p>저에게 알맞는 운동 루틴을 수행할 수 있어 편리하고 각각 운동 방법을 동영상으로 확인할 수 있다는 점이 좋았습니다.</p>
-                            <div class="trainer-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div >
+                <c:forEach var="bean" items="${requestScope.lists2}">
+	                <div class="col-lg-4 col-md-6" style="width: 500px; height: 500px; vertical-align: middle; display: table; ">
+	                    <div class="single-blog-item" style="display: table-cell; vertical-align: middle;">
+	                        <a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
+	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image" height="300"  width="300" >
+							</a>
+								<h5>																
+									<a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
+										<font size="5"> ${bean.title}</font>
+									</a>
+								</h5>
+								<div class="blog-widget">
+									<c:if test="${sessionScope.loginfo.id == bean.mem_id}">
+										<div><a href="<%=contextPath%>/detail.me" class="tag"><b>${bean.mem_id}<b></a></div>
+									</c:if>
+									
+									<c:if test="${sessionScope.loginfo.id != bean.mem_id}">
+										<div><a href="<%=contextPath%>/otherdetail.me?mem_id=${bean.mem_id}" class="tag"><b>${bean.mem_id}<b></a></div>
+									</c:if>
+									<div class="bw-date">${bean.regdate}</div>
+								</div>
+	                    </div>
+	                </div>
+                </c:forEach>
+            </div> 
         </div>
     </section>
 
