@@ -41,7 +41,7 @@ img.logoimg {
     border-radius:4px;
     box-shadow:none;
     margin-top:20px;
-    width:300px;
+    width:181px;
 }
 .dropdown ul.dropdown-menu:before {
     content: "";
@@ -98,7 +98,6 @@ ul.nav.navbar-nav {
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
 	<!-- Header Section Begin -->
 	<header class="header-section">
 		<div class="container">
@@ -121,10 +120,11 @@ ul.nav.navbar-nav {
 								href="<%=contextPath%>/mydietlist.di?id=${sessionScope.loginfo.id}" >식단</a></li>
 							<li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
 							<li><a
-								href="<%=contextPath%>/brlist.br?id=${sessionScope.loginfo.id}">sns</a></li>
+								href="<%=contextPath%>/brlist.br?id=${sessionScope.loginfo.id}">커뮤니티</a></li>
 						</c:if>
 
 						<li><a href="<%=contextPath%>/prlist.pr">쇼핑몰</a></li>
+						<li><a href="<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}">메일</a></li>
 					</ul>
 				</nav>
 
@@ -168,21 +168,19 @@ ul.nav.navbar-nav {
 								
 								
 								<c:if test="${whologin != 2}">
-									<li><a href="<%=contextPath%>/detail.me">my 상세정보<span
+									<li><a href="<%=contextPath%>/detail.me">나의 상세정보<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}">my mail<span
-											class="glyphicon glyphicon-cog pull-right"></span></a></li>		
-									<li><a href="<%=contextPath%>/plan.me">my 성취율<span
+									<li><a href="<%=contextPath%>/plan.me">나의 몸무게 변화<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="<%=contextPath%>/myroutine.ro">my 루틴<span
+									<li><a href="<%=contextPath%>/myroutine.ro">나의 운동 루틴<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="<%=contextPath%>/mybolist.br?mode='작성자 아이디'&keyword=${sessionScope.loginfo.id}">my sns보기<span
+									<li><a href="<%=contextPath%>/mybolist.br?mode='작성자 아이디'&keyword=${sessionScope.loginfo.id}">나의 게시판<span
                                  class="glyphicon glyphicon-cog pull-right"></span></a></li>
-									<li><a href="#" onclick="check();">my 장바구니 보기<span
+									<li><a href="#" onclick="check();">나의 장바구니 보기<span
 											class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											
 									<li><a href="#" onclick="window.open('<%=contextPath%>/myweightinsert.me','window팝업','width=600, height=500');">
-									몸무게 입력<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+									나의 몸무게 기록<span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 											
 									<li><a href="<%=contextPath%>/delete.me?id=${sessionScope.loginfo.id}" 
 									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴<span
@@ -197,23 +195,17 @@ ul.nav.navbar-nav {
 
 
 
-
-
-
-
-
-
 					</c:when>
 				</c:choose>
 
 			</div>
 			<div id="mobile-menu-wrap"></div>
 		</div>
+		<script type="text/javascript">
+			$('.dropdown-toggle').dropdown()
+		</script>
 	</header>
 	<!-- Header End -->
-
-
-
 </body>
 
 </html>

@@ -234,6 +234,10 @@ function isCheckFalse()
                                     <form:errors cssClass="err" path="height" />
                                 </div>
                                 <div class="form-input">
+                                    <label for="height">현재 체중</label>
+                                    <input type="text" name="weight" id="weight" required="required"/>
+                                </div>
+                                <div class="form-input">
                                     <label for="aim_weight">목표 체중</label>
                                     <input type="text" name="aim_weight" id="aim_weight" value="${requestScope.bean.aim_weight}"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>

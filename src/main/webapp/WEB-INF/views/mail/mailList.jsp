@@ -35,6 +35,7 @@ body
 .mail-box {
 	border-collapse: collapse;
 	border-spacing: 0;
+	margin-top: -27px;
 	display: table;
 	table-layout: fixed;
 	width: 100%;
@@ -49,6 +50,7 @@ body
 }
 
 .btn-group>.btn:first-child {
+	width: 230px;
     margin-bottom: 15px;
 }
 
@@ -492,9 +494,6 @@ ul {
 						</h5>
 						<span><a href="#">${sessionScope.loginfo.email }</a></span>
 					</div>
-					<a class="mail-dropdown pull-right" href="javascript:;"> <i
-						class="fa fa-chevron-down"></i>
-					</a>
 				</div>
 				<div class="inbox-body">
 					<a href="<%=request.getContextPath()%>/mailinsert.ml"
@@ -601,7 +600,7 @@ ul {
 					<li>
 					</li>
 					<li><a href="#"> <i class=""></i>
-							<p><br><br><br><br><br><br><br><br><br><br><br></p></a></li>
+							<p><br><br><br><br><br><br><br><br><br></p></a></li>
 				</ul>
 
   						<div class="inbox-body text-center">
@@ -660,7 +659,7 @@ ul {
 			</aside>
 		</div>
 	</div>
-<div class="pagingbtn" align="center">${requestScope.pagingHtml}</div>
+<div class="pagingbtn" style="margin-left: 880px;" >${requestScope.pagingHtml}</div>
 
 
 
