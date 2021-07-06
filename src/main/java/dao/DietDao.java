@@ -78,6 +78,11 @@ public class DietDao
 		diet.setCalorie(calorie);
 		return this.mysql.insert(NAMESPACE + "insertDiet", diet);
 	}
+
+	public List<Diet> getCal(String id) {
+		return this.mysql.selectList(NAMESPACE+"getCal", id);
+		
+	}
 	
 	
 	

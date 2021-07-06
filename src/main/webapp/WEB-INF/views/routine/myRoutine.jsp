@@ -29,6 +29,17 @@ var event_data = {
     ]
 };
 
+var diet_data = {
+	"diets": [
+		{
+			"year" : 2020,
+			"month": 4,
+			"day": 10,
+			"calorie" : 100			
+		}		
+	]	
+};
+
 const months = [ 
     "January", 
     "February", 
@@ -44,11 +55,29 @@ const months = [
     "December" 
 ];
  console.log('${lists2}')
+ console.log('${deList}')
  var contextPath = '${contextPath}';
+ var id = '${id}';
  var lists2 = JSON.parse('${lists2}');
- console.log(lists2);
+ 
  for(i=0; i<${size}; i++){
 	 var dd = lists2[i].regdate;
+/* 	 console.log(dd) */
+	 var year = parseInt(dd.split('/')[0]);
+/* 	 console.log(year) */
+	 var month = parseInt(dd.split('/')[1]);
+/* 	 console.log(month) */
+	 var date = parseInt(dd.split('/')[2]);
+/* 	 console.log(date) */
+	 var ex_name = lists2[i].ex_name;
+	 var ex_cal = lists2[i].ex_calorie;
+	 var ex_id = lists2[i].ex_id;
+	 new_event_json(year, month, date, ex_name, ex_cal, ex_id);
+ }
+
+ var deList = JSON.parse('${deList}');
+ for(i=0; i<${desize}; i++){
+	 var dd = deList[i].inputdate;
 	 console.log(dd)
 	 var year = parseInt(dd.split('/')[0]);
 	 console.log(year)
@@ -56,10 +85,9 @@ const months = [
 	 console.log(month)
 	 var date = parseInt(dd.split('/')[2]);
 	 console.log(date)
-	 var ex_name = lists2[i].ex_name;
-	 var ex_cal = lists2[i].ex_calorie;
-	 var ex_id = lists2[i].ex_id;
-	 new_event_json(year, month, date, ex_name, ex_cal, ex_id);
+	 var inputCal = deList[i].calorie;
+	 console.log(inputCal)
+	 new_diet_json(year, month, date, inputCal);
  }
  $(document).ready(function(){
 	    var date = new Date();
@@ -73,7 +101,8 @@ const months = [
 	    $(".months-row").children().eq(date.getMonth()).addClass("active-month");
 	    init_calendar(date);
 	    var events = check_events(today, date.getMonth()+1, date.getFullYear());
-	    show_events(events, months[date.getMonth()], today);
+	    var diets = check_diets(today, date.getMonth()+1, date.getFullYear())
+	    show_events(events, diets, months[date.getMonth()], today);
 	});
 
 	// Initialize the calendar by appending the HTML dates
@@ -108,16 +137,17 @@ const months = [
 	        else {
 	            var curr_date = $("<td class='table-date'>"+day+"</td>");
 	            var events = check_events(day, month+1, year);
+	            var diets = check_diets(day, month+1, year)
 	            if(today===day && $(".active-date").length===0) {
 	                curr_date.addClass("active-date");
-	                show_events(events, months[month], day);
+	                show_events(events, diets, months[month], day);
 	            }
 	            // If this date has any events, style it with .event-date
 	            if(events.length!==0) {
 	                curr_date.addClass("event-date");
 	            }
 	            // Set onClick handler for clicking a date
-	            curr_date.click({events: events, month: months[month], day:day}, date_click);
+	            curr_date.click({events: events, diets: diets, month: months[month], day:day}, date_click);
 	            row.append(curr_date);
 	        }
 	    }
@@ -139,7 +169,7 @@ const months = [
 	    $("#dialog").hide(250);
 	    $(".active-date").removeClass("active-date");
 	    $(this).addClass("active-date");
-	    show_events(event.data.events, event.data.month, event.data.day);
+	    show_events(event.data.events, event.data.diets, event.data.month, event.data.day);
 	};
 
 	// Event handler for when a month is clicked
@@ -243,13 +273,24 @@ const months = [
 	    };
 	    event_data["events"].push(event);
 	}
+	
+	function new_diet_json(year, month, day, inputCal) {
+	    var diet = {
+	        "year": year,
+	        "month": month,
+	        "day": day,
+			"calorie" : inputCal
+	    };
+	    diet_data["diets"].push(diet);
+	}
 
 	// Display all events of the selected date in card views
-	function show_events(events, month, day) {
+	function show_events(events, diets, month, day) {
 	    // Clear the dates container
 	    $(".events-container").empty();
 	    $(".events-container").show(250);
 	    console.log(event_data["events"]);
+	    console.log(diet_data["diets"]);
 	    // If there are no events for this date, notify the user
 	    if(events.length===0) {
 	        var event_card = $("<div class='card'></div>");
@@ -257,10 +298,13 @@ const months = [
 	        $(event_card).css({ "border-left": "10px solid #FF1744" });
 	        $(event_card).append(event_name);
 	        $(".events-container").append(event_card);
-	    }
-	    else {
+	    }else {
 	        // Go through and add each event as a card to the events container
 	        var total_cal = 0;
+	        var total_inputCal = 0;
+	        var de_year = 0;
+	        var de_month = 0;
+	        var de_day = 0;
 	        for(var i=0; i<events.length; i++) {
 	            var event_card = $("<div class='card'></div>");
 				var ex_name = $("<div class='card-body'><a href="+contextPath+"/detail.ex?ex_id="+events[i]["ex_id"]+">"+events[i]["ex_name"]+"</a></div>");
@@ -279,9 +323,17 @@ const months = [
 	            $(event_card).append(ex_name).append(ex_cal).append(ex_del);
 	            $(".events-container").append(event_card);
 	        }
+	        for(var i=0; i<diets.length;i++){
+	        	de_year = diets[i]["year"];
+	        	de_month = diets[i]["month"];
+	        	de_day = diets[i]["day"];
+	        	total_inputCal = total_inputCal + diets[i]["calorie"];
+	        }
 	        var event_card = $("<div class='card bg-success text-white'></div>");
-	        var to_cal = $("<h4 class='card-body'>총 칼로리 : "+total_cal+"</h4>");
-	        $(event_card).append(to_cal);
+	        var to_cal = $("<h4 class='card-body'>총 사용 칼로리 : "+total_cal+"</h4>");
+	        var input_cal = $("<a href=\""+contextPath+"/mydietdetail.di?id="+id+"&day="+de_day+"&month="+de_month+"&year="+de_year+"\"><h4 class='card-body'>총 섭취 칼로리 : "+total_inputCal+"</h4></a>");
+	        var todayCal = $("<h4 class='card-body'>오늘 결산 칼로리 : "+(total_inputCal-total_cal)+"</h4>");
+	        $(event_card).append(to_cal).append(input_cal).append(todayCal);
 	        $(".events-container").append(event_card);
 	    }
 	}
@@ -298,6 +350,18 @@ const months = [
 	            }
 	    }
 	    return events;
+	}
+	function check_diets(day, month, year) {
+	    var diets = [];
+	    for(var i=0; i<diet_data["diets"].length; i++) {
+	        var diet = diet_data["diets"][i];
+	        if(diet["day"]===day &&
+	            diet["month"]===month &&
+	            diet["year"]===year) {
+	                diets.push(diet);
+	            }
+	    }
+	    return diets;
 	}
 
 
