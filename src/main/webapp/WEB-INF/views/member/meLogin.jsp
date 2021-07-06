@@ -50,7 +50,7 @@ body {
 
 .login {
    width: 100%;
-   height: 600px;
+   height: 600px; 
    background-color: #fff;
    padding: 15px;
    padding-top: 30px;
@@ -201,15 +201,16 @@ input:checked + .slider:before {
 
 }
 
-.left-box {
-  float: left;
-  width: 50%;
-}
 
-.right-box {
-  float: right;
-  width: 50%;
-}
+.left-box { 
+  float: left; 
+  width: 50%; 
+} 
+.right-box { 
+  float: right; 
+  width: 50%; 
+} 
+
 </style>
    <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -260,12 +261,12 @@ input:checked + .slider:before {
                   <a href="<%=contextPath%>/insert.me" class="btn btn-lg btn-block btn-success">
                      회원가입
                   </a>
-                  <br>
-                  <a href="#" class="btn btn-lg btn-block btn-success"
-                  	onclick="window.open('<%=contextPath%>/findinfo.me?','window팝업','width=580, height=460');">
-                     아이디/비밀번호 찾기
-                  </a>
-               </form>
+                  <br> 
+                  <a href="#" class="btn btn-lg btn-block btn-success" 
+                  	onclick="window.open('<%=contextPath%>/findinfo.me?','window팝업','width=580, height=460');"> 
+                     아이디/비밀번호 찾기 
+                  </a> 
+               </form> 
                
             </div>
          </div>

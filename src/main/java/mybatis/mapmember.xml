@@ -13,8 +13,8 @@
 		select * from members where id = #{id} and password = #{password}
 	</select>
 	
-	<select id="selectById" parameterType="String" resultType="AlMember">
-	select * from members where id = #{id}
+	<select id="selectById" parameterType="String" resultType="AlMember"> 
+		select * from members where id = #{id} 
 	</select>
 
 	<!-- 회원 최신 몸무게 가져오기 -->
@@ -76,41 +76,47 @@
 		values(#{mem_id}, #{weight}, #{regdate}, myweight_seq.nextval)
 	</insert>
 	
-	<!-- 아이디 찾기 -->
-	<select id="findId" resultType="String">
-		select id from members where name = #{name} and birth = #{birth}
-	</select>
 	
-	<!-- 패스워드 찾기 -->
-	<select id="findPassword" resultType="String">
-		select password from members where id = #{id} and email = #{email}
-	</select>
+   	<!-- 아이디 찾기 --> 
+	<select id="findId" resultType="String"> 
+		select id from members where name = #{name} and birth = #{birth} 
+	</select> 
+	 
+	<!-- 패스워드 찾기 --> 
+	<select id="findPassword" resultType="String"> 
+		select password from members where id = #{id} and email = #{email} 
+	</select> 
 	
-	<!-- 초기 비밀번호로 변환 -->
-	<update id="changePassword" parameterType="String" >
-		update members set password = 1234 where id = #{id}
-	</update>
 	
-	<!--초기 비밀번호를 반환  -->
-	<select id="returnPassword" resultType="String">
-		select password from members where id = #{id}
-	</select>
-   
-   
-   <!-- 좋아요 1개당 10point 적립 -->
-   <update id="insertPoint" parameterType="AlMember">
-		update members set point = point +10 where id =#{id}
-	</update>
-      
-	<!-- 좋아요 취소시 10point 감소 -->
-	<update id="deletePoint" parameterType="AlMember">
-		update members set point = point -10 where id =#{id}
-	</update>
+	<!-- 초기 비밀번호로 변환 --> 
+	<update id="changePassword" parameterType="String" > 
+		update members set password = 1234 where id = #{id} 
+	</update> 
+	 
+	 
+	<!--초기 비밀번호를 반환  --> 
+	<select id="returnPassword" resultType="String"> 
+		select password from members where id = #{id} 
+	</select> 
+    
+    
+   <!-- 좋아요 1개당 10point 적립 --> 
+   <update id="insertPoint" parameterType="AlMember"> 
+		update members set point = point +10 where id =#{id} 
+	</update> 
+	  
+	  
+	<!-- 좋아요 취소시 10point 감소 --> 
+	<update id="deletePoint" parameterType="AlMember"> 
+		update members set point = point -10 where id =#{id} 
+	</update> 
 	
-	<!-- 회원가입시 현재 몸무게 입력 -->
-	<insert id="myFirstWeight" parameterType="AlWeight">
-		insert into myweight(mem_id, weight, regdate, weight_id) 
-		values(#{mem_id}, #{weight}, sysdate, myweight_seq.nextval)
-	</insert>
-   
+	  
+	
+	<!-- 회원가입시 현재 몸무게 입력 --> 
+   <insert id="myFirstWeight" parameterType="AlWeight"> 
+      insert into myweight(mem_id, weight, regdate, weight_id)  
+      values(#{mem_id}, #{weight}, sysdate, myweight_seq.nextval) 
+   </insert> 
+	
 </mapper>
