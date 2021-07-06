@@ -102,6 +102,53 @@ public class MemberDao {
 	public int insertMyWeight(MyWeight myweight) {
 		return this.abcd.insert(NAMESPACE + "insertMyWeight", myweight);
 	}
-	
 
+	
+	// 이름과 생년월일 정보를 받아와 아이디를 찾는다.
+	public String findId(String name, String birth) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", name);
+		map.put("birth", birth);
+		return this.abcd.selectOne(NAMESPACE + "findId", map);
+	}
+
+	// 1. 아이디와 이메일 정보를 받아와 비밀번호를 찾는다.
+	public String findPassword(String id, String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("email", email);
+		return this.abcd.selectOne(NAMESPACE + "findPassword", map);
+	}
+
+	// 2. 비밀번호를 찾으면 초기 비밀번호로 변환해 준다.
+	public int changePassword(String id) {
+		return this.abcd.update(NAMESPACE + "changePassword", id);
+	}
+
+	// 3. 초기 비밀번호를 반환해 준다.
+	public String returnPassword(String id) {
+		return this.abcd.selectOne(NAMESPACE + "returnPassword", id);
+	}
+	
+	
+	
+	// 좋아요 1개당 글 작성자의 point 증가를 위한 함수 by 성철
+	public int insertPoint(String bomem_id) {
+		return abcd.update(NAMESPACE + "insertPoint", bomem_id);
+	}
+	   
+	
+	// 좋아요 쉬소시 글 작성자의 point 걈소를 위한 함수 by 성철
+	public int deletePoint(String bomem_id) {
+		return abcd.update(NAMESPACE + "deletePoint", bomem_id);
+	}
+
+	public int myFirstWeight(String id, int myfirstweight) 
+	{
+		MyWeight myweight = new MyWeight();
+		myweight.setMem_id(id);
+		myweight.setWeight(myfirstweight);
+		return this.abcd.insert(NAMESPACE + "myFirstWeight", myweight);
+	}
+	
 }
