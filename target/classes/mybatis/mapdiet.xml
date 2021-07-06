@@ -33,7 +33,9 @@
 		insert into diets values(diets_seq.nextval, #{mem_id}, #{inputdate}, #{mealtime}, #{foodname}, #{calorie})
 	</select>
 
-
+	<select id="getCal" parameterType="String" resultType="AlDiet">
+		select inputdate, calorie from diets where mem_id = #{id}
+	</select>
 
 
 
