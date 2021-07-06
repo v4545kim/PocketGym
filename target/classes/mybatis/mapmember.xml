@@ -80,6 +80,13 @@
 		values(#{mem_id}, #{weight}, #{regdate}, myweight_seq.nextval)
 	</insert>
 	
-	
-   
+	<!-- 좋아요 1개당 10point 적립 -->
+	<update id="insertPoint" parameterType="AlMember">
+		update members set point = point +10 where id =#{id}
+   	</update>
+   	
+   	<!-- 좋아요 취소시 10point 감소 -->
+	<update id="deletePoint" parameterType="AlMember">
+		update members set point = point -10 where id =#{id}
+   	</update>
 </mapper>

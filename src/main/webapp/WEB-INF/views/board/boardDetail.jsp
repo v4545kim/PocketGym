@@ -104,10 +104,10 @@
                             <c:if test="${sessionScope.loginfo.id != bean.mem_id && whologin != 2}">
 	                           <div class="social-share">
 	                           <c:if test="${valid != 0}">
-	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}&bomem_id=${bean.mem_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                           </c:if>
 	                           <c:if test="${valid == 0}"> 
-	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}&bomem_id=${bean.mem_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                           </c:if>     
 	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
 	                            </div>
@@ -115,10 +115,10 @@
                             <c:if test="${whologin == 2}">
 	                           <div class="social-share">
 	                           <c:if test="${valid != 0}">
-	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likeinsert.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}&bomem_id=${bean.mem_id}'">좋아요&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                           </c:if>
 	                           <c:if test="${valid == 0}">     
-	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <button type="button" class="btn btn-default btn-info" onclick="location.href='<%=contextPath%>/likedelete.br?mem_id=${sessionScope.loginfo.id}&bo_id=${bean.bo_id}&bomem_id=${bean.mem_id}'">좋아요 취소&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                           </c:if>     
 	                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp;${like}
 	                                <a href="<%=contextPath%>/brdelete.br?bo_id=${bean.bo_id}"><b>삭제<b></a>
@@ -135,8 +135,25 @@
 		                        <c:forEach var="lists" items="${requestScope.lists}">
 				                        <div class="bd-title">
 				                            <div>
-				                            	<p style="font-size: 14px; font-weight: bold; color:#FFA500;">${lists.mem_id}</p> 
+				                            <c:if test="${sessionScope.loginfo.id == lists.mem_id}">
+					                            	<p style="font-size: 14px; font-weight: bold; color:#FFA500;">
+					                            		<a href="<%=contextPath%>/detail.me" class="tag">
+					                            		${lists.mem_id}
+					                            		</a>
+					                            	</p> 
+				                            </c:if>	
+				                            <c:if test="${sessionScope.loginfo.id != lists.mem_id}">
+					                            	<p style="font-size: 14px; font-weight: bold; color:#FFA500;">
+					                            		<a href="<%=contextPath%>/otherdetail.me?mem_id=${lists.mem_id}" class="tag">
+					                            		${lists.mem_id}
+					                            		</a>
+					                            	</p> 
+				                            </c:if>	
 				                            		${lists.regdate}
+				                            
+				                            
+				                            
+				                            
 				                            </div>
 				                            <div><p>${lists.context}</p></div>
 				                        </div>
