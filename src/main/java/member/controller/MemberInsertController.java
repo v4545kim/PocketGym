@@ -1,5 +1,6 @@
 package member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,12 @@ public class MemberInsertController {
 	
 	@PostMapping("/insert.me")
 	public ModelAndView doPost(
-			@ModelAttribute("member") @Valid Member xxx, BindingResult asdf) {
+			@ModelAttribute("member") @Valid Member xxx, BindingResult asdf,
+			HttpServletRequest request) 
+	{
 		
 		ModelAndView mav = new ModelAndView();
+		int myfirstweight = Integer.parseInt(request.getParameter("weight"));
 		
 		if (asdf.hasErrors()) {
 			System.out.println("유효성 검사에 문제가 있음");
@@ -48,8 +52,12 @@ public class MemberInsertController {
 			
 		} else {
 			System.out.println("유효성 검사에 문제가 없음");
+			String id = xxx.getId();
 			int cnt = -1;
 			cnt = mdao.insertData(xxx);
+			
+			int cnt2 = -9999;
+			cnt2 = mdao.myFirstWeight(id, myfirstweight);
 			
 			mav.setViewName("redirect:/main.ma");
 		}

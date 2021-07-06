@@ -108,7 +108,18 @@
                                 </div>
                                  <div class="form-input">
                                     <label for="period">나의 루틴</label>
-                                    <form:input type="text" path="ro_name" value="${member.ro_name}" readonly="true"/>
+                                    
+                                    
+                                    <c:choose>
+                                    <c:when test="${valid == 1}">
+                                    <form:input type="text" path="ro_name" value="등록된루틴이없습니다" readonly="true"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                     <form:input type="text" path="ro_name" value="${ro_name}" readonly="true"/>
+                                    </c:otherwise>
+                                    </c:choose>
+                                    
+                                    
                                 </div>
                                 <div class="form-input">
                                     <label for="period">나의 포인트</label>
@@ -120,11 +131,9 @@
                             <a href="<%=contextPath%>/update.me?myWeight=${myWeight}">
 								<br>
 								<br>
-								<c:set value="${sessionScope.loginfo.id}" var="id" />
-								<c:if test="${id eq member.id}">
 									<button type="button" class="btn btn-primary">회원 정보 수정하기</button>
-								</c:if>
-							</a>
+                     		</a>
+                    				 <button type="button" onclick="history.back(-1);" class="btn btn-light">뒤로가기</button>
                         </div>
                     </form:form>
                 </div>
