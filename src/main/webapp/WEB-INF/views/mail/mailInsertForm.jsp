@@ -12,7 +12,7 @@
 
 <style type="text/css">
 .row.justify-content-center {
-    margin-top: 200px;
+    margin-top: 60px;
 }
 textarea.form-control 
 {
@@ -44,7 +44,7 @@ textarea.form-control
                             <div class="card-body p-3">
 
                                 <!--Body-->
-                                <div class="form-group">
+                                <div class="form-group">받는사람
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
@@ -63,7 +63,7 @@ textarea.form-control
                                         </c:choose>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group">제목
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-edit text-info"></i></div>
@@ -72,7 +72,7 @@ textarea.form-control
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group">내용
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>

@@ -128,7 +128,7 @@ body
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2><i class="fa fa-utensils" aria-hidden="true"></i> 식단 캘린더</h2>
+                        <h2><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 식단 캘린더</h2>
                         
                     </div>
                 </div>

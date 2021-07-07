@@ -45,7 +45,7 @@ img.logoimg {
 }
 .dropdown ul.dropdown-menu:before {
     content: "";
-    border-bottom: 10px solid #fff;
+    border-bottom: 0;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
     position: absolute;
@@ -55,7 +55,7 @@ img.logoimg {
 }
 .dropdown ul.dropdown-menu:after {
     content: "";
-    border-bottom: 12px solid #ccc;
+    border-bottom: 0;
     border-right: 12px solid transparent;
     border-left: 12px solid transparent;
     position: absolute;
@@ -114,6 +114,7 @@ ul.nav.navbar-nav {
 							<li><a href="<%=contextPath%>/login.me">식단</a></li>
 							<li><a href="<%=contextPath%>/login.me">운동</a></li>
 							<li><a href="<%=contextPath%>/login.me">sns</a></li>
+							<li><a href="<%=contextPath%>/login.me">메일</a></li>
 						</c:if>
 						<c:if test="${whologin !=0 }">
 							<li><a
@@ -121,10 +122,10 @@ ul.nav.navbar-nav {
 							<li><a href="<%=contextPath%>/myroutine.ro">운동</a></li>
 							<li><a
 								href="<%=contextPath%>/brlist.br?id=${sessionScope.loginfo.id}">커뮤니티</a></li>
+							<li><a href="<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}">메일</a></li>
 						</c:if>
 
 						<li><a href="<%=contextPath%>/prlist.pr">쇼핑몰</a></li>
-						<li><a href="<%=contextPath%>/maillist.ml?id=${sessionScope.loginfo.id}">메일</a></li>
 					</ul>
 				</nav>
 
