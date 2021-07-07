@@ -83,6 +83,9 @@ public class MyBoardListController {
 		model.addAttribute("mode", parameters.getMode());
 		model.addAttribute("keyword", parameters.getKeyword());
 		
+		//좋아요 높은순 top 3
+		List<Board> lists2 = dao.likeTopList();
+		model.addAttribute("lists2",lists2);
 		
 		return "boardList" ;
 				
