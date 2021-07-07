@@ -1,0 +1,311 @@
+-- 관리자에서 입력하세요.
+-- create user myhealth identified by oracle account unlock;
+-- alter user myhealth default tablespace users quota unlimited on users;
+-- grant connect, resource to myhealth;
+-- grant create view to myhealth;
+
+
+-- routines Table Create SQL
+create table routines(
+    ro_id       int             primary key,
+    ro_name     varchar2(20)    not null,
+    ro_context  varchar2(255)
+);
+
+create sequence routines_SEQ
+start with 1
+increment by 1;
+
+
+-- members Table Create SQL
+create table members(
+    id          varchar2(20)    primary key,
+    email       varchar2(50)    not null,
+    password    varchar2(40)    not null,
+    height      number          not null,
+    name        varchar2(10)    not null,
+    nickname    varchar2(20)    not null,
+    address1    varchar2(100)   not null,
+    address2    varchar2(100)   not null,
+    gender      varchar2(10)    not null,
+    career      number          not null,
+    period      number          not null,
+    aim_weight  number          not null,
+    ro_id       int,
+    point       int             default 0,
+    birth       varchar2(50)    not null
+);
+
+alter table members
+add constraint FK_members_ro_id_routines_ru_i foreign key (ro_id)
+references routines (ro_id) on delete set null;
+
+
+-- exercises Table Create SQL
+create table exercises(
+    ex_id       int             primary key,
+    ex_name     varchar2(30)    not null,
+    ex_calorie  int             not null,
+    url         varchar2(1000)  not null,
+    context     varchar2(255),
+    ex_image    varchar2(100)
+);
+
+create sequence exercises_SEQ
+start with 1
+increment by 1;
+
+
+-- boards Table Create SQL
+create table boards(
+    bo_id       int             primary key, 
+    mem_id      varchar2(20)    not null, 
+    title       varchar2(40)    not null, 
+    context     varchar2(1000)  not null, 
+    be_image    varchar2(50)    not null, 
+    af_image    varchar2(50)    not null, 
+    regdate     varchar2(50)    not null
+);
+
+create sequence boards_SEQ
+start with 1
+increment by 1;
+
+alter table boards
+add constraint FK_boards_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+-- products Table Create SQL
+create table products(
+    pr_id       int             primary key,
+    pr_name     varchar2(40)    not null,
+    price       int             not null,
+    image       varchar2(400)   not null,
+    stock       int             not null,
+    inputdate   varchar2(50)    not null,
+    context     varchar2(400)   not null,
+    category    varchar2(20)    not null    check(category in('기구','음식','의류'))
+);
+
+create sequence products_SEQ
+start with 1
+increment by 1;
+
+
+-- carts Table Create SQL
+create table carts(
+    cart_id     int             primary key,
+    pr_id       int             not null,
+    mem_id      varchar2(20)    not null,
+    count       int             not null,
+    total_price int             not null
+);
+
+create sequence carts_SEQ
+start with 1
+increment by 1;
+
+
+alter table carts
+add constraint FK_carts_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+alter table carts
+add constraint FK_carts_pr_id_products_pr_id foreign key (pr_id)
+references products (pr_id) on delete cascade;
+
+
+
+-- exandroutine Table Create SQL
+create table exandroutine(
+    ro_id       int             not null,
+    ex_id       int             not null
+);
+
+
+alter table exandroutine
+add constraint FK_exandroutine_ro_id_routines foreign key (ro_id)
+references routines (ro_id) on delete cascade;
+
+alter table exandroutine
+add constraint FK_exandroutine_ex_id_exercise foreign key (ex_id)
+references exercises (ex_id) on delete cascade;
+
+
+
+-- orders Table Create SQL
+create table orders(
+    od_id       int             primary key,
+    orderdate   varchar2(30)    not null,
+    mem_id      varchar2(20)    not null,
+    pr_id       number          not null,
+    count       number          not null,
+    total_price number          not null,
+    address1    varchar2(100)   not null,
+    address2    varchar2(100)   not null
+);
+
+alter table orders 
+add constraint orders_mem_id_fk foreign key (mem_id) 
+references members (id) on delete set null;
+
+
+alter table orders 
+add constraint orders_pr_id_fk foreign key (pr_id) 
+references products (pr_id) on delete set null;
+
+create sequence orders_SEQ
+start with 1
+increment by 1;
+
+
+-- reply Table Create SQL
+create table reply(
+    re_id       int             primary key,
+    bo_id       int             not null,
+    mem_id      varchar2(20)    not null,
+    context     varchar2(400)   not null,
+    regdate     varchar2(50)    not null
+);
+
+
+create sequence reply_SEQ
+start with 1
+increment by 1;
+
+
+alter table reply
+add constraint FK_reply_bo_id_boards_bo_id foreign key (bo_id)
+references boards (bo_id) on delete cascade;
+
+
+
+alter table reply
+add constraint FK_reply_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+
+-- likeboard Table Create SQL
+create table likeboard(
+    mem_id      varchar2(20)    not null,
+    bo_id       int             not null
+);
+
+
+
+alter table likeboard
+add constraint FK_likeboard_bo_id_boards_bo_i foreign key (bo_id)
+references boards (bo_id) on delete cascade;
+
+
+alter table likeboard
+add constraint FK_likeboard_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+
+
+-- diets Table Create SQL
+create table diets(
+    diet_id     int             primary key,
+    mem_id      varchar2(20)    not null,
+    inputdate   varchar2(40)    not null,
+    mealtime    varchar2(20)    not null check(mealtime in('breakfast', 'lunch', 'dinner')),
+    foodname    varchar2(200)   not null,
+    calorie     int             not null
+);
+
+
+create sequence diets_SEQ
+start with 1
+increment by 1;
+
+
+alter table diets
+add constraint FK_diets_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+
+-- routinecheck Table Create SQL
+create table routinecheck(
+    mem_id      varchar2(20)    not null,
+    regdate     varchar2(40)    default sysdate not null,
+    ex_id       int             not null
+);
+
+alter table routinecheck
+add constraint FK_routinecheck_ex_id_exercise foreign key (ex_id)
+references exercises (ex_id) on delete cascade;
+
+
+alter table routinecheck
+add constraint FK_routinecheck_mem_id_members foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+
+-- myweight Table Create SQL
+create table myweight(
+    weight_id   int             primary key,
+    mem_id      varchar2(20)    not null,
+    weight      number          not null,
+    regdate     varchar2(40)    not null
+);
+
+
+create sequence myweight_SEQ
+start with 1
+increment by 1;
+
+
+
+alter table myweight
+add constraint FK_myweight_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+-- mails Table Create SQL
+create table mails(
+   mailnum      int             not null,
+   sendid       varchar2(20)    not null,
+   receiveid    varchar2(20)    not null,
+   subject      varchar2(30)    not null,
+   context      varchar2(255)   not null,
+   senddate     varchar2(30)    default sysdate,
+   readcheck    int             default 0
+);
+
+
+create sequence mails_SEQ
+start with 1
+increment by 1;
+
+
+
+-- readhits Table Create SQL
+CREATE TABLE readhits(
+    mem_id    varchar2(20)      not null, 
+    bo_id     int               not null
+);
+
+
+alter table readhits
+add constraint FK_readhits_bo_id_boards_bo_i foreign key (bo_id)
+references boards (bo_id) on delete cascade;
+
+
+
+alter table readhits
+add constraint FK_readhits_mem_id_members_id foreign key (mem_id)
+references members (id) on delete cascade;
+
+
+
+
+
+
+
+
