@@ -24,6 +24,10 @@
 .single-blog-item{
 			text-align: center;
 }
+.card-columns {
+    text-align: center;
+    display: flex;
+}
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -56,9 +60,6 @@
                 <div class="col-lg-6">
                     <div class="about-pic">
                         <img src="<%=request.getContextPath() %>/resources/img/about-pic2.png" alt="">
-                        <%-- <a href="https://www.youtube.com/watch?v=SlPhMPnQ58k" class="play-btn video-popup">
-                            <img src="<%=request.getContextPath() %>/resources/img/play.png" alt="">
-                        </a> --%>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -84,10 +85,10 @@
 			
 			<div class="card-columns">
 				<c:forEach items="${roList }" var="item">
-					<div class="card bg-light" style="height: 150px">
+					<div class="card bg-light" style="height: 200px">
 						<div class="card-body text-center">
 							<h4 class="card-title">${item.ro_name}</h4>
-							<p class="card-text" >
+							<p class="card-text" style="margin: 22px 1px 10px;">
 								${item.ro_context } 
 							</p>
 							<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}&ro_name=${item.ro_name}" class="btn btn-primary stretched-link">상세보기</a>
@@ -95,15 +96,6 @@
 					</div>
 				</c:forEach>
 			</div>
-<%-- 			<c:forEach items="${roList }" var="item">
-				<div class="services-item bg-gray" style="float: left; width: 25%">
-					<a href="<%=contextPath%>/detail.ro?ro_id=${item.ro_id}&ro_name=${item.ro_name}">
-						<img src="<%=request.getContextPath()%>/resources/img/services/service-icon-1.png" alt="">
-						<h4>${item.ro_name }</h4>
-						<p>${item.ro_context }</p>				
-					</a>			
-				</div>			
-			</c:forEach> --%>
 		</div>
 	</section>
 
@@ -196,52 +188,33 @@
     </section>
 
  
-    <!-- Footer Section Begin -->
+   <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <div class="contact-option">
                         <span>Phone</span>
-                        <p>(123) 118 9999 - (123) 118 9999</p>
+                        <p>0507-1414-9601</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <div class="contact-option">
                         <span>Address</span>
-                        <p>72 Kangnam, 45 Opal Point Suite 391</p>
+                        <p>서울 강남구 강남대로94길 20 삼오빌딩 5-9층</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <div class="contact-option">
                         <span>Email</span>
-                        <p>contactcompany@Gutim.com</p>
+                        <p>PocKetGym@bitcamp.com</p>
                     </div>
                 </div>
             </div>
             <div class="subscribe-option set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/footer-signup.jpg">
                 <div class="so-text">
-                    <h4>Subscribe To Our Mailing List</h4>
-                    <p>Sign up to receive the latest information </p>
-                </div>
-                <form action="#" class="subscribe-form">
-                    <input type="text" placeholder="Enter Your Mail">
-                    <button type="submit"><i class="fa fa-send"></i></button>
-                </form>
-            </div>
-            <div class="copyright-text">
-                <ul>
-                    <li><a href="#">Term&Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-                <p>&copy;<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></p>
-                <div class="footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <h4>모든 저작권은 포켓짐에게 있습니다</h4>
+                    <p>자세한 사항은 관리자에게 문의주세요</p>
                 </div>
             </div>
         </div>
