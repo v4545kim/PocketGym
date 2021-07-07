@@ -68,11 +68,13 @@ td {
 	</section>
 	<div class="container">
 		<h2>${ro_name } 루틴</h2>
+		<c:if test="${whologin == 2}">
 		<a href="<%=contextPath%>/update.ro?ro_id=${ro_id}"
 			class="btn btn-primary" role="button">루틴 수정하기</a> <a
 			href="<%=contextPath%>/delete.ro?ro_id=${ro_id}"
 			class="btn btn-primary" role="button">루틴 삭제하기</a> <br>
 		<br>
+		</c:if>
 		<div class="row">
 			<c:forEach items="${list}" var="item">
 				<div class="column">
@@ -89,6 +91,38 @@ td {
 			</c:forEach>
 		</div>
 	</div>
+	       <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-option">
+                        <span>Phone</span>
+                        <p>0507-1414-9601</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-option">
+                        <span>Address</span>
+                        <p>서울 강남구 강남대로94길 20 삼오빌딩 5-9층</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-option">
+                        <span>Email</span>
+                        <p>PocKetGym@bitcamp.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="subscribe-option set-bg" data-setbg="<%=request.getContextPath() %>/resources/img/footer-signup.jpg">
+                <div class="so-text">
+                    <h4>모든 저작권은 포켓짐에게 있습니다</h4>
+                    <p>자세한 사항은 관리자에게 문의주세요</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
 	<!-- Js Plugins -->
    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
