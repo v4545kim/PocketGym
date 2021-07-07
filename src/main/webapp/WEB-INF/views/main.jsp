@@ -149,6 +149,9 @@
                 <c:forEach var="bean" items="${requestScope.lists2}">
 	                <div class="col-lg-4 col-md-6" style="width: 500px; height: 500px; vertical-align: middle; display: table; ">
 	                    <div class="single-blog-item" style="display: table-cell; vertical-align: middle;">
+	                        
+	                    <c:choose>
+							<c:when test="${whologin!=0 }">    
 	                        <a href="<%=contextPath%>/readhitinsert.br?bo_id=${bean.bo_id}&mem_id=${sessionScope.loginfo.id}&bomem_id=${bean.mem_id}">
 	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image" height="300"  width="300" >
 							</a>
@@ -167,6 +170,24 @@
 									</c:if>
 									<div class="bw-date">${bean.regdate}</div>
 								</div>
+							</c:when>
+							
+							<c:when test="${whologin == 0 }">    
+	                        <a href="<%=contextPath%>/login.me">
+	                        	<img src="<%=contextPath%>/upload/${bean.af_image}" alt="no image" height="300"  width="300" >
+							</a>
+								<h5>																
+									<a href="<%=contextPath%>/login.me">
+										<font size="5"> ${bean.title}</font>
+									</a>
+								</h5>
+								<div class="blog-widget">
+									<div><a href="<%=contextPath%>/login.me" class="tag" ><b>${bean.mem_id}<b></a></div>
+									<div class="bw-date">${bean.regdate}</div>
+								</div>
+							</c:when>
+							
+						</c:choose>
 	                    </div>
 	                </div>
                 </c:forEach>
