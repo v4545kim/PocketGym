@@ -89,7 +89,14 @@
                                 </div>
                                  <div class="form-input">
                                     <label for="period">루틴</label>
-                                    <form:input type="text" path="ro_name" value="${bean.ro_name}" readonly="true"/>
+                                    <c:choose>
+                                    <c:when test="${valid == 1}">
+                                    <form:input type="text" path="ro_name" value="등록된루틴이없습니다" readonly="true"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                     <form:input type="text" path="ro_name" value="${ro_name}" readonly="true"/>
+                                    </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>
