@@ -66,14 +66,9 @@ public class MyBoardListController {
 				pageInfo.getLimit(),
 				parameters.getMode(), 
 				parameters.getKeyword()) ;
-				// "%" 문자열은 like 연산자 때문에 넣었습니다.
-//		for(Board bor : lists)
-//		{
-//			System.out.println("bo_id : " + bor.getBo_id());
-//		}
 		
-		// 바인딩해야 할 목록들
-		model.addAttribute("lists", lists); // 게시물 목록
+		// 게시물 목록
+		model.addAttribute("lists", lists);
 		
 		// 페이징 관련 항목들
 		model.addAttribute("pagingHtml", pageInfo.getPagingHtml());

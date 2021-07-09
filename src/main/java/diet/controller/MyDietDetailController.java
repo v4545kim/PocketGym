@@ -52,13 +52,14 @@ public class MyDietDetailController {
 		String lunch = "lunch";
 		String dinner = "dinner";
 		
+		//각 끼니별 식단 리스트 가져오기
 		List<Diet> breakfastlists = ddao.BreakfastList(id, inputdate, breakfast);
 		List<Diet> lunchlists = ddao.lunchList(id, inputdate, lunch);
 		List<Diet> dinnerlists = ddao.dinnerList(id, inputdate, dinner);
 		
 		
 		
-		
+		// 총 칼로리 default값
 		int breakfasttotal = 0;
 		int lunchtotal = 0;
 		int dinnertotal = 0;
