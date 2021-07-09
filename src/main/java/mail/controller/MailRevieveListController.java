@@ -42,7 +42,7 @@ public class MailRevieveListController
 		String id = member.getId();
 		
 		
-		//페이질 처리
+		//페이징 처리
 		int totalCount = this.mldao.ReceiveTotalCount(id);
 		System.out.println(this.getClass() + "totalCount : " + totalCount);
 		

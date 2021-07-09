@@ -11,6 +11,21 @@
 
  <script type="text/javascript">
 	function hahaha() {
+		
+		
+		if(document.myform.foodname.value === "" || isNaN(myform.foodname.value) === false){ //isNaN에 의해서 숫자는 처리 불가
+	          myform.foodname.focus();
+	          alert("음식을 입력해 주세요");
+	          return;
+	     }
+		else if(document.myform.calorie.value=="") {
+	           alert("칼로리를 입력해 주세요");
+	           myform.calorie.focus();
+	           return;
+	       }
+		else
+		{
+		
 		opener.name = "수정창";
 		document.myform.target = opener.name;
 		document.myform.action = "<%=request.getContextPath() %>/mydietupdate.di"
@@ -20,6 +35,7 @@
 			    return;
 			}
 		self.close();
+		}
 	}
 </script>
 	

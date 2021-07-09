@@ -222,24 +222,14 @@ CSS from v3 snipp
 						
 						<!-- 루틴 번호에 따른 루틴이름 표시 --> 
 						<c:set var="ro_id" value="${lists.ro_id}" />
-						<c:choose>
-								<c:when test="${ro_id==3}">
-									User Routine: 초급
-								</c:when>
-
-								<c:when test="${ro_id==4}">
-									User Routine: 중급
-								</c:when>
-								
-								<c:when test="${ro_id == 5}">
-									User Routine: 고급
-								</c:when>
-								
-								<c:otherwise>
-									루틴을 부여해주세요.
-								</c:otherwise>
-						</c:choose>
-						
+						<c:forEach var="rolist" items="${rolist}">
+						<c:if test="${ro_id == rolist.ro_id}">
+							User Routine: ${rolist.ro_name}
+						</c:if>
+						</c:forEach>
+						<c:if test="${ro_id == 0}">
+						루틴을 부여해주세요.
+						</c:if>
 						</span>
 					</div>
 					<div class="span1 dropdown-user" data-for=".${lists.id}">
