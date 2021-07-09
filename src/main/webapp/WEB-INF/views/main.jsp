@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="hero-text">
-                        <h1 style="text-align: center;">내 몸에 잘 맞는 운동, <br>Pocket Gym</h1>
+                        <h1 style="text-align: center;">내 몸에 잘 맞는 운동<br>Pocket Gym</h1>
                         <p style="text-align: center;">우리집 거실이 1:1 PT 스튜디오로<br /> 지금 바로 Pocket Gym과 함께 하세요!</p>
                     </div>
                 </div>

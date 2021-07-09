@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.MemberDao;
+import dao.RoutineDao;
 import utility.Paging;
 import vo.Member;
+import vo.Routine;
 
 @Controller
 public class MemberListController {
@@ -27,6 +29,9 @@ public class MemberListController {
 	@Qualifier("mdao")
 	private MemberDao mdao;
 	
+	@Autowired
+	@Qualifier("rdao")
+	private RoutineDao rdao;
 	
 	public MemberListController() {
 		this.mav = new ModelAndView();
@@ -51,6 +56,7 @@ public class MemberListController {
 		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myrul, null, null);
 		
 		List<Member> lists = mdao.SelectDataList(pageInfo.getOffset(), pageInfo.getLimit());
+		List<Routine> rolist = rdao.selectRoList();
 		System.out.println("member size" + lists.size());
 		
 		// 루틴이 없는사람이 있는지 확인
@@ -62,6 +68,7 @@ public class MemberListController {
 			}
 		}
 		
+		this.mav.addObject("rolist",rolist);
 		this.mav.addObject("valid", valid);
 		this.mav.addObject("lists", lists);
 		this.mav.addObject("pagingHtml", pageInfo.getPagingHtml());
