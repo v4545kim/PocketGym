@@ -310,8 +310,11 @@ const months = [
 				var ex_name = $("<div class='card-body'><a href="+contextPath+"/detail.ex?ex_id="+events[i]["ex_id"]+">"+events[i]["ex_name"]+"</a></div>");
 				var ex_cal = $("<div class='card-body'>"+events[i]["ex_cal"]+" 칼로리</div>");
 				var year = events[i]["year"];
+				de_year = events[i]["year"];
 				var month = events[i]["month"];
+				de_month = events[i]["month"];
 		        var day = events[i]["day"];;
+		        de_day = events[i]["day"];;
 				var regdate = [year,month,day].join('/');
 				var ex_del = $("<button type='button' class='btn btn-danger btn-circle' onclick='location.href=\""+contextPath+"/myroutinedelete.ro?ex_id="+events[i]["ex_id"]+"&regdate="+regdate+"\"'>삭제하기</button>");
 				total_cal = total_cal + events[i]["ex_cal"]
@@ -324,9 +327,6 @@ const months = [
 	            $(".events-container").append(event_card);
 	        }
 	        for(var i=0; i<diets.length;i++){
-	        	de_year = diets[i]["year"];
-	        	de_month = diets[i]["month"];
-	        	de_day = diets[i]["day"];
 	        	total_inputCal = total_inputCal + diets[i]["calorie"];
 	        }
 	        var event_card = $("<div class='card bg-success text-white'></div>");
