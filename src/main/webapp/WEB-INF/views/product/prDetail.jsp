@@ -12,7 +12,7 @@
 <style type="text/css">
 .gallery-wrap .img-big-wrap img {
     height: 450px;
-    width: auto;
+    width: 520px;
     display: inline-block;
     cursor: zoom-in;
 }
@@ -128,7 +128,7 @@
 
 	<div class="card">
 		<div class="row">
-			<aside class="col-sm-7 border-right">
+			<aside class="col-sm-7 border-right" style="text-align: center;" >
 				<article class="gallery-wrap">
 					<div class="img-big-wrap">
 						<div>
