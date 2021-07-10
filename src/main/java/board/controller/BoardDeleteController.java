@@ -27,7 +27,6 @@ public class BoardDeleteController {
 			){ 
 		int cnt = -99999;
 		cnt = dao.deleteBoard(bo_id);
-		System.out.println("여기오나 테스트2");
 		return "redirect:/brlist.br";
 	}
 	

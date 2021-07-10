@@ -78,7 +78,6 @@ public class MemberDao {
 
 	public int giveRoutine(int ro_id, String id) 
 	{
-		System.out.println("여긴 들어오나요");
 		Member member = new Member();
 		member.setId(id);
 		member.setRo_id(ro_id);

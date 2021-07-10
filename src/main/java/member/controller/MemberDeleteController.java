@@ -40,7 +40,6 @@ public class MemberDeleteController {
 			@RequestParam(value = "id", required = true) String id,
 			HttpSession session)
 	{
-		System.out.println("여기는 잘 옵니다.");
 		
 		System.out.println("id : " + id);
 		
