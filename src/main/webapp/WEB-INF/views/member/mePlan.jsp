@@ -71,23 +71,147 @@ canvas#myChart {
 		var weight7 = <%=request.getAttribute("weight7")%>;
 		var regdate7 = '<%=request.getAttribute("regdate7")%>';
 		
+		//리스트가 7개 다 있을때
+		if(regdate7 != '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [regdate7, regdate6, regdate5, regdate4, regdate3, regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight7,weight6,weight5,weight4,weight3,weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 1개일때
+		else if (regdate2 == '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 2개일때
+		else if (regdate3 == '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 3개일때
+		else if (regdate4 == '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [regdate3, regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight3,weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 4개일때
+		else if (regdate5 == '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [regdate4, regdate3, regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight4,weight3,weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 5개일때
+		else if (regdate6 == '미등록') 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [ regdate5, regdate4, regdate3, regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight5,weight4,weight3,weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
+		// 등록된 몸무게가 6개일때
+		else 
+		{
+			var ctx = document.getElementById('myChart').getContext('2d');		
+			var chart = new Chart(ctx, {
+				// 차트 종류 선택
+				type: 'line', 
+				// 차트를 그릴 데이터
+				data: { labels: [ regdate6, regdate5, regdate4, regdate3, regdate2, regdate1], 
+				datasets: [{ 
+					label: '나의 몸무게 변화(kg)', 
+					backgroundColor: 'transparent', 
+					borderColor: 'red', 
+					data: ([weight6,weight5,weight4,weight3,weight2,weight1,0]) 
+					}] 
+				},
+			// 옵션
+			options: {} 
+			});
+		}
 		
-		var ctx = document.getElementById('myChart').getContext('2d');		
-		var chart = new Chart(ctx, {
-			// 차트 종류 선택
-			type: 'line', 
-			// 차트를 그릴 데이터
-			data: { labels: [regdate1, regdate2, regdate3, regdate4, regdate5, regdate6, regdate7], 
-			datasets: [{ 
-				label: '나의 몸무게 변화(kg)', 
-				backgroundColor: 'transparent', 
-				borderColor: 'red', 
-				data: ([weight1,weight2,weight3,weight4,weight5,weight6,weight7,0]) 
-				}] 
-			},
-		// 옵션
-		options: {} 
-		});
 	</script>
 	
 	
