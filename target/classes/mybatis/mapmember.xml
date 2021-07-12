@@ -26,7 +26,7 @@
 	<!-- 회원 정보 수정하기 -->
 	<update id="updateMember" parameterType="AlMember">
 		update members set email = #{email}, password = #{password}, height =
-		#{height}, nickname = #{nickname}, address = #{address}, aim_weight =
+		#{height}, nickname = #{nickname}, address1 = #{address1}, address2 = #{address2}, aim_weight =
 		#{aim_weight} where id = #{id}
 	</update>
 	
