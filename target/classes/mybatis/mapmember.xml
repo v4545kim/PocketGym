@@ -67,7 +67,7 @@
 	
 	<!-- 최근 7개의 몸무게 변화 데이터 가져온다 / 부등호를 TAG로 인식하기때문에 <![CDATA[내용]]>으로 묶어준다 -->
 	<select id="SelectMyWeightList" resultType="AlWeight">
-		<![CDATA[select * from myweight where mem_id=#{id} and rownum <= 7 order by regdate asc]]>
+		<![CDATA[SELECT * FROM ( SELECT * FROM myweight where mem_id=#{id} ORDER BY regdate desc) e WHERE rownum <= 7]]>
 	</select>
 	
 	<!-- 나의 몸무게 변화 입력 -->
@@ -116,7 +116,7 @@
 	<!-- 회원가입시 현재 몸무게 입력 --> 
    <insert id="myFirstWeight" parameterType="AlWeight"> 
       insert into myweight(mem_id, weight, regdate, weight_id)  
-      values(#{mem_id}, #{weight}, sysdate, myweight_seq.nextval) 
+      values(#{mem_id}, #{weight}, to_char(sysdate, 'yyyy-mm-dd'), myweight_seq.nextval) 
    </insert> 
 	
 </mapper>
